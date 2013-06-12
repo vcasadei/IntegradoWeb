@@ -1,0 +1,121 @@
+= Projeto Integrado 2013: Desenv. Web / Lab BD / ES2
+
+Para criar poder trabalhar aqui, siga os seguintes passos:
+1. Crie sua conta no GitHub (github.com) se ainda não tiver
+2. Acesse {Dwonload}[http://windows.github.com/]
+
+
+  rake db:create
+
+Isso criará as databases. É necessário também instalar as Gem`s, por meio do comando
+
+  bundle install
+
+Por fim, migre as informações do banco
+
+  rake db:migrate
+
+O projeto pode ser rodado no server com o comando
+
+  rails s
+
+== Modelos de usuário e funcionalidades
+
+1. Modelo de Usuários e Relacionamentos
+
+O modelo de usuário criado possui os seguintes dados: Nome, Email, CPF, Gênero, Cidade, Estado, Aniversário, Senha. Onde o Email é utilizado como sua identificação única no Sistema.
+  attr_accessible :email, :name, :cpf, :gender, :city, :state, :birth, :password, :password_confirmation
+
+Um usuário possui Posts, estes similares a outras redes sociais, como Facebook ou Twitter, que ficam armazenados em sua Timeline.
+O relacionamento entre usuários é realizado da forma Follow/Followed, portanto, não temos amigos, mas sim seguidores (semelhante ao modelo do microblog Twitter), este tipo de relacionamento foi escolhido devido a simplificações que traz ao projeto.
+  has_many :posts, dependent: :destroy
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name: "Relationship",
+                                   dependent: :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
+
+Algumas restrições foram realizadas, como a verificação de unicidade de e-mail, validade de e-mail e CPF e comprimento de senha. Isto pode ser conferido no Model User.
+
+2. Modelo de Posts
+O modelo de posts é um sistema de publicações, no qual o tamanho máximo de uma publicação é 800 caracteres. Cada post possui um conteúdo e pertence a um usuário.
+
+Estes posts são exibidos na timeline dos usuários que são donos deles e também os posts dos usuários que são seguidos.
+
+  attr_accessible :content
+  belongs_to :user
+
+3. Funcionalidades Básicas
+
+* Register, Login/Logout, Search, Follow/UnFollow
+Este projeto possui as funcionalidades de Cadastro de novos usuários, login, logout e edição do cadastro. A partir do momento que o usuário está logado no sistema, este pode Pesquisar por outros usuários, por meio de uma função de pesquisa implementada e dar "Follow" ou "UnFollow" em usuários do sistema.
+A ação follow/unfollow ficou um pouco lenta pois a partir desta é lançado um e-mail de notificação e o protocolo de envio acabou deixando a operação um pouco lenta.
+
+* Mailer
+Quando um usuário segue outro, o usuário que recebe a ação recebe uma notificação no e-mail cadastrado informando que ele está sendo seguido e é indicado o link do perfil de seu novo seguidor. O mesmo acontece quando um usuário deixa de seguir outro.
+
+Quando um usuário é registrado este recebe também uma notificação em seu e-mail cadastrado, com as informações sobre sua nova conta. Quando seu perfil é alterado, outra notificação semelhante é também enviada. As funções de Mailer podem ser encontradas em app/mailers.
+
+* Hierarquia de usuários
+Existem duas classes de usuário: O usuário comum e o administrador. Este último só pode ser cadastrado diretamente no banco e possui a funcionalidade de Exclusão de um perfil de usuário.
+
+* Posts
+Um usuário pode criar um post em sua timeline e pode também deletar o seu post. Ao criar o post, mensagens personalizadas são mostradas como forma de interação com o usuário.
+
+* Token de Login
+Uma vez logado no sistema, um usuário possui um Token salvo no navegador, portanto, ao menos que clique em Logout, este permanecerá logado ao sistema.
+
+* Foto de Perfil
+Para simplificação, na foto de perfil foi utilizado o sistema externo Gravatar. O usuário pode alterar a imagem associada a seu perfil por meio do site do Gravatar.
+
+* Segurança
+Para melhorar a segurança, é requerido no cadastro senha e confirmação de senha, além desta senha ser criptografada quando salva no banco. Para isto, foi utilizada a gem <tt>bcrypt-ruby</tt>, em sua versão 3.0.1.
+
+== Testes
+
+Praticamente todas as funcionalidades foram testadas. Para isto foi utilizada da gem <tt>rspec-rails(2.11.0)</tt>, <tt>factory_girl_rails(4.1.0)</tt> e <tt>capybara(1.1.2)</tt>.
+
+Foram, ao todo, implementados 147 testes. Estes podem ser conferidos em spec.
+
+Para popular o Banco para testes no sistema, deve-se rodar os seguintes comandos
+
+  rake db:populate
+
+Para rodar os testes deve-se chamar o Rspec, por meio do comando
+
+  bundle exec rake spec
+
+
+Com estes comandos, o sistema será populado com usuários de exemplo, com login example-{1 - 99}@example.com. Um usuário admin também é criado. Seu e-mail é <tt>example@example.com</tt> e sua senha é <tt>foobar</tt>.
+
+  name: "Example User",
+  email: "example@example.com",
+  cpf: "392.839.838-80",
+  gender: "male",
+  city: "Sorocaba",
+  state: "SP",
+  password: "foobar",
+  password_confirmation: "foobar"
+
+== Melhorias
+
+1. Poderiam ser realizados mais testes principalmente em relação ao envio de notificações de e-mail e a parte de pesquisa de usuários, que não foram propriamente testadas.
+
+2. Faltou ser implementado um sistema de Comunicação entre usuários, ou seja, um sistema de mensagens. Tentei implementar este sistema mas não tive tempo suficiente para deixá-lo funcional.
+
+3. Poderia ser facilmente migrado o sistema de foto de perfil do Gravatar para o sistema desenvolvido, isto fica como uma melhoria.
+
+4. Telas de eventos ou comunidades poderiam ser criadas também com um pouco de trabalho, mas melhorariam ainda mais a aplicação.
+
+5. Poderia ser implementada também a funcionalidade de Galeria de Fotos, mas esta traria uma complexidade extra
+
+== Considerações
+
+Todas os erros testados foram tratados e procurei fazer um sistema ao menos utilizável.
+
+Não tive muito tempo e não tive um resultado final que gostaria realmente, pretendia ter feito mais, entretanto, devido ao final do meu semestre de aulas ter ficado para Janeiro, estou apurado com datas e não tive muito tempo para investir neste projeto.
+
+Utilizei muito fóruns e a internet de forma geral para a busca de informações. O curso de Rails também foi muito útil, além das dicas dadas.
+
+Gostei muito de desenvolver este projeto pois aprendi muito de Rails e tive que lidar com muitos problemas, os quais fui capaz de superar. Acredito que isto me trouxe muita experiência prática no assunto e espero poder aprimorar esta experiência em outros projetos.
