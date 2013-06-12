@@ -1,0 +1,111 @@
+/* Created by Artisteer v4.1.0.59861 */
+
+.pubmed-header, #pubmed-header-bg, .pubmed-layout-cell, .pubmed-layout-wrapper, .pubmed-footer, .pubmed-nav, #pubmed-hmenu-bg, .pubmed-sheet,
+.clearfix {
+   zoom: expression(this.runtimeStyle.zoom="1", this.appendChild(document.createElement("br")).className="cleared");
+}
+
+.pubmed-textblock > div {
+   display: block;
+   line-height: normal;
+   zoom: 1;
+}
+
+.pubmed-hmenu>li, .pubmed-hmenu>li>a
+{
+   display: inline !important;
+   zoom: 1;
+   float: none !important;
+   vertical-align: top;
+}
+ul.pubmed-hmenu, ul.pubmed-hmenu ul {
+   zoom: expression(this.runtimeStyle.zoom="1", this.appendChild(document.createElement("br")).className="cleared");
+}
+#pubmed-hmenu-bg 
+{
+   display: none;
+}
+
+ul.pubmed-hmenu>li:first-child {
+   padding-right:0;
+}
+
+ul.pubmed-hmenu ul, .desktop-nav ul.pubmed-hmenu>li.ext:hover>a{
+   background-color: rgba(66, 66, 66, 0.6) !important;
+}
+
+.pubmed-header
+{
+   z-index: 1;
+   background-image: [headerimage];
+   background-position: [headerposition];
+}
+
+#pubmed-header-bg 
+{
+   display: none;
+}
+
+.pubmed-content-layout, .pubmed-content-layout-row, .pubmed-layout-cell 
+{
+   display: block;
+   zoom: 1;
+}
+.pubmed-layout-cell
+{
+   position:relative;
+   float: left;
+   clear: right;
+}
+
+input[type="text"]
+{
+   margin:0 0 0 -3px;
+   zoom:expression(runtimeStyle.zoom = 1, parentNode.insertBefore(document.createElement('div'), this).appendChild(this));
+}
+
+* html input[type="text"]
+{
+   margin :0;
+}
+
+form.pubmed-search>input[type="text"]
+{
+   margin:0 0 0 -3px;
+   zoom:expression(runtimeStyle.zoom = 1, parentNode.insertBefore(document.createElement('div'), this).appendChild(this));
+}
+
+form.pubmed-search div>input[type="text"]
+{
+   width: 100%;
+}
+
+* html form.pubmed-search>input[type="text"] 
+{
+   margin :0;
+}
+
+.pubmed-postmetadataheader{
+   zoom:1;
+}
+
+.pubmed-postheadericons span{
+   zoom: 1;
+}
+.pubmed-postcontent {
+   height: 1%;
+}
+
+.close-alt, .arrow-right-alt, .arrow-left-alt {
+   display: block !important;
+}
+.cw, .ccw {
+   display: none !important;
+}
+
+.pubmed-content 
+{
+   width: auto;
+   float:none;
+}
+

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US"><head><!-- Created by Artisteer v4.1.0.59861 -->
+    <meta charset="utf-8">
+    <title>Alterar Journal</title>
+    <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width">
+
+    <!--[if lt IE 9]><script src="../https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <link rel="stylesheet" href="../style.css" media="screen">
+    <!--[if lte IE 7]><link rel="stylesheet" href="../style.ie7.css" media="screen" /><![endif]-->
+    <link rel="stylesheet" href="../style.responsive.css" media="all">
+
+
+    <script src="../jquery.js"></script>
+    <script src="../script.js"></script>
+    <script src="../script.responsive.js"></script>
+    
+    <script src="../jquery.formError.js" type="text/javascript"></script>
+   
+           <link rel="stylesheet" href="../Source/jquery-ui.css" />
+  <script src="../Source/jquery-1.9.1.js"></script>
+  <script src="../Source/jquery-ui.js"></script>
+  <script src="../Source/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script> 
+        <script src="../Source/jquery.boxshadow.js" type="text/javascript" charset="utf-8"></script>
+           
+   <script type="text/javascript">
+var $t = jQuery.noConflict();
+    $('.target').change(function() {
+      alert('Handler for .change() called.');
+    });
+$t(document).ready(
+   function()
+   {
+      $t("#journal-title").change( validate.controls.title);
+      $t("#journal-abreviation").change( validate.controls.abreviation);
+      $t("#button").click(
+         function( event)
+         {
+             console.log("ahoy");
+            event.preventDefault();
+            console.log("ahoy2");
+            if( validate.all())
+            {
+                console.log("ahoy3");
+               alert( "This dude is valid. I can continue");
+            } else {
+                
+            }
+         });
+         
+        
+   });
+   
+ 
+   
+var validate =
+   (function()
+   {
+      
+
+      var all =
+         function()
+         {
+            var invalidControls = [];
+            for( var controlValidationMethod in validate.controls)
+            {
+               if( ! validate.controls[controlValidationMethod].call( $t("#" + controlValidationMethod)))
+               {
+                  invalidControls.push( controlValidationMethod);
+               }
+            }
+
+            if( invalidControls.length > 0)
+            {
+                // Set focus on the first erroneous control
+                $t("#" + invalidControls[0]).focus();
+            }
+            console.log(invalidControls);
+            console.log(invalidControls.length);
+            return invalidControls.length == 0;
+         };
+
+      var controls =
+      {
+      
+         
+         title:
+                 
+            function(){
+                var $tinput = $t('#journal-title');
+               var isValid = true;
+
+                function ltrim(texto) { return texto.replace(/^[ ]+/, ''); }
+                function rtrim(texto) { return  texto.replace(/[ ]+$t/, ''); }
+                function trim(texto) { return ltrim(rtrim(texto)); }
+
+                var aux = trim($tinput.val());
+                if(aux === "" || aux == null){
+                    $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300');
+                    isValid =  false;
+                        $tinput.attr("placeholder", "Insira o Título do Journal");
+
+                    } else {
+                        $tinput.css('box-shadow', '0px 0px 1px 1px #999999');
+                              
+                             $tinput.boxShadow( 0, 0, 1, "#999999" );
+
+                        isValid =  true;
+                      
+                    
+                        if( $tinput.val().match(/^[^0-9A-Za-z]/) != null){
+                            $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300');
+                            isValid =  false;
+                                $tinput.attr("placeholder", "O Título do Journal não deve começar com caracteres especiais");
+
+                            } else {
+                                $tinput.css('box-shadow', '0px 0px 1px 1px #999999');
+                                     $tinput.boxShadow( 0, 0, 1, "#999999" );
+
+                            isValid = true;
+
+
+                            return isValid;
+                         }                   
+                }
+            },
+            abreviation:
+                 
+            function(){
+                var $tinput = $t('#journal-abreviation');
+               var isValid = true;
+
+                function ltrim(texto) { return texto.replace(/^[ ]+/, ''); }
+                function rtrim(texto) { return  texto.replace(/[ ]+$t/, ''); }
+                function trim(texto) { return ltrim(rtrim(texto)); }
+
+                var aux = trim($tinput.val());
+                if(aux === "" || aux == null){
+                    $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300');
+                    isValid =  false;
+                        $tinput.attr("placeholder", "Insira a Abreviação do Journal");
+
+                    } else {
+                        $tinput.css('box-shadow', '0px 0px 1px 1px #999999');
+                              
+                             $tinput.boxShadow( 0, 0, 1, "#999999" );
+
+                        isValid =  true;
+                      
+                    
+                        if( $tinput.val().match(/^[^0-9A-Za-z]/) != null){
+                            $tinput.css('box-shadow', '0px 0px 1px 1px #FF3300');
+                            isValid =  false;
+                                $tinput.attr("placeholder", "A Abreviação não deve começar com caracteres especiais");
+
+                            } else {
+                                $tinput.css('box-shadow', '0px 0px 1px 1px #999999');
+                                     $tinput.boxShadow( 0, 0, 1, "#999999" );
+
+                            isValid = true;
+
+
+                            return isValid;
+                         }                   
+                }
+            }
+         };
+
+      return {
+         "all": all,
+         "controls": controls};
+   })();
+   
+</script>
+
+</head>
+<body>
+<div id="pubmed-main">
+<nav class="pubmed-nav">
+    <div class="pubmed-nav-inner">
+    <ul class="pubmed-hmenu"><li><a href="../index.html" class="">Home</a></li><li><a href="../login.html" class="">Login</a></li><li><a href="../new-page-2.html" class="">Contato</a></li></ul> 
+        </div>
+    </nav>
+<header class="pubmed-header">
+
+
+    <div class="pubmed-shapes">
+
+            </div>
+<h1 class="pubmed-headline" data-left="1.93%">
+    <a href="#">PubMed</a>
+</h1>
+
+
+
+
+                        
+                    
+</header>
+<div class="pubmed-sheet clearfix">
+            <div class="pubmed-layout-wrapper">
+                <div class="pubmed-content-layout">
+                    <div class="pubmed-content-layout-row">
+                        <div class="pubmed-layout-cell pubmed-content"><article class="pubmed-post pubmed-article">
+                                <div class="pubmed-postmetadataheader">
+                                        <h2 class="pubmed-postheader">Alterar Journal</h2>
+                                    </div>
+                                                
+                <div class="pubmed-postcontent pubmed-postcontent-0 clearfix"><div class="pubmed-content-layout">
+    <div class="pubmed-content-layout-row">
+    <div class="pubmed-layout-cell" style="width: 100%" >
+        <p style="padding-left: 40px;"><span style="font-weight: bold;">Pesquise o Journal:</span></p><p></p><form class="pubmed-search" name="search" action="#" id="search"><input id="search-journal" name="search-journal" type="text" style="width: 100%;"><a class="pubmed-search-button" href="#" onclick="javascript:jQuery(this).parents('form').submit();"><span class="pubmed-search-button-text">Search</span></a></form><p style="text-align: center;"><br></p>
+    </div>
+    </div>
+</div>
+<div class="pubmed-content-layout">
+    <div class="pubmed-content-layout-row">
+    <div class="pubmed-layout-cell" style="width: 25%" >
+        <p style="line-height: 200%; padding-left: 80px;">Título:&nbsp;</p><p style="line-height: 200%; padding-left: 80px;">Abreviação:</p><p style="line-height: 200%; padding-left: 80px;">Nlm:</p><p style="line-height: 200%; padding-left: 80px;">ISSN:</p>
+        <p>
+        </p>
+    </div><div class="pubmed-layout-cell" style="width: 75%" >
+        <p><input type="text" id="journal-title" name="journal-title" style="border-top-left-radius: 6px 6px; border-top-right-radius: 6px 6px; border-bottom-right-radius: 6px 6px; border-bottom-left-radius: 6px 6px; margin-right: auto; margin-left: auto; width: 100%;"><br></p>
+        <p><input type="text" id="journal-abreviation" name="journal-abreviation" style="border-top-left-radius: 6px 6px; border-top-right-radius: 6px 6px; border-bottom-right-radius: 6px 6px; border-bottom-left-radius: 6px 6px; margin-right: auto; margin-left: auto; width: 40%;"><br></p>
+        <p><input type="text" id="journal-nlm" disabled name="journal-nlm" style="border-top-left-radius: 6px 6px; border-top-right-radius: 6px 6px; border-bottom-right-radius: 6px 6px; border-bottom-left-radius: 6px 6px; margin-right: auto; margin-left: auto; width: 40%;"><br></p>
+        <p><input type="text" id="journal-issn" disabled name="journal-issn" style="border-top-left-radius: 6px 6px; border-top-right-radius: 6px 6px; border-bottom-right-radius: 6px 6px; border-bottom-left-radius: 6px 6px; margin-right: auto; margin-left: auto; width: 40%;"><br></p>
+    </div>
+    </div>
+</div>
+<div class="pubmed-content-layout">
+    <div class="pubmed-content-layout-row">
+    <div class="pubmed-layout-cell" style="width: 100%" >
+        <p style="text-align: center;"><span style="text-align: center;">&nbsp;<a id="button" href="" class="pubmed-button">ALTERAR!</a>&nbsp;</span><br></p>
+    </div>
+    </div>
+</div>
+</div>
+
+
+</article></div>
+                    </div>
+                </div>
+            </div>
+    </div>
+<footer class="pubmed-footer">
+  <div class="pubmed-footer-inner">
+<div class="pubmed-content-layout">
+    <div class="pubmed-content-layout-row">
+    <div class="pubmed-layout-cell layout-item-0" style="width: 50%">
+        <p style="float:left;"><a href="#"></a><a href="#"><img width="32" height="32" alt="" src="../images/rss_32-2.png"></a><img width="32" height="32" alt="" src="../images/facebook_32-2.png" class=""><a href="#"></a><a href="#"><img width="32" height="32" alt="" src="../images/twitter_32-2.png" class=""></a></p>
+    </div><div class="pubmed-layout-cell layout-item-0" style="width: 50%">
+        <p style="float: right; text-align: left;">Copyright © 2011 All Rights Reserved</p>
+    </div>
+    </div>
+</div>
+
+  </div>
+</footer>
+
+</div>
+
+
+</body></html>

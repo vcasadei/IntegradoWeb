@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US"><head><!-- Created by Artisteer v4.1.0.59861 -->
+    <meta charset="utf-8">
+    <title>Faça seu Login no Sistema PubMed!</title>
+    <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width">
+
+    <!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <link rel="stylesheet" href="style.css" media="screen">
+    <!--[if lte IE 7]><link rel="stylesheet" href="style.ie7.css" media="screen" /><![endif]-->
+    <link rel="stylesheet" href="style.responsive.css" media="all">
+
+
+    <script src="jquery.js"></script>
+    <script src="script.js"></script>
+    <script src="script.responsive.js"></script>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+    <script src="lib/jquery-1.7.1.min.js" type="text/javascript"></script>
+   <script src="jquery.formError.js" type="text/javascript"></script>
+
+   <script type="text/javascript">
+$(document).ready(
+   function()
+   {
+      $("#researcher-username").change( validate.controls.name);
+      $("#researcher-password").change( validate.controls.name);
+      $("#age").change( validate.controls.age);
+      $("#email").change( validate.controls.email);
+      $("#addPersonButton").click(
+         function( event)
+         {
+            event.preventDefault();
+            if( validate.all())
+            {
+               alert( "This dude is valid. I can continue");
+            }
+         });
+   });
+   
+var validate =
+   (function()
+   {
+      var _regex =
+      {
+         emailAddressIsValid:
+            function( emailAddress)
+            {
+               // http://stackoverflow.com/questions/2855865/jquery-validate-e-mail-address-regex
+               var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+
+               return pattern.test( emailAddress);
+            },
+         isWholeNumber:
+            function( age)
+            {
+               var pattern = new RegExp( /^\d+$/);
+
+               return pattern.test( age);
+            }
+      };
+
+      var all =
+         function()
+         {
+            var invalidControls = [];
+            for( var controlValidationMethod in validate.controls)
+            {
+               if( ! validate.controls[controlValidationMethod].call( $("#" + controlValidationMethod)))
+               {
+                  invalidControls.push( controlValidationMethod);
+               }
+            }
+
+            if( invalidControls.length > 0)
+            {
+                // Set focus on the first erroneous control
+                $("#" + invalidControls[0]).focus();
+            }
+            return invalidControls.length == 0;
+         };
+
+      var controls =
+      {
+         name:
+            function()
+            {
+               var $input = $('#researcher-username');
+               var isValid = true;
+
+                function ltrim(texto) { return texto.replace(/^[ ]+/, ''); }
+                function rtrim(texto) { return  texto.replace(/[ ]+$/, ''); }
+                function trim(texto) { return ltrim(rtrim(texto)); }
+
+                var aux = trim($input.val());
+                if(aux === "" || aux == null){
+                    $input.formError( "Please enter a Username");
+                    isValid =  false;
+                      
+                } else {
+                    $input.formError( {remove:true});
+
+                    return isValid;
+                }
+                
+                
+            },
+         age:
+            function()
+            {
+               var $input = $(this);
+               var x = $('#username').val();
+               var isValid = true;
+
+               if( $input.val() === "")
+               {
+                  $input.formError( "Please enter the person's age");
+                  isValid = false;
+               }
+               else if( ! _regex.isWholeNumber( $input.val()))
+               {
+                  $input.formError( "Please enter a valid age eg; 21");
+                  isValid = false;
+               }
+               else
+               {
+                  // Valid, remove any existing form error message for this input
+                  $input.formError( {remove:true});
+               }
+                  
+               return isValid;
+            },
+         email:
+            function()
+            {
+               var $input = $(this);
+               var isValid = true;
+
+               if( $input.val() === "")
+               {
+                  $input.formError( "Please enter an email address");
+                  isValid = false;
+               }
+               else if( ! _regex.emailAddressIsValid( $input.val()))
+               {
+                  $input.formError( "Please enter a valid email address<br /> eg; name@example.com");
+                  isValid = false;
+               }
+               else
+               {
+                  // Valid, remove any existing form error message for this input
+                  $input.formError( {remove:true});
+               }
+                  
+               return isValid;
+            }
+         };
+
+      return {
+         "all": all,
+         "controls": controls};
+   })();
+</script>
+
+
+<style>.pubmed-content .pubmed-postcontent-0 .layout-item-0 { margin-bottom: 12px;  }
+.pubmed-content .pubmed-postcontent-0 .layout-item-1 { border-spacing: 15px 0px; border-collapse: separate;  }
+.pubmed-content .pubmed-postcontent-0 .layout-item-2 { padding-right: 10px;padding-left: 10px;  }
+.pubmed-content .pubmed-postcontent-0 .layout-item-3 { border-right-style:solid;border-right-width:2px;border-right-color:#707070; padding-right: 10px;padding-left: 10px;  }
+.ie7 .pubmed-post .pubmed-layout-cell {border:none !important; padding:0 !important; }
+.ie6 .pubmed-post .pubmed-layout-cell {border:none !important; padding:0 !important; }
+
+</style></head>
+<body>
+<div id="pubmed-main">
+<nav class="pubmed-nav">
+    <div class="pubmed-nav-inner">
+    <ul class="pubmed-hmenu"><li><a href="index.html" class="">Home</a></li><li><a href="login.html" class="active">Login</a></li><li><a href="new-page-2.html">Contato</a></li></ul> 
+        </div>
+    </nav>
+<header class="pubmed-header">
+
+
+    <div class="pubmed-shapes">
+
+            </div>
+<h1 class="pubmed-headline" data-left="1.93%">
+    <a href="#">PubMed</a>
+</h1>
+
+
+
+
+                        
+                    
+</header>
+<div class="pubmed-sheet clearfix">
+            <div class="pubmed-layout-wrapper">
+                <div class="pubmed-content-layout">
+                    <div class="pubmed-content-layout-row">
+                        <div class="pubmed-layout-cell pubmed-content"><article class="pubmed-post pubmed-article">
+                                <div class="pubmed-postmetadataheader">
+                                        <h2 class="pubmed-postheader">Faça seu Login no Sistema PubMed!</h2>
+                                    </div>
+                                                
+                <div class="pubmed-postcontent pubmed-postcontent-0 clearfix"><div class="pubmed-content-layout-wrapper layout-item-0">
+<div class="pubmed-content-layout layout-item-1">
+    <div class="pubmed-content-layout-row">
+    <div class="pubmed-layout-cell layout-item-2" style="width: 50%" >
+        <p style="text-align: center;"><span style="font-weight: bold; font-size: 16px;">Pesquisador</span></p><p style="text-align: center;"><span style="font-weight: bold; font-size: 14px;"><br></span></p><p style="text-align: left; padding-left: 40px;">Nome de Usuário:&nbsp;&nbsp;<input id="researcher-username" name="researcher-username" type="text"><span style="font-weight: bold; font-size: 14px;"><br></span></p><p style="text-align: left; padding-left: 40px;">Senha: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input id="researcher-password" name="researcher-password" type="password"></p>
+
+        <p style="padding-left: 40px; text-align: right;">&nbsp;<input id="addPersonButton" class="pubmed-button" type="submit" value="Add person">&nbsp;<br></p>
+
+
+            <!-- <a href="http://#" target="_self" title="Clique para fazer o Login" accesskey="Enter" class="pubmed-button">Entrar!</a>&nbsp;<br></p> -->
+
+        <p style="text-align: left; padding-left: 20px;">Não possui uma conta? <a href="registrar/registro-de-usuario-pesquisador.html" target="_self" title="Registro de Usuário - Pesquisador">Faça seu Registro!</a></p>
+    </div><div class="pubmed-layout-cell layout-item-3" style="width: 1%" >
+        <p style="text-align: center;"><span style="font-size: 14px; font-weight: bold;"><br></span></p><p><br></p>
+    </div><div class="pubmed-layout-cell layout-item-2" style="width: 49%" >
+        <p style="text-align: center;"><span style="font-weight: bold; font-size: 16px;">Administrador</span></p><p style="text-align: center;"><span style="font-weight: bold; font-size: 14px;"><br></span></p><p style="padding-left: 40px;">Nome de Usuário:&nbsp;&nbsp;<input id="admin-username" name="admin-username" type="text" style="border-top-left-radius: 6px 6px; border-top-right-radius: 6px 6px; border-bottom-right-radius: 6px 6px; border-bottom-left-radius: 6px 6px; margin-right: auto; margin-left: auto; width: auto;"><br></p><p style="padding-left: 40px;">Senha: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input id="admin-password" name="admin-password" type="password" style="border-top-left-radius: 6px 6px; border-top-right-radius: 6px 6px; border-bottom-right-radius: 6px 6px; border-bottom-left-radius: 6px 6px; margin-right: auto; margin-left: auto; width: auto;"></p><p style="padding-left: 40px; text-align: right;"><span style="text-align: center;">&nbsp;<a href="http://#" target="_self" title="Clique para fazer o Login" accesskey="Enter" class="pubmed-button">ENTRAR!</a>&nbsp;</span><br></p><p style="padding-left: 20px;"><br></p><p style="text-align: center;"><span style="font-weight: bold; font-size: 14px;"></span></p><p><br></p>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+</article></div>
+                    </div>
+                </div>
+            </div>
+    </div>
+<footer class="pubmed-footer">
+  <div class="pubmed-footer-inner">
+<div class="pubmed-content-layout">
+    <div class="pubmed-content-layout-row">
+    <div class="pubmed-layout-cell layout-item-0" style="width: 50%">
+        <p style="float:left;"><a href="#"></a><a href="#"><img width="32" height="32" alt="" src="images/rss_32-2.png"></a><img width="32" height="32" alt="" src="images/facebook_32-2.png" class=""><a href="#"></a><a href="#"><img width="32" height="32" alt="" src="images/twitter_32-2.png" class=""></a></p>
+    </div><div class="pubmed-layout-cell layout-item-0" style="width: 50%">
+        <p style="float: right; text-align: left;">Copyright © 2011 All Rights Reserved</p>
+    </div>
+    </div>
+</div>
+
+  </div>
+</footer>
+
+</div>
+
+
+</body></html>

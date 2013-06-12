@@ -1,0 +1,821 @@
+/* ==========================================================================
+   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+    background-color: #F8FAFA;
+}
+
+::-moz-selection {
+    background: #fafe4c;
+    text-shadow: none;
+}
+
+::selection {
+    background: #fafe4c;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ===== Initializr Styles ==================================================
+   Author: Jonathan Verrecchia - verekia.com/initializr/responsive-template
+   ========================================================================== */
+
+body {
+    font: 16px/26px Helvetica, Helvetica Neue, Arial;
+}
+
+.wrapper {
+    width: 90%;
+    margin: 0 5%;
+}
+
+/* ===================
+    ALL: Blue Theme
+   =================== */
+
+.header-container {
+    border-bottom: 10px solid #16263f;
+    
+    background: #345892;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#416fb8), to(#345892));
+    background: -webkit-linear-gradient(#416fb8, #345892);
+    background: -moz-linear-gradient(#416fb8, #345892);
+    background: -o-linear-gradient(#416fb8, #345892);
+    background: linear-gradient(#416fb8, #345892) repeat-X;
+}
+
+.footer-container {
+    border-top: 10px solid #16263f;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    background: #345892;
+
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#345892), to(#416fb8));
+    background: -webkit-linear-gradient(#345892, #416fb8);
+    background: -moz-linear-gradient(#345892, #416fb8);
+    background: -o-linear-gradient(#345892, #416fb8);
+    background: linear-gradient(#345892, #416fb8) repeat-X;
+
+    /*change on pesquisar-btn clicked*/
+    width: 100%;
+    bottom:0px;
+    position: absolute;
+}
+
+.title {
+    color: white;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 5px;
+    background-image: url('../img/logo-white.png');
+    background-repeat: no-repeat;
+    width: 230px;
+    height: 70px;
+}
+
+/* ==============
+    MOBILE: Menu
+   ============== */
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    display: block;
+    margin-bottom: 10px;
+    padding: 15px 0;
+
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+
+    color: white;
+    background: #16263f;
+
+    font-family: 'Open Sans', sans-serif;
+    font-size:20px;
+}
+
+
+
+nav a:hover,
+nav a:visited {
+    color: white;
+}
+
+nav a:hover {
+    text-decoration: none;
+    background-color:#31538b;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#31538b), to(#31538b));
+    background: -webkit-linear-gradient(#31538b, #31538b);
+    background: -moz-linear-gradient(#31538b, #31538b);
+    background: -o-linear-gradient(#31538b, #31538b);
+    background: linear-gradient(#31538b, #31538b) repeat-X;
+}
+
+/* ==============
+    MOBILE: Main
+   ============== */
+
+.main {
+    padding: 30px 0;
+}
+
+.main article h1 {
+    font-size: 2em;
+}
+
+.footer-container footer {
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* ===============
+    ALL: IE Fixes
+   =============== */
+
+.ie7 .title {
+    padding-top: 20px;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+.pesquisar-form{
+    padding: 0px;
+    margin: 0px auto;
+    padding-top: 40px;
+    width: 98%;
+    text-align: center; 
+    height:65px;
+}
+
+.pesquisar-form p{
+    text-align: left;
+    font-size: 30px;
+    margin-left: 12%;
+    display: block;
+}
+    
+.pesquisa-avancada {
+    text-align: right;
+    padding: 0px;
+    margin: 0px auto;
+    width: 74%;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+
+.pesquisa-avancada p {
+    top:0px;
+}
+
+.pesquisa-avancada a:visited, a:link, a:active{
+    text-decoration: none;
+    color: black;
+}
+.pesquisa-avancada a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.pesquisar-btn,
+.pesquisar-edt{
+    margin:0px;
+    padding:0px;
+    float: left;
+}
+
+.pesquisar-btn{
+    border: 1px solid #777;
+    border-left: 0px;
+    
+    background-image: url('../img/search-btn.png');
+    background-position: 0px 0px;
+    width: 60px;
+    height: 60px;
+
+}
+
+.pesquisar-btn:hover{ 
+      background-position:  0px -60px;
+}
+
+.pesquisar-btn:active{
+      background-position:  0px -120px;
+}
+
+.pesquisar-edt{
+    border: 1px solid #777;
+    border-right: 0px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 26px;
+    width: 60%;
+    height:58px;
+    margin-left: 4%;
+}
+
+.main-container{
+    background-color: #F8FAFA;
+}
+
+.main-results {
+    border:1px solid #DDD;
+    background-color: white;
+    margin: 0px auto;
+}
+
+section h3, section p {
+    padding: 10px 0px 5px 10px;
+    margin: 0px;
+}
+section:nth-child(odd){
+    background-color: #fee294;
+}
+
+section:nth-child(even){
+    background-color: #feda76;
+}
+
+section:hover{
+    background-color: #fdca39
+}
+
+section {
+    cursor:pointer;
+}
+
+#results-label {
+    display: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    width: 100%;
+    border-bottom: 1px solid #747474;
+}
+
+#main-result-box,
+.loading-box {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.pesquisa-avancada-box{
+    text-align: center;
+    padding: 0px;
+    margin: 0px auto;
+    width: 74%;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    border:1px solid #747474;
+    border-top: 0px;
+    display: none;
+    background-color: white;
+}
+
+.cadastrar-box{
+    text-align: center;
+    padding: 0px;
+    margin: 0px auto;
+    width: 74%;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    border:1px solid #747474;
+    display: none;
+    background-color: white;
+}
+
+nav a:visited, a:link, a:active{
+    text-decoration: none;
+    color: white;
+}
+
+.pesquisa-avancada-box form {
+    width: 100%;    
+    margin: 0 auto;
+    padding: 10px 0px 20px 0px;
+    text-align: center;
+}
+
+.pesquisa-avancada-box form label{
+    font-weight: normal;
+}
+
+.cadastrar-box form {
+    width: 100%;    
+    margin: 0 auto;
+    padding: 10px 0px 20px 0px;
+    text-align: center;
+}
+
+.cadastrar-box form label{
+    font-weight: normal;
+}
+
+.journal-title-edt,
+.journal-issn-edt,
+.data-edt, .abreviation-title-edt, .nlm-title-edt, .forname-edt, .lastname-edt, .initials-edt, .username-edt, .password-edt, .email-edt, .name-edt, .familyname-edt, .user-type-edt {
+    border: 1px solid #777;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+    height: 25px;
+}    
+
+.journal-title-edt {
+    width: 45%;
+    margin-right: 4%;
+}
+
+.lastname-edt, .forname-edt {
+    width: 45%;
+    margin-right: 26%;
+}
+
+.username-edt {
+    width: 35%;
+    margin-right: 44%;
+}
+
+.password-edt {
+    width: 35%;
+    margin-right: 45%;
+}
+
+.email-edt {
+    width: 45%;
+    margin-right: 34%;
+}
+
+.name-edt {
+    width: 45%;
+    margin-right: 35%;
+}
+
+.familyname-edt {
+    width: 45%;
+    margin-right: 41%;
+}
+
+.user-type-edt {
+    width: 20%;
+    margin-right: 50%;
+}
+
+.initials-edt {
+    width: 45%;
+    margin-right: 2%;
+}
+
+.abreviation-title-edt {
+    width: 45%;
+    margin-right: 3%;
+}
+
+.abreviation-lbl {
+    margin-left: -16%;
+} 
+
+
+.alterar-btn{
+    margin-top: 4%;
+    border: 1px solid #CCC;
+    width: 80px;
+    height: 35px;
+    background-image: url('../img/sprites.png');
+    background-position: 0 -170px; width: 80px; height: 35px;
+
+}
+
+.alterar-btn:hover{ 
+    background-position: 0 -85px; width: 80px; height: 35px;      
+}
+
+.alterar-btn:active{
+      background-position: 0 0; width: 80px; height: 35px;
+}
+
+.cadastrar-btn{
+    margin-top: 4%;
+    border: 1px solid #CCC;
+    width: 80px;
+    height: 35px;
+    background-image: url('../img/sprites.png');
+    background-position: 0 -425px; width: 80px; height: 35px;
+
+}
+
+.cadastrar-btn:hover{ 
+    background-position: 0 -340px; width: 80px; height: 35px;    
+}
+
+.cadastrar-btn:active{
+      background-position: 0 -255px; width: 80px; height: 35px;
+}
+
+.login-btn{
+    margin-top: 2%;
+    border: 1px solid #CCC;
+    width: 80px;
+    height: 35px;
+    background-image: url('../img/sprites.png');
+    background-position: 0 -680px; width: 80px; height: 35px;
+
+}
+
+.login-btn:hover{ 
+    background-position: 0 -595px; width: 80px; height: 35px;    
+}
+
+.login-btn:active{
+      background-position: 0 -510px; width: 80px; height: 35px;
+}
+
+#link-comum a{
+    color: blue;
+}
+
+#link-comum a:hover{
+    color: black;
+}
+
+
+.journal-issn-edt {
+    width: 15%;
+}    
+
+.form-separator{
+    text-align:left; 
+    width:80%;
+    border-bottom:1px solid #AAA; 
+    margin:0px auto; 
+    margin-bottom:8px;
+    margin-top:15px;
+}
+
+.data-inicial-edt{
+    margin-right: 10%;
+}
+
+.loading-box {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 28px;
+    text-align: center;
+    padding-top: 15px;
+    background-color: #EEE;
+    height: 50px;
+    border: 1px solid #DDD;
+    background-repeat:no-repeat;
+    background-position:center; 
+}
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+@media only screen and (max-width: 479px) {
+    .pesquisar-form{
+        padding-top: 0px;
+    }
+    .pesquisar-form p{
+        display: none;
+    }
+    .pesquisar-edt, .pesquisar-btn{
+        top:-50px;
+    }
+    .pesquisar-edt{
+        width: 70%;
+    }
+    .footer-container{
+        position: relative;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+
+/* ====================
+    INTERMEDIATE: Menu
+   ==================== */
+
+    .pesquisar-btn,
+    .pesquisar-edt{
+        margin:0px;
+        padding:0px;
+        float: left;
+    }
+    
+    .pesquisar-edt{
+        margin-left:4%; 
+        width: 80%;
+    }
+
+    nav a {
+        float: left;
+        width: 43%;
+        margin: 0 1.7%;
+        padding: 25px 2%;
+        margin-bottom: 0;
+        background: #16263f;
+        background: -webkit-gradient(linear, 0 0, 0 100%, from(#16263f), to(#16263f));
+        background: -webkit-linear-gradient(#16263f, #16263f);
+        background: -moz-linear-gradient(#16263f, #16263f);
+        background: -o-linear-gradient(#16263f, #16263f);
+        background: linear-gradient(#16263f, #16263f) repeat-X;
+    }
+
+    nav li:first-child a {
+        margin-left: 0;
+    }
+
+    nav li:last-child a {
+        margin-right: 0;
+    }
+
+    .title{
+        margin:0px auto;
+        margin-bottom:10px;
+    }
+
+    .pesquisar-form{
+        padding-top: 0px;
+    }
+
+    .pesquisar-form p{
+        margin-left: 4%;
+    }
+/* ========================
+    INTERMEDIATE: IE Fixes
+   ======================== */
+
+    nav ul li {
+        display: inline;
+    }
+
+    .oldie nav a {
+        margin: 0 0.7%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+/* ====================
+    WIDE: CSS3 Effects
+   ==================== */
+    .title{
+        margin: 0px;
+        margin-top: 5px;
+    }
+
+    nav a{
+        background: -webkit-gradient(linear, 0 0, 0 100%, from(#3b66a9), to(#2e4f83));
+        background: -webkit-linear-gradient(#3b66a9, #2e4f83);
+        background: -moz-linear-gradient(#3b66a9, #2e4f83);
+        background: -o-linear-gradient(#3b66a9, #2e4f83);
+        background: linear-gradient(#3b66a9, #2e4f83) repeat-X;
+    }
+
+    .pesquisar-form{
+        padding-top: 40px;
+    }
+
+    .pesquisar-form p{
+        text-align: left;
+        font-size: 30px;
+        margin-left: 12%;
+    }
+
+    .pesquisar-btn,
+    .pesquisar-edt{
+        margin:0px;
+        padding:0px;
+        float: left;
+    }
+
+    .pesquisar-edt{
+        margin-left: 12%;
+        width: 70%;
+        height:58px;
+    }
+
+    .header-container {
+        -webkit-box-shadow: 0 5px 10px #aaa;
+           -moz-box-shadow: 0 5px 10px #aaa;
+                box-shadow: 0 5px 10px #aaa;
+    }
+
+/* ============
+    WIDE: Menu
+   ============ */
+
+    .title {
+        float: left;
+    }
+
+    nav {
+        float: right;
+        width: 38%;
+    }
+
+/* ============
+    WIDE: Main
+   ============ */
+
+    .main article {
+        float: left;
+        width: 100%;
+    }
+
+}
+
+@media only screen and (min-width: 1140px) {
+
+/* ===============
+    Maximal Width
+   =============== */
+    .wrapper {
+        width: 1026px; /* 1140px - 10% for margins */
+        margin: 0 auto;
+    }
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
