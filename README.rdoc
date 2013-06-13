@@ -7,18 +7,14 @@ Para criar poder trabalhar aqui, siga os seguintes passos:
 4. Você verá em sua área de trabalho o *Git Shell*, abra-o
 5. Caminhe até uma pasta em que deseja iniciar o projeto
 6. Digite na linha de comando
-
   git clone https://github.com/vcasadei/IntegradoWeb
-
 7. Copie os seus arquivos novos para a pasta.
 8. Digite no Shell
-
   git add .
   git commit -m "Sua mensagem aqui"
   git push -u origin master
-
 9. Pronto, é para estar tudo sicronizad!
 
 == O Projeto
 
-Um projeto integrado de 3 disciplinas construido com a tecnologia *JSP/Servlet* e Banco *SQL Server*
+Um projeto integrado de 3 disciplinas construido com a tecnologia *JSP/Servlet* e Banco *SQLServer*
