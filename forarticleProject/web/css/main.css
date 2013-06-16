@@ -13,7 +13,7 @@ textarea {
 body {
     font-size: 1em;
     line-height: 1.4;
-    background-color: #F8FAFA;
+    /*background-color: #F8FAFA;*/ 
 }
 
 ::-moz-selection {
@@ -90,7 +90,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     background: #345892;
-
+background: red;
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#345892), to(#416fb8));
     background: -webkit-linear-gradient(#345892, #416fb8);
     background: -moz-linear-gradient(#345892, #416fb8);
@@ -100,7 +100,7 @@ body {
     /*change on pesquisar-btn clicked*/
     width: 100%;
     bottom:0px;
-    position: absolute;
+    position: fixed;
 }
 
 .title {
@@ -108,7 +108,7 @@ body {
     padding: 0px;
     margin: 0px;
     margin-top: 5px;
-    background-image: url('../img/logo-white.png');
+    background-image: url('../img/logo-white.png'); 
     background-repeat: no-repeat;
     width: 230px;
     height: 70px;
@@ -260,12 +260,13 @@ nav a:hover {
 }
 
 .main-container{
-    background-color: #F8FAFA;
+    /*background-color: #F8FAFA;*/ 
+    background-color: white;
 }
 
 .main-results {
     border:1px solid #DDD;
-    background-color: white;
+    /*background-color: white;*/ 
     margin: 0px auto;
 }
 
@@ -298,7 +299,7 @@ section {
 }
 
 #main-result-box,
-.loading-box {
+.loading-box, .error-box {
     width: 100%;
     margin: 0px;
     padding: 0px;
@@ -367,7 +368,7 @@ nav a:visited, a:link, a:active{
 
 .journal-title-edt {
     width: 45%;
-    margin-right: 4%;
+    margin-right: 10%;
 }
 
 .lastname-edt, .forname-edt {
@@ -510,6 +511,19 @@ nav a:visited, a:link, a:active{
     border: 1px solid #DDD;
     background-repeat:no-repeat;
     background-position:center; 
+}
+
+.error-box {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 28px;
+    text-align: center;
+    padding-top: 15px;
+    background-color: #EEE;
+    height: 50px;
+    border: 1px solid #DDD;
+    background-repeat:no-repeat;
+    background-position:center; 
+    margin-top: 20px;
 }
 
 

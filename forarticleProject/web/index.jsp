@@ -25,6 +25,12 @@
         <div class="header-container">
             <header class="wrapper clearfix">
                 <h1 class="title">
+                    <a class="logo" href="#">
+                        <img class="asterisco" src="<%= request.getScheme() + "://" + request.getServerName() + 
+> ":" + request.getServerPort() %>/web/img/img2.png" alt="ForArticle" />
+                        <img class="texto" src="<%= request.getScheme() + "://" + request.getServerName() + 
+> ":" + request.getServerPort() %>/web/img/img1.png" alt="ForArticle" />
+                    </a>
                     
                 </h1>
                 <nav>
@@ -53,9 +59,9 @@
                         <input type="text" name="journal-issn-edt" class="journal-issn-edt noEnterSubmit" placeholder="XXXX-XXXX"/>
                         <p class="form-separator">Intervalo de Data:</p>
                         <label for="data-inicial-edt">Inicial </label>
-                        <input type="date" name="data-inicial-edt" class="data-edt data-inicial-edt noEnterSubmit" />
+                        <input type="text" name="data-inicial-edt" class="data-edt data-inicial-edt noEnterSubmit" />
                         <label for="data-final-edt">Final </label>
-                        <input type="date" name="data-final-edt" class="data-edt data-final-edt noEnterSubmit"/>
+                        <input type="text" name="data-final-edt" class="data-edt data-final-edt noEnterSubmit"/>
 
                     </form>
                 </div>
