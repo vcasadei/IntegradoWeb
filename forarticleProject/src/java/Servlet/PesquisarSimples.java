@@ -109,13 +109,12 @@ public class PesquisarSimples extends HttpServlet {
             //monta a página com os resultados encontrados
             JSONObject json = new JSONObject();
             JSONArray articleList = new JSONArray();
-            
             for (int i = 0; i < artigos.size(); i++) {
                 try {
                     JSONObject article = new JSONObject();
                     article.put("titulo",artigos.get(i).getTitle());
                     article.put("resumo",artigos.get(i).getResumo());
-                    article.put("id",artigos.get(i).getArticleID());
+                    article.put("articleID",artigos.get(i).getArticleID());
                     articleList.put(article);
                 } catch (JSONException e){
                     System.err.println(e);

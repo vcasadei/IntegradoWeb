@@ -337,7 +337,6 @@ public class ConexaoBD {
                 "%' ORDER BY title";
         
         try{
-            
             //executa a query e armazena em resultado
             resultado = stmt.executeQuery(sql);
             
@@ -417,6 +416,7 @@ public class ConexaoBD {
             resposta.setArticleDate(resultado.getString("articleDate"));
             resposta.setPublicationStatus(resultado.getString("publicationStatus"));
             resposta.setAffiliation(resultado.getString("affiliation"));
+            resposta.setResumo(resultado.getString("resumo"));
             
             //Query para buscar o journal relacionado ao artigo
             sql = "SELECT * FROM Journal WHERE NlmUniqueID = '" + resultado.getString("journal") + "'";
