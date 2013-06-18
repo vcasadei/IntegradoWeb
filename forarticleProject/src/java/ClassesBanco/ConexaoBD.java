@@ -337,9 +337,12 @@ public class ConexaoBD {
                 "%' ORDER BY title";
         
         try{
+        
             //executa a query e armazena em resultado
+            System.out.println(sql);
             resultado = stmt.executeQuery(sql);
-            
+            System.out.println(sql);
+
             //resultado possui uma lista com as tuplas selecionadas no banco
             
             while(resultado.next()){

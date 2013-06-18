@@ -109,16 +109,23 @@ input {
 }
 
 .pesquisar-nlm,
-.pesquisar-issn,
-.pesquisar-autor{
+.pesquisar-issn{
 	background-image: url('../img/search-small.png');
 	border: 0px;
 	width: 25px;
 	height: 25px;
 }
 
-.hint-autor{
+.autor-table{
+	margin: 0px auto;
 	text-align: center;
+}
+
+.tr-labels{
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	text-align: left;
+	line-height: 15px;
 }
 
 .no-bottom-margin{
@@ -136,7 +143,8 @@ input {
 .adicionar-keyword,
 .adicionar-mesh,
 .adicionar-chemical,
-.adicionar-pubtype{
+.adicionar-pubtype,
+.adicionar-autor{
 	background-image: url('../img/add-btn.png');
 	border: 0px;
 	width: 25px;
@@ -149,7 +157,7 @@ input {
 .adicionar-mesh:hover,
 .adicionar-chemical:hover,
 .adicionar-pubtype:hover,
-.pesquisar-autor:hover {
+.adicionar-autor:hover {
 	cursor: pointer;
 }
 
