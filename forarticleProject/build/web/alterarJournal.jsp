@@ -41,7 +41,7 @@
                     </ul>
                 </nav>
             </header>
-        </div>
+        </div> 
 
         <div class="main-container">
             <div class="main wrapper clearfix">
