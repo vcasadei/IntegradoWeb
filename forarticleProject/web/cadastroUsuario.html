@@ -10,10 +10,12 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
+        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/cadastroUsuario.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -33,17 +35,15 @@
                 </nav>
             </header>
         </div>
-
+        
         <div class="main-container">
             <div class="main wrapper clearfix">
-                <form class="pesquisar-form">
-                    <p id="busca-label">Cadastrar Usuário:</p>
-                    
-                    
-                </form>
-                <div class="pesquisa-avancada-box" >
-                    <form id="cadastrar-user-form">
-                        <p class="form-separator">Informações do Usuário:</p>
+                <div class="cadastro-user-box">
+                    <h2>Cadastrar Ususário</h2>
+                    <form class="cadastra-usuario-form" action="CadastrarUsuario" method="POST">
+                        <div class="separator separator2"></div>
+                        
+                        <p class="side-fields">
 
                         <label for="username-edt">Login:</label>
                         <input type="text" name="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
@@ -54,24 +54,25 @@
                         <label for="name-edt">Nome:</label>
                         <input type="text" name="name-edt" class="name-edt noEnterSubmit" placeholder=""/><br><br>
                         <label for="familyname-edt">Sobrenome:</label>
-                        <input type="text" name="familyname-edt" class="familyname-edt noEnterSubmit" placeholder=""/><br>
+                        <input type="text" name="familyname-edt" class="familyname-edt noEnterSubmit" placeholder=""/>
                         <br>
                         
-                        <input type="button" value="" class="noClickSubmit cadastrar-btn"/>
+                        </p>
                         
                         
                         
-                        
-
+                        <div class="btn-cadastrar-box">
+                            <input type="submit" class="btn-cadastrar" value="Cadastrar">
+                        </div>
                     </form>
+                    
                 </div>
-                <div class="pesquisa-avancada"><a id="pesquisa-avancada-txt">Busca Avançada</a>
-                </div>
-                <p id='results-label'>Resultados Encontrados:</p>
-                <div id="main-result-box">
-                </div>
+                    
+
+
             </div> <!-- #main -->
         </div> <!-- #main-container -->
+        
 
         <div class="footer-container">
             <footer class="wrapper">

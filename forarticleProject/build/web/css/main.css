@@ -383,22 +383,22 @@ nav a:visited, a:link, a:active{
 
 .password-edt {
     width: 35%;
-    margin-right: 45%;
+    margin-right: 44%;
 }
 
 .email-edt {
     width: 45%;
-    margin-right: 34%;
+    margin-right: 33.5%;
 }
 
 .name-edt {
     width: 45%;
-    margin-right: 35%;
+    margin-right: 34%;
 }
 
 .familyname-edt {
     width: 45%;
-    margin-right: 41%;
+    margin-right: 38.5%;
 }
 
 .user-type-edt {

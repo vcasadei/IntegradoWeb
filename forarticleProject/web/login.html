@@ -10,10 +10,12 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
+        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/login.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -36,29 +38,29 @@
 
         <div class="main-container">
             <div class="main wrapper clearfix">
-                <form class="pesquisar-form">
-                    <p id="busca-label">Login</p>
-                    
-                    
-                </form>
-                <div class="pesquisa-avancada-box" >
-                    <form id="login-form">
-                        <label for="username-edt">Login:</label>
+                <div class="login-box">
+                    <h2>Login</h2>
+                    <form class="login-form" action="LoginSistema" method="POST">
+                        <div class="separator separator2"></div>
+                        
+                        <p class="side-fields">
+                            <label for="username-edt">Login:</label>
                         <input type="text" name="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
                         <label for="password-edt">Senha:</label>
                         <input type="password" name="password-edt" class="password-edt noEnterSubmit" placeholder=""/><br>
+                        </p>
                         
                         
-                        <input type="button" value="" class="noClickSubmit login-btn"/>
-
+                        
+                        <div class="btn-cadastrar-box">
+                            <input type="submit" class="btn-cadastrar" value="Login">
+                        </div>
                     </form>
-                    <p id="link-comum">Não possui login? <a href="#">Registre um novo usuário aqui</a>.</p>
+                    <p id="link-comum">Não possui login? <a href="cadastroUsuario.html">Registre um novo usuário aqui</a>.</p>
                 </div>
-                <div class="pesquisa-avancada"><a id="pesquisa-avancada-txt">Busca Avançada</a>
-                </div>
-                <p id='results-label'>Resultados Encontrados:</p>
-                <div id="main-result-box">
-                </div>
+                    
+
+
             </div> <!-- #main -->
         </div> <!-- #main-container -->
 

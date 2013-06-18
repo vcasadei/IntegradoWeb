@@ -1,0 +1,255 @@
+.login-box{
+	border: 1px solid #E0E0E0;
+	width: 80%;
+	background-color: #F1F1F1;
+	border-radius: 3px;
+	padding: 15px 10px 15px 10px;
+	margin: 0px auto;
+	font-family: 'Tahoma', sans-serif;
+}
+
+input {
+    font-family: 'Open Sans', sans-serif;
+	font-size: 17px;
+	border: 1px solid #777;
+}
+
+.resumo{
+	border: 1px solid #777;
+	width: 79%;
+}
+
+.separator{
+	width: 99%;
+	margin-right: 10px;
+	text-align: right;
+	border-bottom: 1px solid #888;	
+	color: #777;
+}
+
+.separator2{
+	margin-top: 40px;
+}
+
+.label-s{
+    font-size: 17px;
+}
+
+.label-right{
+	margin-left: 25px;
+}
+
+.date-field{
+}
+
+.text-inline{
+
+}
+
+.side-fields,
+.line-field,
+.resumo-field {
+	text-align:center;
+}
+
+.resumo-field{
+	margin-top: 30px;
+}
+
+.text-s{
+	width: 79%;
+	border: 1px solid #777;
+    height: 25px;
+}
+
+.status-combobox{
+	border: 1px solid #777;
+    height: 25px;
+}
+
+.journal {
+	width: 69%;
+}
+
+.autor-busca{
+	width: 40%;
+}
+
+.help-text-autor{
+	text-align: justify;
+	display: none;
+	padding: 0px 10px 0px 10px;
+}
+
+.open-help-autor,
+.close-help-autor{
+	font-weight: normal;
+	text-decoration: none;
+	color: #555588;
+	margin-left: 5px;
+}
+
+.close-help-autor{
+	font-weight: bold;
+}
+
+.open-help-autor:hover,
+.close-help-autor:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.autores-selecionados,
+.autores-encontrados{
+}
+
+.nlm-edt,
+.issn-edt{
+	height: 25px;
+}
+
+.pesquisar-nlm,
+.pesquisar-issn,
+.pesquisar-autor{
+	background-image: url('../img/search-small.png');
+	border: 0px;
+	width: 25px;
+	height: 25px;
+}
+
+.hint-autor{
+	text-align: center;
+}
+
+.no-bottom-margin{
+	margin-bottom: 0px;
+}
+
+.no-top-margin{
+	margin-top: 0px;
+}
+
+.new-line-edt{
+	margin-left: 25px;
+}
+
+.adicionar-keyword,
+.adicionar-mesh,
+.adicionar-chemical,
+.adicionar-pubtype{
+	background-image: url('../img/add-btn.png');
+	border: 0px;
+	width: 25px;
+	height: 25px;
+}
+
+.pesquisar-nlm:hover,
+.pesquisar-issn:hover,
+.adicionar-keyword:hover,
+.adicionar-mesh:hover,
+.adicionar-chemical:hover,
+.adicionar-pubtype:hover,
+.pesquisar-autor:hover {
+	cursor: pointer;
+}
+
+.keyword-box,
+.mesh-box,
+.chemical-box,
+.pubtype-box,
+.autor-box{
+	margin-left: 5%;
+}
+
+.keyword-edt,
+.mesh-edt,
+.chemical-edt,
+.pubtype-edt{
+	width: 30%;
+	height: 25px;
+}
+
+.keyword-remover,
+.mesh-remover,
+.chemical-remover,
+.pubtype-remover{
+	margin-left: 10px;
+	text-decoration: none;
+	font-weight: normal;
+	color: #555588;
+}
+
+.keyword-remover:hover,
+.mesh-remover:hover,
+.chemical-remover:hover,
+.pubtype-remover:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.keyword-erro,
+.mesh-erro,
+.chemical-erro,
+.pubtype-erro{
+	display: none;
+	margin-left: 15px;
+	text-decoration: none;
+	font-weight: normal;
+	color: #884444;
+}
+
+.btn-cadastrar-box{
+	width: 100%;
+	text-align: center;
+}
+
+.btn-cadastrar {
+	border-radius: 4px;
+	font-size: 17px;
+	margin-top: 20px;
+	width: 30%;
+	background-color: #20385e;
+	text-align: center;
+	padding: 10px 0px 10px 0px;
+	color: white;
+}
+
+.btn-cadastrar:hover {
+	background-color: #26426d;
+    cursor: pointer;
+}
+
+
+.voltar-box {
+	border-radius: 4px;
+	font-size: 17px;
+	margin: 0px auto;
+	margin-top: 20px;
+	width: 30%;
+	background-color: #16263F;
+	text-align: center;
+	padding: 10px 0px 10px 0px;
+	font-weight: bold
+}
+
+.voltar-box:hover {
+	background-color: #1b2f4f;
+    cursor: pointer;
+}
+
+.voltar-link {
+	text-decoration: none;
+	color: white;
+	width: 30%;
+}
+
+.voltar-link:hover,
+.voltar-link:visited {
+    color: white;
+    text-decoration: none;
+}
+
+
+.footer-container{
+    position: absolute;
+}
