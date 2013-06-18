@@ -73,7 +73,7 @@
                                 <input class="text-inline nlm-edt" type="text" name="nlmuniqueid" required/>
                             <input type="text" class="noClickSubmit pesquisar-nlm"/>
                             <label class="label-s label-right" for="issn">ISSN: </label>
-                                <input class="text-right issn-edt" type="text" name="issn" required/>
+                                <input class="text-right issn-edt" type="text" name="issn" required />
                             <input type="text" class="noClickSubmit pesquisar-issn"/>
                         </p>
                         <p class="line-field">
@@ -90,41 +90,27 @@
                         </p>
                         <div class="separator separator2">Autores</div>
                         <p class="line-field no-bottom-margin">
-                            <table class="autor-table">
-                                <tr class="tr-labels">
-                                    <td></td>
-                                    <td>Nome</td>
-                                    <td>Sobrenome</td>
-                                    <td>Iniciais</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="label-s" for="autor-busca">Pesquise por Autores: </label>
-                                    </td>
-                                    <td>
-                                        <input class="" size="13" type="text" name="autor-busca"/>
-                                    </td>
-                                    <td>
-                                        <input class="" type="text" size="13" name="autor-busca"/>    
-                                    </td>
-                                    <td>
-                                        <input class="" type="text" size="7" name="autor-busca"/>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="noClickSubmit adicionar-autor"/>
-                                    </td>
-                                </tr>
-                            </table>
-                            <!-- <p class="line-field no-bottom-margin">
-                                <label class="label-s" for="autor-busca">Pesquise por Autores: </label>
-                                    <input class="" size="13" type="text" name="autor-busca"/>
-                                    <input class="" type="text" size="13" name="autor-busca"/>
-                                    <input class="" type="text" size="7" name="autor-busca"/>
-                                <input type="text" class="noClickSubmit adicionar-autor"/>
-                            </p> -->
+                            <label class="label-s" for="autor-busca">Pesquise por Autores: </label>
+                                <input class="text-s autor-busca " type="text" name="autor-busca" placeholder="nome; sobrenome; iniciais"/>
+                            <input type="text" class="noClickSubmit pesquisar-autor"/>
+                            <strong class="open-help-autor">[exibir ajuda]</strong>
+                        </p>
+                        <p class="no-top-margin hint-autor">
+                            Formato: nome; sobrenome; iniciais
+                        </p>
+                        <p class="help-text-autor no-bottom-margin">Utilize a ferramenta acima para pesquisar autores cadastrados. Você deve informar o nome, o sobrenome e as iniciais do autor (Ex.: João; Souza; JS). Abaixo serão exibidos os cinco primeiros autores encontrados. Para adicionar autores ao artigo, clique em [adicionar] ao lado dos resultados encontrados. Se você não encontrou o autor desejado, será exibida uma mensagem de cadastro, onde você poderá cadastrar um novo autor e adicioná-lo como autor de um artigo.
+                        <strong class="close-help-autor">[fechar ajuda]</strong>
                         </p>
                         <div class="autor-box">
+                            
+                            <p class="no-bottom-margin autores-encontrados">
+                                <strong>Autores Encontrados:</strong>
+                            </p>
+                            <p class="no-top-margin autor-nenhum encontrado-nenhum">
+                                Utilize a ferramenta de busca acima para buscar autores.
+                            </p>
+                            <ul class="encontrados-list">
+                            </ul>
                             <p class="no-bottom-margin autores-selecionados">
                                 <strong>*Autores Selecionados:</strong>
                             </p>
