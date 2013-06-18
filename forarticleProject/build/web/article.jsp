@@ -10,10 +10,12 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
+        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/article-view.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -36,32 +38,14 @@
 
         <div class="main-container">
             <div class="main wrapper clearfix">
-                <form method="GET" action="#" class="pesquisar-form">
-                    <p id="busca-label">Busque por artigos:</p>
-                    <input type="text" name="pesquisar-edt" class="pesquisar-edt noEnterSubmit" placeholder="Digite aqui o título do artigo"/>
-                    <!-- <input type="image" alt="Submit" name="pesquisar-btn" class="pesquisar-btn" src="./img/search-btn.png"> -->
-                    <input type="button" value="" class="noClickSubmit pesquisar-btn"/>
-                </form>
-                <div class="pesquisa-avancada-box" style="margin-top:82px;">
-                    <form id="pesquisa-avancada-form">
-                        <p class="form-separator">Informações do Journal:</p>
-                        <label for="journal-title-edt">Titulo </label>
-                        <input type="text" name="journal-title-edt" class="journal-title-edt noEnterSubmit" placeholder=""/>
-                        <label for="journal-issn-edt">ISSN </label>
-                        <input type="text" name="journal-issn-edt" class="journal-issn-edt noEnterSubmit" placeholder="XXXX-XXXX"/>
-                        <p class="form-separator">Intervalo de Data:</p>
-                        <label for="data-inicial-edt">Inicial </label>
-                        <input type="date" name="data-inicial-edt" class="data-edt data-inicial-edt noEnterSubmit" />
-                        <label for="data-final-edt">Final </label>
-                        <input type="date" name="data-final-edt" class="data-edt data-final-edt noEnterSubmit"/>
-
-                    </form>
+                <div id="article-container">
+                    
                 </div>
-                <div class="pesquisa-avancada"><a id="pesquisa-avancada-txt">Busca Avançada</a>
-                </div>
-                <p id='results-label'>Resultados Encontrados:</p>
-                <div id="main-result-box">
-                </div>
+                <a href="index.html" class="voltar-link">
+                    <div class="voltar-box">
+                        Voltar para a página de pesquisa
+                    </div>
+                </a>
             </div> <!-- #main -->
         </div> <!-- #main-container -->
 
@@ -72,7 +56,7 @@
         </div>
 
         <script src="./js/jquery-1.9.1.min.js"></script>
-        <script src="./js/pesquisa-home.js"></script>
+        <script src="./js/article-view.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
         <script src="js/main.js"></script>

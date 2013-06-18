@@ -70,10 +70,10 @@
                         <div class="separator separator2">Informações sobre a Revista</div>
                         <p class="side-fields">
                             <label class="label-s" for="nlmuniqueid">NLM (ID único): </label>
-                                <input class="text-inline" type="text" name="nlmuniqueid" required/>
+                                <input class="text-inline nlm-edt" type="text" name="nlmuniqueid" required/>
                             <input type="text" class="noClickSubmit pesquisar-nlm"/>
                             <label class="label-s label-right" for="issn">ISSN: </label>
-                                <input class="text-right" type="text" name="issn"/>
+                                <input class="text-right issn-edt" type="text" name="issn"/ required>
                             <input type="text" class="noClickSubmit pesquisar-issn"/>
                         </p>
                         <p class="line-field">
@@ -93,9 +93,13 @@
                             <label class="label-s" for="autor-busca">Pesquise por Autores: </label>
                                 <input class="text-s autor-busca " type="text" name="autor-busca" placeholder="nome; sobrenome; iniciais"/>
                             <input type="text" class="noClickSubmit pesquisar-autor"/>
+                            <strong class="open-help-autor">[exibir ajuda]</strong>
                         </p>
                         <p class="no-top-margin hint-autor">
                             Formato: nome; sobrenome; iniciais
+                        </p>
+                        <p class="help-text-autor no-bottom-margin">Utilize a ferramenta acima para pesquisar autores cadastrados. Você deve informar o nome, o sobrenome e as iniciais do autor (Ex.: João; Souza; JS). Abaixo serão exibidos os cinco primeiros autores encontrados. Para adicionar autores ao artigo, clique em [adicionar] ao lado dos resultados encontrados. Se você não encontrou o autor desejado, será exibida uma mensagem de cadastro, onde você poderá cadastrar um novo autor e adicioná-lo como autor de um artigo.
+                        <strong class="close-help-autor">[fechar ajuda]</strong>
                         </p>
                         <div class="autor-box">
                             
@@ -108,7 +112,7 @@
                             <ul class="encontrados-list">
                             </ul>
                             <p class="no-bottom-margin autores-selecionados">
-                                <strong>Autores Selecionados:</strong>
+                                <strong>*Autores Selecionados:</strong>
                             </p>
                             <p class="no-top-margin autor-nenhum selecionado-nenhum">
                                 Nenhum Autor adicionado (Utilize os controles acima para adicionar autores)
@@ -168,7 +172,7 @@
                         <div class="separator separator2">Tipo de Publicação</div>
                         <div class="pubtype-box">
                             <p class="no-bottom-margin">
-                                <label class="label-s label-right" for="pubtype">Tipo de Publicação: </label>
+                                <label class="label-s label-right" for="pubtype">Tipos de Publicação: </label>
                             </p>
                             <p class="no-top-margin new-line-edt">
                                 <input class="text-inline pubtype-edt" type="text" name="pubtype"/>
@@ -182,9 +186,12 @@
                             </ul>
                         <div class="separator separator2"></div>
                         </div>
-                        <div class="btn-cadastrar">
-                            Cadastrar
+                        <div class="btn-cadastrar-box">
+                            <input type="submit" class="btn-cadastrar" value="Cadastrar">
                         </div>
+                        <!-- <div class="btn-cadastrar">
+                            Cadastrar
+                        </div> -->
                     </form>
                 </div>
                 <div class="voltar-box">
@@ -205,6 +212,7 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
         <script src="js/main.js"></script>
-        <script src="js/new-article.js"></script>
+        <script src="js/add-properties.js"></script>
+        <script src="js/search-author.js"></script>
     </body>
 </html>

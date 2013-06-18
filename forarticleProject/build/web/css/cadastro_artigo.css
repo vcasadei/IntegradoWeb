@@ -75,8 +75,37 @@ input {
 	width: 40%;
 }
 
+.help-text-autor{
+	text-align: justify;
+	display: none;
+	padding: 0px 10px 0px 10px;
+}
+
+.open-help-autor,
+.close-help-autor{
+	font-weight: normal;
+	text-decoration: none;
+	color: #555588;
+	margin-left: 5px;
+}
+
+.close-help-autor{
+	font-weight: bold;
+}
+
+.open-help-autor:hover,
+.close-help-autor:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 .autores-selecionados,
 .autores-encontrados{
+}
+
+.nlm-edt,
+.issn-edt{
+	height: 25px;
 }
 
 .pesquisar-nlm,
@@ -137,6 +166,7 @@ input {
 .chemical-edt,
 .pubtype-edt{
 	width: 30%;
+	height: 25px;
 }
 
 .keyword-remover,
@@ -168,10 +198,14 @@ input {
 	color: #884444;
 }
 
+.btn-cadastrar-box{
+	width: 100%;
+	text-align: center;
+}
+
 .btn-cadastrar {
 	border-radius: 4px;
 	font-size: 17px;
-	margin: 0px auto;
 	margin-top: 20px;
 	width: 30%;
 	background-color: #20385e;
