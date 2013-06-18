@@ -146,7 +146,6 @@ function mudarCssAposPesquisa() {
 
 $('#pesquisa-avancada-txt').click(function() {
     var pa_label = document.getElementsByClassName('pesquisa-avancada')[0];
-<<<<<<< HEAD
     var busca = document.getElementsByClassName('pesquisar-edt')[0];
     // busca.disabled = true;
     var pesquisaBtn = document.getElementsByClassName('pesquisar-btn')[0];
@@ -157,24 +156,15 @@ $('#pesquisa-avancada-txt').click(function() {
         pesquisaEdt.style.borderRight = '0px';
         pesquisaEdt.style.width = '70%';
         pesquisaBtn.style.visibility = 'visible';
-=======
-    // var busca = document.getElementsByClassName('pesquisar-edt')[0];
-    // busca.disabled = true;
-    
-    if (pa_label.firstChild.innerHTML === 'Fechar') {
->>>>>>> 95e9a6df0479c34bfc0e26567f328325f1f6b888
         // busca.disabled = false;
         pa_label.firstChild.innerHTML = 'Busca Avançada';
         var busca_avanc = document.getElementsByClassName('pesquisa-avancada-box')[0];
         busca_avanc.style.display = 'none';
     } else {
-<<<<<<< HEAD
         busca.setAttribute('disabled','disabled');
         pesquisaEdt.style.borderRight = '1px solid #777';
         pesquisaEdt.style.width = '76%';
         pesquisaBtn.style.visibility = 'hidden';
-=======
->>>>>>> 95e9a6df0479c34bfc0e26567f328325f1f6b888
         // busca.disabled = true;
         pa_label.firstChild.innerHTML = 'Fechar';
         var busca_avanc = document.getElementsByClassName('pesquisa-avancada-box')[0];
