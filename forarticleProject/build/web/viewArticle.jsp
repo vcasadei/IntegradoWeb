@@ -12,7 +12,7 @@
 
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-        
+
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/article-view.css">
@@ -29,8 +29,31 @@
                 <h1 class="title"></h1>
                 <nav>
                     <ul>
+                        <% 
+                            Usuario objUsuarioBean = (Usuario)request.getAttribute("usuarioBean");
+                            if (objUsuarioBean!=null){
+                                if(objUsuarioBean.getUsuario().equals("adm")){ //Menu Admin
+                          %>
+                        <li><a href="#.jsp" class="active">Autoriza√ß√£o de usu√°rio</a></li>
+                        <li><a href="#.jsp">Cadastro de Rotas</a></li>
+                        <%
+                             } else {
+                                    if(objUsuarioBean.getUsuario().equals("user")){ //Menu User
+                                        %>
+                        <li><a href="#.jsp" class="active">Autoriza√ß√£o de usu√°rio</a></li>
+                        <li><a href="#.jsp">Cadastro de Rotas</a></li>
+                        <%
+                                    } else { //Menu Visitante
+                                      %>
                         <li><a href="index.html">In√≠cio</a></li>
                         <li><a href="login.html">Login</a></li>
+                        <%  
+                                    }
+                                    
+                                    
+                                }
+                            }
+                        %>
                     </ul>
                 </nav>
             </header>
@@ -39,13 +62,98 @@
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div id="article-container">
-                    
-                </div>
-                <a href="index.html" class="voltar-link">
-                    <div class="voltar-box">
-                        Voltar para a p√°gina de pesquisa
+                    <%
+                            Article objArticleBean = (Article)request.getAttribute("artigo");
+                            if (objArticleBean){
+                            %>
+                    <div id="title-box">
+                        
+                        <h2 id="title"><%= objArticleBean.getArticleTitle() %></h2>
+                        
+                        <p id="journal">
+                            <b>Revista: </b><%= objArticleBean.getPublicationTitle() %>
+                            
+                            (AbreviaÁ„o: <%= objArticleBean.getAbreviation() %>).
+                            ISSN: <%= objArticleBean.getISSN() %>. 
+                            Vol <%= objArticleBean.getVolume() %>. 
+                            P·ginas: <%= objArticleBean.getPagination() %>. 
+                            Issue: <%= objArticleBean.getIssue() %> 
+                            AfiliaÁ„o: <%= objArticleBean.getAffiliation() %></p>
                     </div>
-                </a>
+                    <div id="author-box">
+                        Autores: 
+                        <%
+                                while(objArticleBean.getAuthor() != 0){
+                                    %>
+                                    <h6><%= objArticleBean.getAuthor() %></h6><h5>, </h5>
+                                    <%
+                                }
+                                %>
+
+                    </div>
+                    <div id="abstract-box">
+                        <h3 class="label">Resumo:</h3>
+                        <p id="abstract"><%= objArticleBean.getAbstract() %></p>
+                    </div>
+                    <div id="mesh-box">
+                        <h3 class="label">Termos Mesh: </h3>
+                        
+                        <%
+                                while(objArticleBean.getMesh() != 0){
+                                    %>
+                                    <h6 class="property-name"><%= objArticleBean.getMesh() %></h6><h5>, </h5>
+                                    <%
+                                }
+                                %>
+                        
+                        
+                    </div>
+                    <div id="keyword-box">
+                        <h3 class="label">Palavras-chave: </h3>
+                        <%
+                                while(objArticleBean.getKeyword() != 0){
+                                    %>
+                                    <h6 class="property-name"><%= objArticleBean.getKeyword() %></h6><h5>, </h5>
+                                    <%
+                                }
+                                %>
+                        
+                    </div>
+                    <div id="chemical-box">
+                        <h3 class="label">Subst‚ncias quÌmicas: </h3>
+                        <%
+                                while(objArticleBean.getChemical() != 0){
+                                    %>
+                                    <h6 class="property-name"><%= objArticleBean.getChemical() %></h6><h5>, </h5>
+                                    <%
+                                }
+                                %>
+                        
+                    </div>
+                    <div id="publication-box">
+                        <h3 class="label">Tipos de publicaÁ„o: </h3>
+                        <%
+                                while(objArticleBean.getPublicationType() != 0){
+                                    %>
+                                    <h6 class="property-name"><%= objArticleBean.getPublicationType() %></h6><h5>, </h5>
+                                    <%
+                                }
+                                %>
+                        
+                    </div>
+                            <%
+                            } else {
+                                %>
+                                <h2>N„o foi possÌvel recuperar o Artigo</h1>
+                                <%
+                            }
+                                %>
+                </div>
+                <div class="voltar-box">
+                    <a href="index.html" class="voltar-link">
+                        Voltar para a p·gina de pesquisa
+                    </a>
+                </div>
             </div> <!-- #main -->
         </div> <!-- #main-container -->
 
@@ -60,5 +168,7 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
         <script src="js/main.js"></script>
+
+
     </body>
 </html>

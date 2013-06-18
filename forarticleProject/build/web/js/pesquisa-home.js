@@ -161,15 +161,20 @@ function mudarCssAposPesquisa() {
 
 $('#pesquisa-avancada-txt').click(function() {
     var pa_label = document.getElementsByClassName('pesquisa-avancada')[0];
-
+    // var busca = document.getElementsByClassName('pesquisar-edt')[0];
+    // busca.disabled = true;
+    
     if (pa_label.firstChild.innerHTML === 'Fechar') {
+        // busca.disabled = false;
         pa_label.firstChild.innerHTML = 'Busca Avançada';
         var busca_avanc = document.getElementsByClassName('pesquisa-avancada-box')[0];
         busca_avanc.style.display = 'none';
     } else {
+        // busca.disabled = true;
         pa_label.firstChild.innerHTML = 'Fechar';
         var busca_avanc = document.getElementsByClassName('pesquisa-avancada-box')[0];
         busca_avanc.style.display = 'block';
+
     }
     ;
 });
