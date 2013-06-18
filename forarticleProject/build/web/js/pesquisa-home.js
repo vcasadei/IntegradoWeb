@@ -63,21 +63,6 @@ function pesquisaSimples(origem) { //origem pode ser botao ou edt (enter)
         }
         ;
     });
-
-    // json_resultado = {
-    // 	"article" : [ 
-    //         { "titulo": "Titulo1", "resumo":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, saepe, molestiae repudiandae debitis omnis sint laudantium mollitia exercitationem nihil obcaecati esse neque assumenda numquam odit suscipit dolorum possimus modi est!" },
-    //         { "titulo": "Titulo2", "resumo":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, culpa magni animi dolore voluptate consectetur veniam quod placeat at molestias earum repellendus minima eum eaque a adipisci dolorum inventore tempore." },
-    //         { "titulo": "Titulo3", "resumo":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, culpa magni animi dolore voluptate consectetur veniam quod placeat at molestias earum repellendus minima eum eaque a adipisci dolorum inventore tempore." },
-    //         { "titulo": "Titulo4", "resumo":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, culpa magni animi dolore voluptate consectetur veniam quod placeat at molestias earum repellendus minima eum eaque a adipisci dolorum inventore tempore." },
-    //         { "titulo": "Titulo5", "resumo":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, culpa magni animi dolore voluptate consectetur veniam quod placeat at molestias earum repellendus minima eum eaque a adipisci dolorum inventore tempore." },
-    //         { "titulo": "Titulo6", "resumo":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, culpa magni animi dolore voluptate consectetur veniam quod placeat at molestias earum repellendus minima eum eaque a adipisci dolorum inventore tempore." },
-    //         { "titulo": "Titulo7", "resumo":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, culpa magni animi dolore voluptate consectetur veniam quod placeat at molestias earum repellendus minima eum eaque a adipisci dolorum inventore tempore." },
-    //         { "titulo": "Titulo8", "resumo":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, culpa magni animi dolore voluptate consectetur veniam quod placeat at molestias earum repellendus minima eum eaque a adipisci dolorum inventore tempore." },
-    //         { "titulo": "Titulo9", "resumo":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, culpa magni animi dolore voluptate consectetur veniam quod placeat at molestias earum repellendus minima eum eaque a adipisci dolorum inventore tempore." },
-    //         { "titulo": "Titulo10", "resumo":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, ducimus, adipisci, est consequatur blanditiis nostrum in quod iusto consectetur commodi hic fugiat voluptate atque eveniet doloribus reprehenderit labore eius officia!" } 
-    //    	]
-    //    };
 }
 
 function construirErro(s_erro) {
@@ -161,15 +146,30 @@ function mudarCssAposPesquisa() {
 
 $('#pesquisa-avancada-txt').click(function() {
     var pa_label = document.getElementsByClassName('pesquisa-avancada')[0];
+    var busca = document.getElementsByClassName('pesquisar-edt')[0];
+    // busca.disabled = true;
+    var pesquisaBtn = document.getElementsByClassName('pesquisar-btn')[0];
+    var pesquisaEdt = document.getElementsByClassName('pesquisar-edt')[0];
 
     if (pa_label.firstChild.innerHTML === 'Fechar') {
+        busca.removeAttribute('disabled');
+        pesquisaEdt.style.borderRight = '0px';
+        pesquisaEdt.style.width = '70%';
+        pesquisaBtn.style.visibility = 'visible';
+        // busca.disabled = false;
         pa_label.firstChild.innerHTML = 'Busca Avançada';
         var busca_avanc = document.getElementsByClassName('pesquisa-avancada-box')[0];
         busca_avanc.style.display = 'none';
     } else {
+        busca.setAttribute('disabled','disabled');
+        pesquisaEdt.style.borderRight = '1px solid #777';
+        pesquisaEdt.style.width = '76%';
+        pesquisaBtn.style.visibility = 'hidden';
+        // busca.disabled = true;
         pa_label.firstChild.innerHTML = 'Fechar';
         var busca_avanc = document.getElementsByClassName('pesquisa-avancada-box')[0];
         busca_avanc.style.display = 'block';
+
     }
     ;
 });

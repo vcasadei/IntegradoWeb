@@ -527,7 +527,28 @@ nav a:visited, a:link, a:active{
 }
 
 
+.btn-pesquisar-box{
+    width: 100%;
+    text-align: center;
+    border:0px;
+}
 
+.btn-pesquisar {
+    border-radius: 4px;
+    font-size: 17px;
+    margin-top: 20px;
+    width: 30%;
+    background-color: #20385e;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+    color: white;
+    border:0px;
+}
+
+.btn-pesquisar:hover {
+    background-color: #26426d;
+    cursor: pointer;
+}
 
 
 
@@ -638,7 +659,7 @@ nav a:visited, a:link, a:active{
     }
 
     .pesquisar-form{
-        padding-top: 40px;
+        padding-top: 20px;
     }
 
     .pesquisar-form p{
