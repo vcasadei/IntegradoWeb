@@ -373,7 +373,7 @@ nav a:visited, a:link, a:active{
 
 .lastname-edt, .forname-edt {
     width: 45%;
-    margin-right: 26%;
+    margin-right: 25%;
 }
 
 .username-edt {
@@ -408,7 +408,7 @@ nav a:visited, a:link, a:active{
 
 .initials-edt {
     width: 45%;
-    margin-right: 2%;
+    margin-right: 1.5%;
 }
 
 .abreviation-title-edt {
