@@ -117,8 +117,11 @@
                                 <input class="text-s journal" type="text" name="journalTitle" value="<%= objArticleBean.getJournalTitle() %>" disabled/>
                         </p>
                         <p class="side-fields">
-                            <label class="label-s" for="pagination">Paginação: </label>
-                            <input class="text-inline" type="text" name="pagination" size="10" value="<%= objArticleBean.getPagination() %>" disabled/>
+                            <label class="label-s" for="aberviation">Abreviação: </label>
+                                <input class="text-inline" type="text" name="abreviation" disabled size="10" value="<%= objJournalBean.getAbreviation() %>"/>/>
+                            
+                            <label class="label-s label-right" for="pagination">Paginação: </label>
+                                <input class="text-inline" disabled type="text" name="pagination" disabled size="10" value="<%= objJournalBean.getPagination() %>"/>
                             <label class="label-s label-right" for="volume">Volume: </label>
                                 <input class="text-inline" type="text" name="volume" size="10" disabled value="<%= objArticleBean.getVolume() %>"/>
                             <label class="label-s label-right" for="issue">Issue: </label>

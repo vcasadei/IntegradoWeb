@@ -69,7 +69,10 @@
                                 <input class="text-s journal" type="text" name="journalTitle" value="<%= objJournalBean.getTitle() %>"/>
                         </p>
                         <p class="side-fields">
-                            <label class="label-s" for="pagination">Paginação: </label>
+                            <label class="label-s" for="aberviation">Abreviação: </label>
+                                <input class="text-inline" type="text" name="abreviation" size="10" value="<%= objJournalBean.getAbreviation() %>"/>/>
+                            
+                            <label class="label-s label-right" for="pagination">Paginação: </label>
                                 <input class="text-inline" disabled type="text" name="pagination" size="10" value="<%= objJournalBean.getPagination() %>"/>
                             <label class="label-s label-right" for="volume">Volume: </label>
                                 <input class="text-inline" disabled type="text" name="volume" size="10" value="<%= objJournalBean.getVolume() %>"/>

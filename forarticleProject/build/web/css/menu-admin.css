@@ -107,7 +107,7 @@ background: red;
     color: white;
     padding: 0px;
     margin: 0px;
-    margin-top: 5px;
+    margin-top: 0px;
     background-image: url('../img/logo-white.png'); 
     background-repeat: no-repeat;
     width: 230px;
@@ -608,7 +608,7 @@ nav a:visited, a:link, a:active{
     }
 
     nav li:first-child a {
-        margin-left: 0;
+        margin-left: -48%;
     }
 
     nav li:last-child a {
@@ -697,7 +697,8 @@ nav a:visited, a:link, a:active{
 
     nav {
         float: right;
-        width: 38%;
+        width: 20%;
+        margin-right:30%;
     }
 
 /* ============
