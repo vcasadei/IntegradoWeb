@@ -592,11 +592,11 @@ nav a:visited, a:link, a:active{
         margin-left:4%; 
         width: 80%;
     }
-
+    
     nav a {
         float: left;
         width: 43%;
-        margin: 0 1.7%;
+/*        margin: 0 1.7%;*/
         padding: 25px 2%;
         margin-bottom: 0;
         background: #16263f;
@@ -606,9 +606,9 @@ nav a:visited, a:link, a:active{
         background: -o-linear-gradient(#16263f, #16263f);
         background: linear-gradient(#16263f, #16263f) repeat-X;
     }
-
+    
     nav li:first-child a {
-        margin-left: -48%;
+        margin-left: 0%;
     }
 
     nav li:last-child a {
@@ -630,9 +630,10 @@ nav a:visited, a:link, a:active{
 /* ========================
     INTERMEDIATE: IE Fixes
    ======================== */
-
+    
     nav ul li {
         display: inline;
+        
     }
 
     .oldie nav a {
@@ -698,7 +699,7 @@ nav a:visited, a:link, a:active{
     nav {
         float: right;
         width: 20%;
-        margin-right:30%;
+        margin-right:20%;
     }
 
 /* ============

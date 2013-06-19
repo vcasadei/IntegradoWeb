@@ -70,15 +70,15 @@
                         <div class="separator separator2">Informações sobre a Revista</div>
                         <p class="side-fields">
                             <label class="label-s" for="nlmuniqueid">NLM (ID único): </label>
-                                <input class="text-inline nlm-edt" type="text" name="nlmuniqueid" required/>
+                                <input class="text-inline nlm-edt" type="text" name="nlmuniqueid" id="nlmuniqueid" required/>
                             <input type="text" class="noClickSubmit pesquisar-nlm"/>
                             <label class="label-s label-right" for="issn">ISSN: </label>
-                                <input class="text-right issn-edt" type="text" name="issn" required/>
+                                <input class="text-right issn-edt" type="text" name="issn" id="issn" required/>
                             <input type="text" class="noClickSubmit pesquisar-issn"/>
                         </p>
                         <p class="line-field">
                             <label class="label-s" for="journalTitle">Título da Revista: </label>
-                                <input class="text-s journal" type="text" name="journalTitle" value="Busque uma Revista por um dos campos acima"disabled/>
+                                <input class="text-s journal" type="text" name="journalTitle" value="" id="journalTitle"/>
                         </p>
                         <p class="side-fields">
                             <label class="label-s" for="pagination">Paginação: </label>
@@ -103,16 +103,16 @@
                                         <label class="label-s" for="autor-busca">Pesquise por Autores: </label>
                                     </td>
                                     <td>
-                                        <input class="" size="13" type="text" name="autor-busca"/>
+                                        <input class="" size="13" type="text" name="autor-busca" id="forename"/>
                                     </td>
                                     <td>
-                                        <input class="" type="text" size="13" name="autor-busca"/>    
+                                        <input class="" type="text" size="13" name="autor-busca" id="lastname"/>    
                                     </td>
                                     <td>
                                         <input class="" type="text" size="7" name="autor-busca"/>
                                     </td>
                                     <td>
-                                        <input type="text" class="noClickSubmit adicionar-autor"/>
+                                        <input type="text" class="noClickSubmit adicionar-autor" id="initials"/>
                                     </td>
                                 </tr>
                             </table>
@@ -141,7 +141,7 @@
                                 <label class="label-s label-right" for="keyword">Palavra-chave: </label>
                             </p>
                             <p class="no-top-margin new-line-edt">
-                                <input class="text-inline keyword-edt" type="text" name="keyword"/>
+                                <input class="text-inline keyword-edt" type="text" name="keyword" id="keyword"/>
                                 <input type="text" class="noClickSubmit adicionar-keyword"/>
                                 <strong class='keyword-erro'></strong> 
                             </p>
@@ -157,7 +157,7 @@
                                 <label class="label-s label-right" for="mesh">Termo Mesh: </label>
                             </p>
                             <p class="no-top-margin new-line-edt">
-                                <input class="text-inline mesh-edt" type="text" name="mesh"/>
+                                <input class="text-inline mesh-edt" type="text" name="mesh" id="mesh"/>
                                 <input type="text" class="noClickSubmit adicionar-mesh"/>
                                 <strong class='mesh-erro'></strong>
                             </p>
@@ -173,7 +173,7 @@
                                 <label class="label-s label-right" for="chemical">Substância Química: </label>
                             </p>
                             <p class="no-top-margin new-line-edt">
-                                <input class="text-inline chemical-edt" type="text" name="chemical"/>
+                                <input class="text-inline chemical-edt" type="text" name="chemical" id="chemical"/>
                                 <input type="text" class="noClickSubmit adicionar-chemical"/>
                                 <strong class='chemical-erro'></strong>
                             </p>
@@ -189,7 +189,7 @@
                                 <label class="label-s label-right" for="pubtype">Tipos de Publicação: </label>
                             </p>
                             <p class="no-top-margin new-line-edt">
-                                <input class="text-inline pubtype-edt" type="text" name="pubtype"/>
+                                <input class="text-inline pubtype-edt" type="text" name="pubtype" id="pubtype"/>
                                 <input type="text" class="noClickSubmit adicionar-pubtype"/>
                                 <strong class='pubtype-erro'></strong>
                             </p>    
@@ -228,5 +228,6 @@
         <script src="js/main.js"></script>
         <script src="js/add-properties.js"></script>
         <script src="js/search-author.js"></script>
+        <script src="js/autocomplete.js"></script>
     </body>
 </html>
