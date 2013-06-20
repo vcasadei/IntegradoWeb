@@ -10,10 +10,12 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
+        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/alterar_journal.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -36,40 +38,47 @@
 
         <div class="main-container">
             <div class="main wrapper clearfix">
-                <form method="GET" action="#" class="pesquisar-form">
-                    <p id="busca-label">Alterar Journal:</p>
-                    <input type="text" name="pesquisar-edt" class="pesquisar-edt noEnterSubmit" placeholder="Digite aqui o título do journal"/>
-                    <!-- <input type="image" alt="Submit" name="pesquisar-btn" class="pesquisar-btn" src="./img/search-btn.png"> -->
-                    
-
-
-                    <input type="button" value="" class="noClickSubmit pesquisar-btn"/>
-                    
-                </form>
-                <div class="pesquisa-avancada-box" style="margin-top:82px;">
-                    <form id="alterar-journal-form">
-                        <p class="form-separator">Informações do Journal:</p>
-                        <label for="journal-title-edt">Título</label>
-                        <input type="text" name="journal-title-edt" class="journal-title-edt noEnterSubmit" placeholder=""/>
-                        <label for="nlm-lbl">Nlm</label>
-                        <input type="text" name="nlm-title-edt" class="nlm-title-edt noEnterSubmit" placeholder=""/><br><br>
-                        <label for="abreviation-lbl" class="abreviation-lbl">Abreviação</label>
-                        <input type="text" name="abreviation-title-edt" class="abreviation-title-edt noEnterSubmit" placeholder=""/>
-                        <label for="journal-issn-edt">ISSN</label>
-                        <input type="text" name="journal-issn-edt" class="journal-issn-edt noEnterSubmit" placeholder="XXXX-XXXX"/><br>
+                <div class="cadastro-box">
+                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a href="cadastrarArtigo.html">Alterar</a> -> <a href="alterarJournal.html">Alterar Journal</a></div>
+                    <h2>Alterar Journal</h2>
+                    <form class="form-cadastro" action="CadastrarArtigo" method="POST">
+                        <div class="separator separator1">Informações sobre a Revista</div>
+                        <p class="side-fields">
+                            <label class="label-s" for="nlmuniqueid">NLM (ID único): </label>
+                                <input class="text-inline nlm-edt" type="text" name="nlmuniqueid" id="nlmuniqueid" required/>
+                            <input type="text" class="noClickSubmit pesquisar-nlm"/>
+                            <label class="label-s label-right" for="issn">ISSN: </label>
+                                <input class="text-right issn-edt" type="text" name="issn" id="issn" required />
+                            <input type="text" class="noClickSubmit pesquisar-issn"/>
+                        </p>
+                        <p class="line-field">
+                            <label class="label-s" for="journalTitle">Título da Revista: </label>
+                                <input class="text-s journal" type="text" name="journalTitle" id="journalTitle" value="" disabled/>
+                        </p>
+                        <p class="side-fields">
+                            <label class="label-s" for="aberviation">Abreviação: </label>
+                                <input class="text-inline" type="text" name="abreviation" size="10"/>
+                            <label class="label-s label-right" for="issue">Issue: </label>
+                                <input class="text-inline" type="text" name="issue" size="10"/>
+                        </p>
+                       
                         
-                        <input type="button" value="" class="noClickSubmit alterar-btn"/>
                         
                         
                         
+                        <div class="btn-cadastrar-box">
+                            <input type="submit" class="btn-cadastrar" value="Alterar">
+                        </div>
                         
-
+                        <!-- <div class="btn-cadastrar">
+                            Cadastrar
+                        </div> -->
                     </form>
                 </div>
-                <div class="pesquisa-avancada"><a id="pesquisa-avancada-txt">Busca Avançada</a>
-                </div>
-                <p id='results-label'>Resultados Encontrados:</p>
-                <div id="main-result-box">
+                <div class="voltar-box">
+                    <a href="index.html" class="voltar-link">
+                        Voltar para a página de pesquisa
+                    </a>
                 </div>
             </div> <!-- #main -->
         </div> <!-- #main-container -->
@@ -81,9 +90,10 @@
         </div>
 
         <script src="./js/jquery-1.9.1.min.js"></script>
-        <script src="./js/pesquisa-home.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
         <script src="js/main.js"></script>
+        <script src="js/add-properties.js"></script>
+        <script src="js/search-author.js"></script>
     </body>
 </html>
