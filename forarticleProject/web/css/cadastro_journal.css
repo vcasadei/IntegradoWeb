@@ -28,7 +28,19 @@ input {
 }
 
 .separator2{
-	margin-top: 40px;
+	margin-top: -26px;
+}
+
+.separator3{
+	margin-top: 0px;
+}
+
+.separator3 a{
+        color: blue;
+}
+
+.separator3 a:hover{
+        color: black;
 }
 
 .label-s{

@@ -21,7 +21,6 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         
         <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/cadastro_artigo.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
@@ -46,8 +45,9 @@
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div class="cadastro-box">
+                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a href="alterarArtigo.jsp">Alterar Artigo</a></div>
                     <h2>Alterar Artigo</h2>
-
+                    <p> * - Obrigatório </p>
                     <form class="form-cadastro" action="CadastrarArtigo" method="POST">
                         <div class="separator separator1">Informações Gerais</div>
                         <%

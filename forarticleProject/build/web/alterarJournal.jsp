@@ -46,7 +46,9 @@
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div class="cadastro-box">
+                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a href="alterarJournal.jsp">Alterar Revista</a></div>
                     <h2>Alterar Revista</h2>
+                    <p> * - Obrigatório </p>
                     <form class="form-cadastro" action="AlterarJournal" method="POST">
                         <div class="separator separator2">Informações sobre a Revista</div>
                         <p class="side-fields">

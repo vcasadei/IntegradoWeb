@@ -62,6 +62,8 @@
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div id="article-container">
+                     <div class="separator separator3"><a href="index.html">Inicio</a> -> <a href="">Visualizar Artigo</a></div>
+                     
                     <%
                             Article objArticleBean = (Article)request.getAttribute("artigo");
                             if (objArticleBean){
