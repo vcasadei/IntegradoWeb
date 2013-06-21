@@ -13,6 +13,18 @@
 //     }
 //     ;
 // });
+$(document).ready(function(){
+    $( '.radios' ).on( "click", function() {
+            if($("input:checked").val() == "Titulo"){
+                $( "#caixa-pesquisa" ).attr("placeholder","Digite aqui o título do artigo");
+                $('#pesquisa-avancada-txt').html("Busca Avançada");
+            } else {
+                $( "#caixa-pesquisa" ).attr("placeholder","Digite aqui uma keyword");
+                $('#pesquisa-avancada-txt').html("");
+            }
+
+        });
+});
 
 $(window).ready(function() {
     $('.pesquisar-edt').focus();   
@@ -29,6 +41,8 @@ $('.noEnterSubmit').keypress(function(e) {
 $('.noClickSubmit').click(function() {
     pesquisaSimples('btn');
 });
+
+
 
 function pesquisaSimples(origem) { //origem pode ser botao ou edt (enter)
 
@@ -145,6 +159,7 @@ function mudarCssAposPesquisa() {
 }
 
 $('#pesquisa-avancada-txt').click(function() {
+    
     var pa_label = document.getElementsByClassName('pesquisa-avancada')[0];
     var busca = document.getElementsByClassName('pesquisar-edt')[0];
     // busca.disabled = true;
@@ -153,6 +168,8 @@ $('#pesquisa-avancada-txt').click(function() {
 
     if (pa_label.firstChild.innerHTML === 'Fechar') {
         busca.removeAttribute('disabled');
+        $( '.radios' ).removeAttr('disabled')
+        $('#fix-keyword').html("<br></br>")
         pesquisaEdt.style.borderRight = '0px';
         pesquisaEdt.style.width = '70%';
         pesquisaBtn.style.visibility = 'visible';
@@ -161,6 +178,8 @@ $('#pesquisa-avancada-txt').click(function() {
         var busca_avanc = document.getElementsByClassName('pesquisa-avancada-box')[0];
         busca_avanc.style.display = 'none';
     } else {
+        $('#fix-keyword').html("")
+        $( '.radios' ).attr('disabled', 'disabled')
         busca.setAttribute('disabled','disabled');
         pesquisaEdt.style.borderRight = '1px solid #777';
         pesquisaEdt.style.width = '76%';

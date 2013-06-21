@@ -854,3 +854,16 @@ nav a:visited, a:link, a:active{
         page-break-after: avoid;
     }
 }
+
+.esp{
+    margin-left: 5px;
+}
+
+#radio{
+    font-family: 'Opens sans', sans-serif;
+    font-size: 19px;
+}
+
+#radio input{
+    margin-left: 5px;
+}

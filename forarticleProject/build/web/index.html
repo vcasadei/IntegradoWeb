@@ -15,7 +15,10 @@
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
 
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        
+        
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -38,7 +41,11 @@
             <div class="main wrapper clearfix">
                 <form method="GET" action="#" class="pesquisar-form">
                     <p id="busca-label">Busque por artigos:</p>
-                    <input type="text" name="pesquisar-edt" class="pesquisar-edt noEnterSubmit" placeholder="Digite aqui o título do artigo"/>
+                     <p id="radio">	 	
+	                        <input type="radio" name="tipoBusca" value="Titulo" class="radios" checked><span class="esp">Título</span>	 	
+	                        <input type="radio" name="tipoBusca" value="KeyWord" class="radios"><span class="esp">KeyWord</span>	 	
+	                    </p>
+                    <input type="text" name="pesquisar-edt" id="caixa-pesquisa" class="pesquisar-edt noEnterSubmit" placeholder="Digite aqui o título do artigo"/>
                     <!-- <input type="image" alt="Submit" name="pesquisar-btn" class="pesquisar-btn" src="./img/search-btn.png"> -->
                     <input type="button" value="" class="noClickSubmit pesquisar-btn"/>
                 </form>
@@ -58,7 +65,9 @@
                             <input type="submit" class="btn-pesquisar" value="Pesquisar">
                         </div>
                     </form>
+                   
                 </div>
+                <div id="fix-keyword"><br><br></div> <!--Arrumar aqui-->
                 <div class="pesquisa-avancada"><a id="pesquisa-avancada-txt">Busca Avançada</a>
                 </div>
                 <p id='results-label'>Resultados Encontrados:</p>
