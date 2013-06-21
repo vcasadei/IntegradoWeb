@@ -1,204 +1,188 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>Servlet.LoginUser</servlet-class>
+        <servlet-name>BuscarChemical</servlet-name>
+        <servlet-class>Servlet.BuscarChemical</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PesquisarSimples</servlet-name>
-        <servlet-class>Servlet.PesquisarSimples</servlet-class>
+        <servlet-name>BuscaChemical</servlet-name>
+        <servlet-class>Servlet.BuscaChemical</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ExcluirArtigo</servlet-name>
-        <servlet-class>Servlet.ExcluirArtigo</servlet-class>
+        <servlet-name>BuscaInicial</servlet-name>
+        <servlet-class>Servlet.BuscaInicial</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ExcluirJournal</servlet-name>
-        <servlet-class>Servlet.ExcluirJournal</servlet-class>
+        <servlet-name>BuscaInitialsAutor</servlet-name>
+        <servlet-class>Servlet.BuscaInitialsAutor</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ExcluirMeshHeading</servlet-name>
-        <servlet-class>Servlet.ExcluirMeshHeading</servlet-class>
+        <servlet-name>BuscaIssnJournal</servlet-name>
+        <servlet-class>Servlet.BuscaIssnJournal</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ExcluirAutor</servlet-name>
-        <servlet-class>Servlet.ExcluirAutor</servlet-class>
+        <servlet-name>BuscaJournalNlmIssn</servlet-name>
+        <servlet-class>Servlet.BuscaJournalNlmIssn</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ExcluirPublicationType</servlet-name>
-        <servlet-class>Servlet.ExcluirPublicationType</servlet-class>
+        <servlet-name>BuscaJournalTitulo</servlet-name>
+        <servlet-class>Servlet.BuscaJournalTitulo</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ExcluirKeyWord</servlet-name>
-        <servlet-class>Servlet.ExcluirKeyWord</servlet-class>
+        <servlet-name>BuscaKeyword</servlet-name>
+        <servlet-class>Servlet.BuscaKeyword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuscaLastAutor</servlet-name>
+        <servlet-class>Servlet.BuscaLastAutor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuscaMeshHeading</servlet-name>
+        <servlet-class>Servlet.BuscaMeshHeading</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuscaNlmJournal</servlet-name>
+        <servlet-class>Servlet.BuscaNlmJournal</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuscaNomeAutor</servlet-name>
+        <servlet-class>Servlet.BuscaNomeAutor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuscaPublicationType</servlet-name>
+        <servlet-class>Servlet.BuscaPublicationType</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuscaTitJournal</servlet-name>
+        <servlet-class>Servlet.BuscaTitJournal</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastrarArtigo</servlet-name>
+        <servlet-class>Servlet.CadastrarArtigo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastrarUsuario</servlet-name>
+        <servlet-class>Servlet.CadastrarUsuario</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ExcluirChemical</servlet-name>
         <servlet-class>Servlet.ExcluirChemical</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>InserirChemical</servlet-name>
-        <servlet-class>Servlet.InserirChemical</servlet-class>
+        <servlet-name>EscluirKeyWord</servlet-name>
+        <servlet-class>Servlet.EscluirKeyWord</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>InserirJournal</servlet-name>
-        <servlet-class>Servlet.InserirJournal</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>InserirPublicationType</servlet-name>
-        <servlet-class>Servlet.InserirPublicationType</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>InserirAuthor</servlet-name>
-        <servlet-class>Servlet.InserirAuthor</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>InserirMeshHeading</servlet-name>
-        <servlet-class>Servlet.InserirMeshHeading</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>InserirKeyWord</servlet-name>
-        <servlet-class>Servlet.InserirKeyWord</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>InserirArticle</servlet-name>
-        <servlet-class>Servlet.InserirArticle</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PesquisarAuthor</servlet-name>
-        <servlet-class>Servlet.PesquisarAuthor</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PesquisarMeshHeading</servlet-name>
-        <servlet-class>Servlet.PesquisarMeshHeading</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PesquisarKeyWord</servlet-name>
-        <servlet-class>Servlet.PesquisarKeyWord</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PesquisarJournal</servlet-name>
-        <servlet-class>Servlet.PesquisarJournal</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PesquisarPublicationType</servlet-name>
-        <servlet-class>Servlet.PesquisarPublicationType</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PesquisarChemical</servlet-name>
-        <servlet-class>Servlet.PesquisarChemical</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LoginAdmin</servlet-name>
-        <servlet-class>Servlet.LoginAdmin</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>InserirArticleAutor</servlet-name>
-        <servlet-class>Servlet.InserirArticleAutor</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PesquisarArtigo</servlet-name>
-        <servlet-class>Servlet.PesquisarArtigo</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/Login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PesquisarSimples</servlet-name>
-        <url-pattern>/PesquisarSimples</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ExcluirArtigo</servlet-name>
-        <url-pattern>/ExcluirArtigo</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ExcluirJournal</servlet-name>
-        <url-pattern>/ExcluirJournal</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ExcluirMeshHeading</servlet-name>
-        <url-pattern>/ExcluirMeshHeading</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ExcluirAutor</servlet-name>
-        <url-pattern>/ExcluirAutor</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ExcluirPublicationType</servlet-name>
-        <url-pattern>/ExcluirPublicationType</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ExcluirKeyWord</servlet-name>
-        <url-pattern>/ExcluirKeyWord</url-pattern>
+        <servlet-class>Servlet.ExcluirKeyWord</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExcluirMeshHeading</servlet-name>
+        <servlet-class>Servlet.ExcluirMeshHeading</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExcluirPublicationType</servlet-name>
+        <servlet-class>Servlet.ExcluirPublicationType</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FazerLogin</servlet-name>
+        <servlet-class>Servlet.FazerLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterarJournal</servlet-name>
+        <servlet-class>Servlet.AlterarJournalArticle</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BuscarChemical</servlet-name>
+        <url-pattern>/BuscarChemical</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaChemical</servlet-name>
+        <url-pattern>/BuscaChemical</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaInicial</servlet-name>
+        <url-pattern>/BuscaInicial</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaInitialsAutor</servlet-name>
+        <url-pattern>/BuscaInitialsAutor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaIssnJournal</servlet-name>
+        <url-pattern>/BuscaIssnJournal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaJournalNlmIssn</servlet-name>
+        <url-pattern>/BuscaJournalNlmIssn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaJournalTitulo</servlet-name>
+        <url-pattern>/BuscaJournalTitulo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaKeyword</servlet-name>
+        <url-pattern>/BuscaKeyword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaLastAutor</servlet-name>
+        <url-pattern>/BuscaLastAutor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaMeshHeading</servlet-name>
+        <url-pattern>/BuscaMeshHeading</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaNlmJournal</servlet-name>
+        <url-pattern>/BuscaNlmJournal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaNomeAutor</servlet-name>
+        <url-pattern>/BuscaNomeAutor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaPublicationType</servlet-name>
+        <url-pattern>/BuscaPublicationType</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaTitJournal</servlet-name>
+        <url-pattern>/BuscaTitJournal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastrarArtigo</servlet-name>
+        <url-pattern>/CadastrarArtigo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastrarUsuario</servlet-name>
+        <url-pattern>/CadastrarUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ExcluirChemical</servlet-name>
         <url-pattern>/ExcluirChemical</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InserirChemical</servlet-name>
-        <url-pattern>/InserirChemical</url-pattern>
+        <servlet-name>EscluirKeyWord</servlet-name>
+        <url-pattern>/EscluirKeyWord</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InserirJournal</servlet-name>
-        <url-pattern>/InserirJournal</url-pattern>
+        <servlet-name>ExcluirKeyWord</servlet-name>
+        <url-pattern>/ExcluirKeyWord</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InserirPublicationType</servlet-name>
-        <url-pattern>/InserirPublicationType</url-pattern>
+        <servlet-name>ExcluirMeshHeading</servlet-name>
+        <url-pattern>/ExcluirMeshHeading</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InserirAuthor</servlet-name>
-        <url-pattern>/InserirAuthor</url-pattern>
+        <servlet-name>ExcluirPublicationType</servlet-name>
+        <url-pattern>/ExcluirPublicationType</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InserirMeshHeading</servlet-name>
-        <url-pattern>/InserirMeshHeading</url-pattern>
+        <servlet-name>FazerLogin</servlet-name>
+        <url-pattern>/FazerLogin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>InserirKeyWord</servlet-name>
-        <url-pattern>/InserirKeyWord</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>InserirArticle</servlet-name>
-        <url-pattern>/InserirArticle</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PesquisarAuthor</servlet-name>
-        <url-pattern>/PesquisarAuthor</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PesquisarMeshHeading</servlet-name>
-        <url-pattern>/PesquisarMeshHeading</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PesquisarKeyWord</servlet-name>
-        <url-pattern>/PesquisarKeyWord</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PesquisarJournal</servlet-name>
-        <url-pattern>/PesquisarJournal</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PesquisarPublicationType</servlet-name>
-        <url-pattern>/PesquisarPublicationType</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PesquisarChemical</servlet-name>
-        <url-pattern>/PesquisarChemical</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoginAdmin</servlet-name>
-        <url-pattern>/LoginAdmin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>InserirArticleAutor</servlet-name>
-        <url-pattern>/InserirArticleAutor</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PesquisarArtigo</servlet-name>
-        <url-pattern>/PesquisarArtigo</url-pattern>
+        <servlet-name>AlterarJournal</servlet-name>
+        <url-pattern>/AlterarJournal</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

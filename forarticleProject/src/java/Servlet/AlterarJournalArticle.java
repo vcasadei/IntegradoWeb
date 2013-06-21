@@ -4,24 +4,31 @@
  */
 package Servlet;
 
-import Bean.Usuario;
-import Banco.ExcluirPropriedadeDAO;
+import Banco.AlterarJournalArticleDAO;
+import Banco.CadastrarArtigoDAO;
 import Banco.PubMedDAOException;
+import Bean.Article;
+import Bean.Author;
+import Bean.Journal;
+import Bean.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Ian
+ * @author Caah
  */
-public class ExcluirKeyWord extends HttpServlet {
+@WebServlet(name = "AlterarJournal", urlPatterns = {"/AlterarJournal"})
+public class AlterarJournalArticle extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -42,10 +49,10 @@ public class ExcluirKeyWord extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ExcluirKeyword</title>");            
+            out.println("<title>Servlet AlterarJournal</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ExcluirKeyword at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AlterarJournal at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {            
@@ -64,6 +71,7 @@ public class ExcluirKeyWord extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+    /*Altera os dados de um Article*/
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
@@ -79,21 +87,25 @@ public class ExcluirKeyWord extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+    /*Altera os dados de um Journal*/
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         try{
-            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05","bananassaoazuis");
-            ExcluirPropriedadeDAO excluir = new ExcluirPropriedadeDAO(user);
-            excluir.excluirKeyword();
+            String titulo, nlm, abreviation;
             
-            //RequestDispatcher rd;
-            //rd = request.getRequestDispatcher("/resultados.jsp");
-            //rd.forward(request, response);
+            titulo = request.getParameter("journalTitle");
+            nlm = request.getParameter("nlmuniqueid");
+            abreviation = request.getParameter("abreviation");
+            
+            AlterarJournalArticleDAO alterar = new AlterarJournalArticleDAO(new Usuario("labbd05", "bananassaoazuis"));
+            alterar.alterarJournal(new Journal("", titulo, abreviation, nlm));
+            
         }catch(PubMedDAOException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(CadastrarArtigo.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }catch(SQLException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(CadastrarArtigo.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }
     }

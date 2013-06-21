@@ -5,11 +5,12 @@
 package Servlet;
 
 import Bean.Usuario;
-import Banco.ExcluirPropriedadeDAO;
+import Banco.BuscaPropriedadesDAO;
 import Banco.PubMedDAOException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -19,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Ian
+ * @author Caah
  */
-public class ExcluirKeyWord extends HttpServlet {
+public class BuscaIssnJournal extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -42,10 +43,10 @@ public class ExcluirKeyWord extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ExcluirKeyword</title>");            
+            out.println("<title>Servlet BuscaIssnJournal</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ExcluirKeyword at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet BuscaIssnJournal at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {            
@@ -81,20 +82,36 @@ public class ExcluirKeyWord extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         try{
-            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05","bananassaoazuis");
-            ExcluirPropriedadeDAO excluir = new ExcluirPropriedadeDAO(user);
-            excluir.excluirKeyword();
+            List<String> listaIssn;
+            String issn;
+            int cont = 0;
+            BuscaPropriedadesDAO busca = new BuscaPropriedadesDAO(new Usuario("labbd05", "bananassaoazuis"), "issnJournal");
             
-            //RequestDispatcher rd;
-            //rd = request.getRequestDispatcher("/resultados.jsp");
-            //rd.forward(request, response);
-        }catch(PubMedDAOException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
-            throw new ServletException(e.getMessage());
-        }catch(SQLException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
-            throw new ServletException(e.getMessage());
+            issn = request.getParameter("issn");
+            listaIssn = busca.buscaAtributosAutoComplete(issn);
+            
+            /*Campos HTML*/
+            issn = "[";
+            for (String aux : listaIssn){
+               issn += "\"" +aux + "\"";
+                if (cont != 0)
+                    issn += ", ";
+                cont++;
+            }
+            issn += "]";
+            
+            PrintWriter write = response.getWriter();
+            write.print(issn);
+            write.close();
+            
+        } catch (PubMedDAOException ex) {
+            Logger.getLogger(BuscaIssnJournal.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServletException(ex.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscaIssnJournal.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServletException(ex.getMessage());
         }
     }
 

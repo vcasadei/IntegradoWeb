@@ -4,12 +4,16 @@
  */
 package Servlet;
 
+import Bean.Article;
+import Bean.Author;
+import Bean.Journal;
 import Bean.Usuario;
-import Banco.ExcluirPropriedadeDAO;
+import Banco.CadastrarArtigoDAO;
 import Banco.PubMedDAOException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -21,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ian
  */
-public class ExcluirKeyWord extends HttpServlet {
+public class CadastrarArtigo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -42,10 +46,10 @@ public class ExcluirKeyWord extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ExcluirKeyword</title>");            
+            out.println("<title>Servlet CadastrarArtigo</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ExcluirKeyword at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CadastrarArtigo at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {            
@@ -83,17 +87,63 @@ public class ExcluirKeyWord extends HttpServlet {
             throws ServletException, IOException {
         try{
             Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05","bananassaoazuis");
-            ExcluirPropriedadeDAO excluir = new ExcluirPropriedadeDAO(user);
-            excluir.excluirKeyword();
+            Article artigo = new Article();
+            Journal journal = new Journal(request.getParameter("nlmuniqueid"), request.getParameter("issn"), request.getParameter("journalTitle"), 
+                    request.getParameter("abreviation"));
+            artigo.setJournal(journal);
+            
+            ArrayList<Author> autores = new ArrayList();
+            String [] nome = request.getParameterValues("nome");
+            String [] sNome = request.getParameterValues("sobrenome");
+            String [] iniciais = request.getParameterValues("iniciais");
+            for(int i = 0; i < nome.length; i++){
+                autores.add(new Author(nome[i], sNome[i], iniciais[i]));
+            }
+            artigo.setAutores(autores);
+            
+            ArrayList <String> keys = new ArrayList();
+            String [] keyword = request.getParameterValues("keyword");
+            for (int i = 0; i < keyword.length; i++){
+                keys.add(keyword[i]);
+            }
+            artigo.setKeyWord(keys);
+            
+            ArrayList<String> mesh = new ArrayList();
+            String [] meshHeading = request.getParameterValues("mesh");
+            for (int i = 0; i < meshHeading.length; i++){
+                mesh.add(meshHeading[i]);
+            }
+            artigo.setMeshHeading(mesh);
+            
+            ArrayList<String> chemical = new ArrayList();
+            String [] chemicalList = request.getParameterValues("chemical");
+            for (int i = 0; i < chemicalList.length; i++){
+                chemical.add(chemicalList[i]);
+            }
+            artigo.setChemical(chemical);
+            
+            ArrayList<String> pubtype = new ArrayList();
+            String [] pubtypeList = request.getParameterValues("pubtype");
+            for (int i = 0; i < pubtypeList.length; i++){
+                pubtype.add(pubtypeList[i]);
+            }
+            artigo.setPublicationType(pubtype);
+            
+            CadastrarArtigoDAO cadArtigo = new CadastrarArtigoDAO(user);
+            cadArtigo.cadastraArtigo(artigo);
+              
+            request.setAttribute("artigo", artigo);
             
             //RequestDispatcher rd;
             //rd = request.getRequestDispatcher("/resultados.jsp");
             //rd.forward(request, response);
+            
+            
         }catch(PubMedDAOException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(CadastrarArtigo.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }catch(SQLException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(CadastrarArtigo.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }
     }

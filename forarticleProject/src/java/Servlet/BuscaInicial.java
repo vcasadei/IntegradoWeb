@@ -4,14 +4,17 @@
  */
 package Servlet;
 
+import Bean.Article;
 import Bean.Usuario;
-import Banco.ExcluirPropriedadeDAO;
+import Banco.BuscaArtigosDAO;
 import Banco.PubMedDAOException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ian
  */
-public class ExcluirKeyWord extends HttpServlet {
+public class BuscaInicial extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -42,10 +45,10 @@ public class ExcluirKeyWord extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ExcluirKeyword</title>");            
+            out.println("<title>Servlet PesquisarInicial</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ExcluirKeyword at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PesquisarInicial at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {            
@@ -64,9 +67,37 @@ public class ExcluirKeyWord extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+    /*Faz a busca simples*/
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        try{
+            //String radio = request.getParameter("opcao");
+            String parametro = request.getParameter("pesquisar-edt");
+            Usuario user = new Usuario("labbd05", "bananassaoazuis");
+            BuscaArtigosDAO inicial = new BuscaArtigosDAO(user);
+            List<Article> artigos;
+            
+            //if(radio.equals("titulo")){
+                artigos = inicial.buscaArtigoTitulo(parametro);
+            //}else{
+            //    artigos = inicial.buscaArtigoKeyWord(parametro);
+            //}
+            
+            request.setAttribute("articleBean", artigos);
+            
+            //RequestDispatcher rd;
+            //rd = request.getRequestDispatcher("/resultados.jsp");
+            //rd.forward(request, response);
+            
+            
+        } catch (PubMedDAOException ex) {
+            Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServletException(ex.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServletException(ex.getMessage());
+        }
     }
 
     /**
@@ -79,23 +110,37 @@ public class ExcluirKeyWord extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+    /*Busca Avancada*/
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
-            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05","bananassaoazuis");
-            ExcluirPropriedadeDAO excluir = new ExcluirPropriedadeDAO(user);
-            excluir.excluirKeyword();
+        
+       try{
+            String tituloJournal = request.getParameter("journal-title-edt");
+            String issnJournal = request.getParameter("journal-issn-edt");
+            String dataInicial = request.getParameter("data-inicial-edt");
+            String dataFinal = request.getParameter("data-final-edt");
+            
+            Usuario user = new Usuario("labbd05", "bananassaoazuis");
+            BuscaArtigosDAO inicial = new BuscaArtigosDAO(user);
+           
+            List<Article> artigos;
+            artigos = inicial.buscaAvancadaArtigo(tituloJournal, issnJournal, dataInicial, dataFinal);
+           
+            request.setAttribute("articleBean", artigos);
             
             //RequestDispatcher rd;
             //rd = request.getRequestDispatcher("/resultados.jsp");
             //rd.forward(request, response);
+            
+            
         }catch(PubMedDAOException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }catch(SQLException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }
+        
     }
 
     /**

@@ -5,11 +5,12 @@
 package Servlet;
 
 import Bean.Usuario;
-import Banco.ExcluirPropriedadeDAO;
+import Banco.BuscaPropriedadesDAO;
 import Banco.PubMedDAOException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -19,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Ian
+ * @author Caah
  */
-public class ExcluirKeyWord extends HttpServlet {
+public class BuscaTitJournal extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -42,10 +43,10 @@ public class ExcluirKeyWord extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ExcluirKeyword</title>");            
+            out.println("<title>Servlet BuscaTitJournal</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ExcluirKeyword at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet BuscaTitJournal at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {            
@@ -66,7 +67,37 @@ public class ExcluirKeyWord extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        try{
+            List<String> listaTitulos;
+            String titulo;
+            int cont = 0;
+            BuscaPropriedadesDAO busca = new BuscaPropriedadesDAO(new Usuario("labbd05", "bananassaoazuis"), "tituloJournal");
+
+            titulo = request.getParameter("tit");
+            listaTitulos = busca.buscaAtributosAutoComplete(titulo);
+
+            /*Campos HTML*/
+            titulo = "[";
+            for (String tit : listaTitulos){
+                titulo += "\"" + tit + "\"";
+                if (cont != 0)
+                    titulo += ", ";
+                cont++;
+            }
+            titulo += "]";
+
+            PrintWriter write = response.getWriter();
+            write.print(titulo);
+            write.close();
+
+        } catch (PubMedDAOException ex) {
+            Logger.getLogger(BuscaTitJournal.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServletException(ex.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscaTitJournal.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServletException(ex.getMessage());
+        }
     }
 
     /**
@@ -81,21 +112,8 @@ public class ExcluirKeyWord extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
-            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05","bananassaoazuis");
-            ExcluirPropriedadeDAO excluir = new ExcluirPropriedadeDAO(user);
-            excluir.excluirKeyword();
-            
-            //RequestDispatcher rd;
-            //rd = request.getRequestDispatcher("/resultados.jsp");
-            //rd.forward(request, response);
-        }catch(PubMedDAOException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
-            throw new ServletException(e.getMessage());
-        }catch(SQLException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
-            throw new ServletException(e.getMessage());
-        }
+        
+        
     }
 
     /**

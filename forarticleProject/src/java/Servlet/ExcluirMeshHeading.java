@@ -4,9 +4,14 @@
  */
 package Servlet;
 
-import ClassesBanco.ConexaoBD;
+import Bean.Usuario;
+import Banco.ExcluirPropriedadeDAO;
+import Banco.PubMedDAOException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -76,53 +81,21 @@ public class ExcluirMeshHeading extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //recebe o descriptionName do MeshHeading selecionado
-        String descriptionName = request.getParameter("descriptionName");
-        
-        //Inicializa a váriavel que conterá a página de retorno
-        PrintWriter retorno = response.getWriter();
-        
-        ConexaoBD conexaoBD = new ConexaoBD();
-        if(conexaoBD.excluirMeshHeading(descriptionName)){
-            retorno.print(this.constroiPaginaSucesso(descriptionName));
-        }else{
-            retorno.print(this.constroiPaginaErro(descriptionName));
+        try{
+            Usuario user = new Usuario("labbd05","bananassaoazuis");
+            ExcluirPropriedadeDAO excluir = new ExcluirPropriedadeDAO(user);
+            excluir.excluirMeshHeading();
+            
+            //RequestDispatcher rd;
+            //rd = request.getRequestDispatcher("/resultados.jsp");
+            //rd.forward(request, response);
+        }catch(PubMedDAOException e){
+            Logger.getLogger(ExcluirMeshHeading.class.getName()).log(Level.SEVERE, null, e);
+            throw new ServletException(e.getMessage());
+        }catch(SQLException e){
+            Logger.getLogger(ExcluirMeshHeading.class.getName()).log(Level.SEVERE, null, e);
+            throw new ServletException(e.getMessage());
         }
-
-        //finaliza o retorno
-        retorno.close();
-    }
-    
-    //método auxiliar para a construção da página de exclusão com sucesso
-    private String constroiPaginaSucesso(String descriptionName) {
-        String pagina;
-        pagina = "<!DOCTYPE html>\n"
-                + "<html>\n"
-                + "  <head>\n"
-                + "    <title>MeshHeading Excluido</title>\n"
-                + "    <meta charset=\"UTF-8\">\n"
-                + "  </head>\n"
-                + "  <body>\n"
-                + "     <p>MeshHeading " + descriptionName + " foi exluído com sucesso</p>"
-                + "  </body>\n"
-                + "</html>\n";
-        return pagina;
-    }
-
-    //método auxiliar para a construção de uma página de erro de exclusão
-    private String constroiPaginaErro(String descriptionName) {
-        String pagina;
-        pagina = "<!DOCTYPE html>\n"
-                + "<html>\n"
-                + "  <head>\n"
-                + "    <title>Erro de Exclusão</title>\n"
-                + "    <meta charset=\"UTF-8\">\n"
-                + "  </head>\n"
-                + "  <body>\n"
-                + "     <p>O meshHeading " + descriptionName + " não pode ser excluído</p>"
-                + "  </body>\n"
-                + "</html>\n";
-        return pagina;
     }
 
     /**

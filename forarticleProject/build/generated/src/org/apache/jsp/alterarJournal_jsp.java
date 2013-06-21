@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import Bean.Journal;
 
 public final class alterarJournal_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,6 +45,7 @@ public final class alterarJournal_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<!--[if lt IE 7]>      <html class=\"no-js lt-ie9 lt-ie8 lt-ie7\"> <![endif]-->\n");
       out.write("<!--[if IE 7]>         <html class=\"no-js lt-ie9 lt-ie8\"> <![endif]-->\n");
@@ -80,34 +82,55 @@ public final class alterarJournal_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                    </ul>\n");
       out.write("                </nav>\n");
       out.write("            </header>\n");
-      out.write("        </div>\n");
+      out.write("        </div> \n");
       out.write("\n");
       out.write("        <div class=\"main-container\">\n");
+      out.write("            ");
+
+                                 Journal objJournalBean = (Journal)request.getAttribute("journalBean");
+                                    if (true){
+                                        
+                                    
+                                
+      out.write("\n");
       out.write("            <div class=\"main wrapper clearfix\">\n");
       out.write("                <div class=\"cadastro-box\">\n");
       out.write("                    <h2>Alterar Revista</h2>\n");
-      out.write("                    <form class=\"form-cadastro\" action=\"AlterarJournal\" method=\"POST\">\n");
+      out.write("                    <form class=\"form-cadastro\" action=\"AlterarJournal\" method=\"POST\" name=\"form\">\n");
       out.write("                        <div class=\"separator separator2\">Informações sobre a Revista</div>\n");
+      out.write("                        \n");
       out.write("                        <p class=\"side-fields\">\n");
+      out.write("                            \n");
+      out.write("                                \n");
       out.write("                            <label class=\"label-s\" for=\"nlmuniqueid\">NLM (ID único): </label>\n");
-      out.write("                                <input class=\"text-inline nlm-edt\" type=\"text\" disabled name=\"nlmuniqueid\" />\n");
+      out.write("                            <input class=\"text-inline nlm-edt\" type=\"text\" disabled name=\"nlmuniqueid\" value=\"");
+      out.print( objJournalBean.getNlmUniqueID());
+      out.write("\" />\n");
       out.write("                            \n");
       out.write("                            <label class=\"label-s label-right\" for=\"issn\">ISSN: </label>\n");
-      out.write("                                <input class=\"text-right issn-edt\" disabled type=\"text\" name=\"issn\">\n");
+      out.write("                                <input class=\"text-right issn-edt\" disabled type=\"text\" name=\"issn\" value=\"");
+      out.print( objJournalBean.getISSN());
+      out.write("\" />\n");
       out.write("                            \n");
       out.write("                        </p>\n");
       out.write("                        <p class=\"line-field\">\n");
       out.write("                            <label class=\"label-s\" for=\"journalTitle\">Título da Revista: </label>\n");
-      out.write("                                <input class=\"text-s journal\" type=\"text\" name=\"journalTitle\" value=\"Busque uma Revista por um dos campos acima\"disabled/>\n");
+      out.write("                                <input class=\"text-s journal\" type=\"text\" name=\"journalTitle\" value=\"");
+      out.print( objJournalBean.getTitle() );
+      out.write("\"/>\n");
       out.write("                        </p>\n");
-      out.write("                        <p class=\"side-fields\">\n");
-      out.write("                            <label class=\"label-s\" for=\"pagination\">Paginação: </label>\n");
-      out.write("                                <input class=\"text-inline\" disabled type=\"text\" name=\"pagination\" size=\"10\"/>\n");
-      out.write("                            <label class=\"label-s label-right\" for=\"volume\">Volume: </label>\n");
-      out.write("                                <input class=\"text-inline\" disabled type=\"text\" name=\"volume\" size=\"10\"/>\n");
-      out.write("                            <label class=\"label-s label-right\" for=\"issue\">Issue: </label>\n");
-      out.write("                                <input class=\"text-inline\" disabled type=\"text\" name=\"issue\" size=\"10\"/>\n");
+      out.write("                        <p class=\"line-field\">\n");
+      out.write("                            <label class=\"label-s\" for=\"abreviatioln\">Abreviação: </label>\n");
+      out.write("                                <input class=\"text-s journal\" type=\"text\" name=\"abreviation\" value=\"");
+      out.print( objJournalBean.getAbreviation());
+      out.write("\"/>\n");
       out.write("                        </p>\n");
+      out.write("                        \n");
+      out.write("                        ");
+
+                                    }
+                                    
+      out.write("\n");
       out.write("                        \n");
       out.write("                        \n");
       out.write("                        <div class=\"btn-cadastrar-box\">\n");

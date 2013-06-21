@@ -5,11 +5,12 @@
 package Servlet;
 
 import Bean.Usuario;
-import Banco.ExcluirPropriedadeDAO;
+import Banco.BuscaPropriedadesDAO;
 import Banco.PubMedDAOException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -19,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Ian
+ * @author Caah
  */
-public class ExcluirKeyWord extends HttpServlet {
+public class BuscaKeyword extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -42,10 +43,10 @@ public class ExcluirKeyWord extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ExcluirKeyword</title>");            
+            out.println("<title>Servlet BuscaKeyword</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ExcluirKeyword at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet BuscaKeyword at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {            
@@ -81,20 +82,38 @@ public class ExcluirKeyWord extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         try{
-            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05","bananassaoazuis");
-            ExcluirPropriedadeDAO excluir = new ExcluirPropriedadeDAO(user);
-            excluir.excluirKeyword();
+            List<String> listaKeywords = null;
+            String keyWord;
+            int cont = 0;
             
-            //RequestDispatcher rd;
-            //rd = request.getRequestDispatcher("/resultados.jsp");
-            //rd.forward(request, response);
-        }catch(PubMedDAOException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
-            throw new ServletException(e.getMessage());
-        }catch(SQLException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
-            throw new ServletException(e.getMessage());
+            BuscaPropriedadesDAO busca = new BuscaPropriedadesDAO(new Usuario("labbd05", "bananassaoazuis"), "keyWord");
+            
+            keyWord = request.getParameter("key");
+            listaKeywords = busca.buscaAtributosAutoComplete(keyWord);
+            
+            /*Campos HTML*/
+            keyWord = "[";
+            for (String keyW : listaKeywords){
+                if (cont != 0)
+                    keyWord += ", ";
+                keyWord += "\"" + keyW + "\"";
+                cont++;
+            }
+            keyWord += "]";
+
+            PrintWriter write = response.getWriter();
+            System.out.println(keyWord);
+            write.print(keyWord);
+            write.close();
+            
+        } catch (PubMedDAOException ex) {
+            Logger.getLogger(BuscaKeyword.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServletException(ex.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscaKeyword.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServletException(ex.getMessage());
         }
     }
 

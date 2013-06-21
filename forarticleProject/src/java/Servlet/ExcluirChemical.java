@@ -4,9 +4,14 @@
  */
 package Servlet;
 
-import ClassesBanco.ConexaoBD;
+import Banco.ExcluirPropriedadeDAO;
+import Bean.Usuario;
+import Banco.PubMedDAOException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -76,54 +81,24 @@ public class ExcluirChemical extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //recebe o chemicalName do Chemical selecionado
-        String chemicalName = request.getParameter("chemicalName");
-        
-        //Inicializa a váriavel que conterá a página de retorno
-        PrintWriter retorno = response.getWriter();
-        
-        ConexaoBD conexaoBD = new ConexaoBD();
-        if(conexaoBD.excluirChemical(chemicalName)){
-            retorno.print(this.constroiPaginaSucesso(chemicalName));
-        }else{
-            retorno.print(this.constroiPaginaErro(chemicalName));
+        try{
+            Usuario user = new Usuario("labbd05", "bananassaoazuis");
+            ExcluirPropriedadeDAO excluir = new ExcluirPropriedadeDAO(user);
+            excluir.excluirChemical();
+            
+            //RequestDispatcher rd;
+            //rd = request.getRequestDispatcher("/resultados.jsp");
+            //rd.forward(request, response);
+        }catch(PubMedDAOException e){
+            Logger.getLogger(ExcluirChemical.class.getName()).log(Level.SEVERE, null, e);
+            throw new ServletException(e.getMessage());
+        }catch(SQLException e){
+            Logger.getLogger(ExcluirChemical.class.getName()).log(Level.SEVERE, null, e);
+            throw new ServletException(e.getMessage());
         }
-
-        //finaliza o retorno
-        retorno.close();
-    }
-    
-    //método auxiliar para a construção da página de exclusão com sucesso
-    private String constroiPaginaSucesso(String chemicalName) {
-        String pagina;
-        pagina = "<!DOCTYPE html>\n"
-                + "<html>\n"
-                + "  <head>\n"
-                + "    <title>Chemical  Excluido</title>\n"
-                + "    <meta charset=\"UTF-8\">\n"
-                + "  </head>\n"
-                + "  <body>\n"
-                + "     <p>Chemical " + chemicalName + " foi exluído com sucesso</p>"
-                + "  </body>\n"
-                + "</html>\n";
-        return pagina;
+        
     }
 
-    //método auxiliar para a construção de uma página de erro de exclusão
-    private String constroiPaginaErro(String chemicalName) {
-        String pagina;
-        pagina = "<!DOCTYPE html>\n"
-                + "<html>\n"
-                + "  <head>\n"
-                + "    <title>Erro de Exclusão</title>\n"
-                + "    <meta charset=\"UTF-8\">\n"
-                + "  </head>\n"
-                + "  <body>\n"
-                + "     <p>A Chemical  " + chemicalName + " não pode ser excluído</p>"
-                + "  </body>\n"
-                + "</html>\n";
-        return pagina;
-    }
     /**
      * Returns a short description of the servlet.
      *

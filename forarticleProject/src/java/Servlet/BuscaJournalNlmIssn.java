@@ -4,8 +4,9 @@
  */
 package Servlet;
 
+import Bean.Journal;
 import Bean.Usuario;
-import Banco.ExcluirPropriedadeDAO;
+import Banco.BuscaDadosJournalDAO;
 import Banco.PubMedDAOException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ian
  */
-public class ExcluirKeyWord extends HttpServlet {
+public class BuscaJournalNlmIssn extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -42,10 +43,10 @@ public class ExcluirKeyWord extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ExcluirKeyword</title>");            
+            out.println("<title>Servlet buscarJournal</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ExcluirKeyword at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet buscarJournal at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {            
@@ -64,9 +65,30 @@ public class ExcluirKeyWord extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+    /*Busca um journal pelo seu NlmUniqueID*/
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try{
+            String nlmID = request.getParameter("nlmuniqueid");
+            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05","bananassaoazuis");
+            Journal journal;
+            BuscaDadosJournalDAO cadArtigo = new BuscaDadosJournalDAO(user);
+            journal = cadArtigo.buscaJournalNlmID(nlmID);
+              
+            request.setAttribute("journal", journal);
+            
+            //RequestDispatcher rd;
+            //rd = request.getRequestDispatcher("/resultados.jsp");
+            //rd.forward(request, response);
+            
+            
+        }catch(PubMedDAOException e){
+            Logger.getLogger(BuscaJournalNlmIssn.class.getName()).log(Level.SEVERE, null, e);
+            throw new ServletException(e.getMessage());
+        }catch(SQLException e){
+            Logger.getLogger(BuscaJournalNlmIssn.class.getName()).log(Level.SEVERE, null, e);
+            throw new ServletException(e.getMessage());
+        }
     }
 
     /**
@@ -79,21 +101,28 @@ public class ExcluirKeyWord extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
+    /*Busca um journal pelo seu issn*/
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
+            String issn = request.getParameter("issn");
             Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05","bananassaoazuis");
-            ExcluirPropriedadeDAO excluir = new ExcluirPropriedadeDAO(user);
-            excluir.excluirKeyword();
+            Journal journal;
+            BuscaDadosJournalDAO cadArtigo = new BuscaDadosJournalDAO(user);
+            journal = cadArtigo.buscaJournalIssn(issn);
+              
+            request.setAttribute("journal", journal);
             
             //RequestDispatcher rd;
             //rd = request.getRequestDispatcher("/resultados.jsp");
             //rd.forward(request, response);
+            
+            
         }catch(PubMedDAOException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(BuscaJournalNlmIssn.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }catch(SQLException e){
-            Logger.getLogger(ExcluirKeyWord.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(BuscaJournalNlmIssn.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }
     }

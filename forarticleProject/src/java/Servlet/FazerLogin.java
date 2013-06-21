@@ -5,21 +5,19 @@
 package Servlet;
 
 import Bean.Usuario;
-import banco.BuscaPropriedadesDAO;
-import banco.ConnectionPubMed;
-import banco.PubMedDAOException;
+import Banco.BuscaPropriedadesDAO;
+import Banco.ConnectionPubMed;
+import Banco.PubMedDAOException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -91,27 +89,6 @@ public class FazerLogin extends HttpServlet {
             conn = ConnectionPubMed.getConnection(request.getParameter("username-edt"), request.getParameter("password-edt"));
             
             /*Presida, você tem que fazer o bang dos cookies aqui, antes de fechar a conexão*/
-            String name = request.getParameter("username-edt");
-            String password = request.getParameter("password-edt");
-            HttpSession session = request.getSession();
-            session.setAttribute( "username", name );
-            session.setAttribute( "password", password );
-            
-            /*
-             * Para recuperar no JSP, basta fazer
-             * <%= session.getAttribute( "username" ) %>
-             * <%= session.getAttribute( "password" ) %>
-             * No JSP não precisa declarar o Session
-             * 
-             * No Servlet, basta fazer
-             * HttpSession session = request.getSession();
-             * String name = session.getAttribute( "username" );
-             * String password = session.getAttribute( "password" );
-             */
-            
-            /*
-             * Se não estiver conectado, os valores retornados pelo getAttribute é NULL
-             */
 
             ConnectionPubMed.close(conn, null, null);
             
