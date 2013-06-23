@@ -123,17 +123,40 @@ public class BuscaJournalTitulo extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            String title = request.getParameter("journalTitle");
+            String title = request.getParameter("tit");
             Usuario user = new Usuario("labbd05", "bananassaoazuis");
             Journal journal;
             BuscaDadosJournalDAO cadArtigo = new BuscaDadosJournalDAO(user);
             journal = cadArtigo.buscaJournalTitulo(title);
 
-            request.setAttribute("journal", journal);
+            String dados = "<div class=\"separator separator1\">Informações sobre a Revista</div>"
+                    + "<p class=\"side-fields\">"
+                    + "<label class=\"label-s\" for=\"nlmuniqueid\">NLM (ID único): </label>"
+                    + "<input class=\"text-inline nlm-edt\" type=\"text\" data-provide=\"typeahead\""
+                    + " name=\"nlmuniqueid\" id=\"nlmuniqueid\" placeholder=\"Busque pelo ID\" disabled value=\""
+                    + journal.getNlmUniqueID() + "\"/>"
+                    + "<label class=\"label-s label-right\" for=\"issn\">ISSN: </label>"
+                    + "<input class=\"text-right issn-edt\" data-provide=\"typeahead\" type=\"text\""
+                    + " name=\"issn\" id=\"issn\" disabled value=\"" + journal.getISSN() + "\"/>"
+                    + "</p>"
+                    + "<p class=\"line-field\">"
+                    + "<label class=\"label-s\" for=\"journalTitle\">Título da Revista: </label>"
+                    + "<input class=\"text-s journal\" type=\"text\" data-provide=\"typeahead\""
+                    + " name=\"journalTitle\" id=\"journalTitle\" value=\"" + journal.getTitle() + "\"/>"
+                    + "</p>"
+                    + "<p class=\"side-fields\">"
+                    + "<label class=\"label-s\" for=\"aberviation\">Abreviação: </label>"
+                    + "<input class=\"text-inline abreviation-title-edt\" type=\"text\" name=\"abreviation\""
+                    + " value=\"" + journal.getAbreviation() + "\"/>"
+                    + "</p>"
+                    + "<div class=\"btn-cadastrar-box\">"
+                    + "<input type=\"submit\" class=\"btn-cadastrar\" value=\"Alterar\">"
+                    + "</div>";
 
-            //RequestDispatcher rd;
-            //rd = request.getRequestDispatcher("/resultados.jsp");
-            //rd.forward(request, response);
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.print(dados);
+            writer.close();
 
 
         } catch (PubMedDAOException e) {

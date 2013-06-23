@@ -18,7 +18,7 @@ public class ExcluirPropriedadeDAO {
     private Connection conn;
 
     public ExcluirPropriedadeDAO(Usuario user) throws PubMedDAOException {
-        this.conn = ConnectionPubMed.getConnection(user.getLogin(), user.getSenha());
+        this.conn = ConnectionPubMed.getConnection(user);
     }
 
     public void excluirMeshHeading() throws SQLException, PubMedDAOException {

@@ -86,16 +86,16 @@ public class CadastrarArtigo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
-            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05","bananassaoazuis");
+            Usuario user = new Usuario("labbd05","bananassaoazuis");
             Article artigo = new Article();
             Journal journal = new Journal(request.getParameter("nlmuniqueid"), request.getParameter("issn"), request.getParameter("journalTitle"), 
                     request.getParameter("abreviation"));
             artigo.setJournal(journal);
             
             ArrayList<Author> autores = new ArrayList();
-            String [] nome = request.getParameterValues("nome");
-            String [] sNome = request.getParameterValues("sobrenome");
-            String [] iniciais = request.getParameterValues("iniciais");
+            String [] nome = request.getParameterValues("forename");
+            String [] sNome = request.getParameterValues("lastname");
+            String [] iniciais = request.getParameterValues("initialsname");
             for(int i = 0; i < nome.length; i++){
                 autores.add(new Author(nome[i], sNome[i], iniciais[i]));
             }

@@ -23,7 +23,7 @@ public class BuscaPropriedadesDAO {
     
     
     public BuscaPropriedadesDAO(Usuario usuario, String propriedade) throws PubMedDAOException{
-        this.conn = ConnectionPubMed.getConnection(usuario.getLogin(), usuario.getSenha());
+        this.conn = ConnectionPubMed.getConnection(usuario);
         this.propriedade = propriedade;
     }
     
@@ -36,25 +36,25 @@ public class BuscaPropriedadesDAO {
         
         /*Verifica qual a propriedade a ser buscada e monta a busca*/
         if (propriedade.equals("keyWord")){
-            SQL = "Select top(5) keyWordName from KeyWord where keyWordName like '%" + valor + "%'";
+            SQL = "Select distinct top(5) keyWordName from KeyWord where keyWordName like '%" + valor + "%'";
         } else if (propriedade.equals("chemical")){
-            SQL = "SELECT top(5) chemicalName from Chemical where chemicalName like '%" + valor + "%'";
+            SQL = "SELECT distinct top(5) chemicalName from Chemical where chemicalName like '%" + valor + "%'";
         } else if (propriedade.equals("mesh")){
-            SQL = "SELECT top(5) descriptionName from MeshHeading where descriptionName like '%" + valor + "%'";
+            SQL = "SELECT distinct top(5) descriptionName from MeshHeading where descriptionName like '%" + valor + "%'";
         } else if (propriedade.equals("publicationType")){
-            SQL = "SELECT top(5) typeName from PublicationType where typeName like '%" + valor + "%'";
+            SQL = "SELECT distinct top(5) typeName from PublicationType where typeName like '%" + valor + "%'";
         } else if (propriedade.equals("authorForeName")){
-            SQL = "SELECT top(5) foreName from Author where ForeName like '%" + valor + "%'";
+            SQL = "SELECT distinct top(5) foreName from Author where ForeName like '%" + valor + "%'";
         } else if (propriedade.equals("authorLastName")){
-            SQL = "SELECT top(5) LastName from Author where LastName like '%" + valor + "%'";
+            SQL = "SELECT distinct top(5) LastName from Author where LastName like '%" + valor + "%'";
         } else if (propriedade.equals("authorInitials")){
-            SQL = "SELECT top(5) Initials from Author where Initials like '%" + valor + "%'";
+            SQL = "SELECT distinct top(5) Initials from Author where Initials like '%" + valor + "%'";
         } else if (propriedade.equals("tituloJournal")){
             SQL = "SELECT top(5) title from Journal where title like '%" + valor + "%'";
         } else if (propriedade.equals("issnJournal")){
-            SQL = "SELECT top(5) issn from Journal where issn like '" + valor + "%'";
+            SQL = "SELECT distinct top(5) issn from Journal where issn like '" + valor + "%'";
         } else if (propriedade.equals("nlmJournal")){
-            SQL = "SELECT top(5) nlmUniqueID from Journal where nlmUniqueID like '" + valor + "%'";
+            SQL = "SELECT distinct top(5) nlmUniqueID from Journal where nlmUniqueID like '" + valor + "%'";
         }
         
         ps = conn.prepareStatement(SQL);

@@ -36,7 +36,7 @@ public class BuscaNlmJournal extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
@@ -92,20 +92,21 @@ public class BuscaNlmJournal extends HttpServlet {
             nlmUniqueID = request.getParameter("nlm");
             listaNlmUniqueID = busca.buscaAtributosAutoComplete(nlmUniqueID);
 
-            /*Campos HTML*/
+            /*Transforma a lista de strings retornadas em uma lista em json*/
             nlmUniqueID = "[";
             for (String nlm : listaNlmUniqueID) {
-                nlmUniqueID += "\"" + nlm + "\"";
                 if (cont != 0) {
                     nlmUniqueID += ", ";
                 }
+                nlmUniqueID += "\"" + nlm + "\"";
                 cont++;
             }
             nlmUniqueID += "]";
 
-            PrintWriter write = response.getWriter();
-            write.print(nlmUniqueID);
-            write.close();
+            /*Retorna a lista como um objeto json*/
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(nlmUniqueID);
 
         } catch (PubMedDAOException ex) {
             Logger.getLogger(BuscaNlmJournal.class.getName()).log(Level.SEVERE, null, ex);

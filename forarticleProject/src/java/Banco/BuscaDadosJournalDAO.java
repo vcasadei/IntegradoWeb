@@ -19,7 +19,7 @@ public class BuscaDadosJournalDAO {
     private Connection conn; 
     
     public BuscaDadosJournalDAO(Usuario user) throws PubMedDAOException{
-        this.conn = ConnectionPubMed.getConnection(user.getLogin(), user.getSenha());
+        this.conn = ConnectionPubMed.getConnection(user);
     }
     
     public Journal buscaJournalNlmID(String nlmID) throws SQLException, PubMedDAOException {
@@ -29,7 +29,7 @@ public class BuscaDadosJournalDAO {
         ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            retorno = new Journal(rs.getString("nlmUniqueID"), rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"));
+            retorno = new Journal(rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"), rs.getString("nlmUniqueID"));
         }else{
             retorno = null;
         }
@@ -44,7 +44,7 @@ public class BuscaDadosJournalDAO {
         ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            retorno = new Journal(rs.getString("nlmUniqueID"), rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"));
+            retorno = new Journal(rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"), rs.getString("NlmUniqueID"));
         }else{
             retorno = null;
         }
@@ -59,7 +59,7 @@ public class BuscaDadosJournalDAO {
         ps = conn.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            retorno = new Journal(rs.getString("nlmUniqueID"), rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"));
+            retorno = new Journal(rs.getString("issn"), rs.getString("title"), rs.getString("abreviation"), rs.getString("NlmUniqueID"));
         }else{
             retorno = null;
         }

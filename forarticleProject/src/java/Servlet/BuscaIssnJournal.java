@@ -36,7 +36,7 @@ public class BuscaIssnJournal extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
@@ -92,19 +92,21 @@ public class BuscaIssnJournal extends HttpServlet {
             issn = request.getParameter("issn");
             listaIssn = busca.buscaAtributosAutoComplete(issn);
             
-            /*Campos HTML*/
+            /*Transforma a lista de strings retornadas em uma lista em json*/
             issn = "[";
             for (String aux : listaIssn){
-               issn += "\"" +aux + "\"";
-                if (cont != 0)
+               if (cont != 0)
                     issn += ", ";
+               issn += "\"" +aux + "\"";
                 cont++;
             }
             issn += "]";
             
-            PrintWriter write = response.getWriter();
-            write.print(issn);
-            write.close();
+            /*Retorna a lista como um objeto json*/
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(issn);
+
             
         } catch (PubMedDAOException ex) {
             Logger.getLogger(BuscaIssnJournal.class.getName()).log(Level.SEVERE, null, ex);

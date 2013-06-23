@@ -39,42 +39,37 @@
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div class="cadastro-user-box">
-                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a href="login.html">Login</a> -> <a href="cadastroUsuarioAdm.html">Cadastrar Usuário</a></div>
+                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a>Cadastrar</a> -> <a href="CadastroUsuarioAdm.html">Cadastrar Usuário</a></div>
                     <h2>Cadastrar Ususário</h2>
-                    <form class="cadastra-usuario-form" action="CadastrarUsuario" method="POST">
+                    <form class="cadastra-usuario-form">
                         <div class="separator separator2">Todos os campos são obrigatórios</div>
                         
                         <p class="side-fields">
 
                         <label for="username-edt">Login:</label>
-                        <input type="text" name="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
+                        <input type="text" id="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
                         <label for="password-edt">Senha:</label>
-                        <input type="password" name="password-edt" class="password-edt noEnterSubmit" placeholder=""/><br><br>
+                        <input type="password" id="password-edt" class="password-edt noEnterSubmit" placeholder=""/><br><br>
                         
                         <label for="user-type-edt">Tipo de Usuário:</label>
-                        <select name="user-type-edt" class="user-type-edt noEnterSubmit">
+                        <select name="user-type-edt" id="user-type-edt" class="user-type-edt noEnterSubmit">
                             <option value="administrador">Administrador</option>
                             <option value="pesquisador">Pesquisador</option>
                           </select>
                         <br>
                         
                         </p>
-                        
-                        
-                        
+                        <div id="msg"></div>
                         <div class="btn-cadastrar-box">
-                            <input type="submit" class="btn-cadastrar" value="Cadastrar">
+                            <input type="text" class="btn-cadastrar-admin" value="Cadastrar">
                         </div>
                     </form>
                     
                 </div>
-                    
-
-
-            </div> <!-- #main -->
-        </div> <!-- #main-container -->
+            </div> 
+        </div> 
         
-
+        <!-- Rodapé -->
         <div class="footer-container">
             <footer class="wrapper">
                 <h3>© 2013 forArticle - Forward your research!</h3>
@@ -82,9 +77,8 @@
         </div>
 
         <script src="./js/jquery-1.9.1.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script> 
+        
         <script src="./js/pesquisa-home.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-
-        <script src="js/main.js"></script> 
     </body>
 </html>

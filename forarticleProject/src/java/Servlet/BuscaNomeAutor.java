@@ -36,7 +36,7 @@ public class BuscaNomeAutor extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
@@ -92,7 +92,7 @@ public class BuscaNomeAutor extends HttpServlet {
             foreName = request.getParameter("fore");
             listaForeName = busca.buscaAtributosAutoComplete(foreName);
             
-            /*Campos HTML*/
+            /*Transforma a lista de strings retornadas em uma lista em json*/
             foreName = "[";
             for (String fore : listaForeName){
                 if (cont != 0)
@@ -102,9 +102,10 @@ public class BuscaNomeAutor extends HttpServlet {
             }
             foreName += "]";
             
-            PrintWriter write = response.getWriter();
-            write.print(foreName);
-            write.close();
+            /*Retorna a lista como um objeto json*/
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(foreName);
             
         } catch (PubMedDAOException ex) {
             Logger.getLogger(BuscaNomeAutor.class.getName()).log(Level.SEVERE, null, ex);

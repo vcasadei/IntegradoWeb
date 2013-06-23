@@ -16,6 +16,7 @@ public class Article {
         this.articleID = articleID;
         this.title = title;
         this.resumo = resumo;
+        this.flag = 0;
     }
 
     public Article() {
@@ -73,8 +74,8 @@ public class Article {
         return articleDate;
     }
 
-    public void setArticleDate(String articleDate) {
-        this.articleDate = articleDate;
+    public void setArticleDate(String articleString) {
+        this.articleDate = articleString;
     }
 
     public String getPublicationStatus() {
@@ -168,6 +169,14 @@ public class Article {
     public void addChemical(String chemical){
         this.chemical.add(chemical);
     }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
     
     private String resumo;
     private String articleID;
@@ -185,4 +194,5 @@ public class Article {
     private ArrayList <String> publicationType;
     private ArrayList <String> chemical;
     private ArrayList <String> keyWord;
+    private int flag;
 }

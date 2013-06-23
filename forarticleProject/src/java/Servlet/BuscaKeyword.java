@@ -36,20 +36,20 @@ public class BuscaKeyword extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BuscaKeyword</title>");            
+            out.println("<title>Servlet BuscaKeyword</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet BuscaKeyword at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }
@@ -82,32 +82,33 @@ public class BuscaKeyword extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        try{
+
+        try {
             List<String> listaKeywords = null;
             String keyWord;
             int cont = 0;
-            
+
             BuscaPropriedadesDAO busca = new BuscaPropriedadesDAO(new Usuario("labbd05", "bananassaoazuis"), "keyWord");
-            
+
             keyWord = request.getParameter("key");
             listaKeywords = busca.buscaAtributosAutoComplete(keyWord);
-            
-            /*Campos HTML*/
+
+            /*Transforma a lista de strings retornadas em uma lista em json*/
             keyWord = "[";
-            for (String keyW : listaKeywords){
-                if (cont != 0)
+            for (String keyW : listaKeywords) {
+                if (cont != 0) {
                     keyWord += ", ";
+                }
                 keyWord += "\"" + keyW + "\"";
                 cont++;
             }
             keyWord += "]";
 
-            PrintWriter write = response.getWriter();
-            System.out.println(keyWord);
-            write.print(keyWord);
-            write.close();
-            
+            /*Retorna a lista como um objeto json*/
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(keyWord);
+
         } catch (PubMedDAOException ex) {
             Logger.getLogger(BuscaKeyword.class.getName()).log(Level.SEVERE, null, ex);
             throw new ServletException(ex.getMessage());

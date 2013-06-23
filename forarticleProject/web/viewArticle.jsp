@@ -1,3 +1,5 @@
+<%@page import="Bean.Usuario"%>
+<%@page import="Bean.Article"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -31,28 +33,19 @@
                     <ul>
                         <% 
                             Usuario objUsuarioBean = (Usuario)request.getAttribute("usuarioBean");
-                            if (objUsuarioBean!=null){
-                                if(objUsuarioBean.getUsuario().equals("adm")){ //Menu Admin
+                            if (objUsuarioBean != null){
+                                if(objUsuarioBean.getTipo().equals("adm")){ //Menu Admin
                           %>
                         <li><a href="#.jsp" class="active">Autoriza√ß√£o de usu√°rio</a></li>
                         <li><a href="#.jsp">Cadastro de Rotas</a></li>
                         <%
-                             } else {
-                                    if(objUsuarioBean.getUsuario().equals("user")){ //Menu User
+                             } else if(objUsuarioBean.getTipo().equals("user")){ //Menu User
                                         %>
                         <li><a href="#.jsp" class="active">Autoriza√ß√£o de usu√°rio</a></li>
                         <li><a href="#.jsp">Cadastro de Rotas</a></li>
                         <%
-                                    } else { //Menu Visitante
-                                      %>
-                        <li><a href="index.html">In√≠cio</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <%  
-                                    }
-                                    
-                                    
-                                }
-                            }
+                               }
+                            } //ver o que vai fazer caso dÍ um pau no banco e n„o consiga encontrar o usu·rio
                         %>
                     </ul>
                 </nav>
@@ -62,21 +55,19 @@
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div id="article-container">
-                     <div class="separator separator3"><a href="index.html">Inicio</a> -> <a href="">Visualizar Artigo</a></div>
-                     
                     <%
                             Article objArticleBean = (Article)request.getAttribute("artigo");
-                            if (objArticleBean){
+                            if (objArticleBean != null){
                             %>
                     <div id="title-box">
                         
-                        <h2 id="title"><%= objArticleBean.getArticleTitle() %></h2>
+                        <h2 id="title"><%= objArticleBean.getTitle() %></h2>
                         
                         <p id="journal">
-                            <b>Revista: </b><%= objArticleBean.getPublicationTitle() %>
+                            <b>Revista: </b><%= objArticleBean.getJournal().getTitle() %>
                             
-                            (AbreviaÁ„o: <%= objArticleBean.getAbreviation() %>).
-                            ISSN: <%= objArticleBean.getISSN() %>. 
+                            (AbreviaÁ„o: <%= objArticleBean.getJournal().getAbreviation() %>).
+                            ISSN: <%= objArticleBean.getJournal().getISSN() %>. 
                             Vol <%= objArticleBean.getVolume() %>. 
                             P·ginas: <%= objArticleBean.getPagination() %>. 
                             Issue: <%= objArticleBean.getIssue() %> 
@@ -85,26 +76,33 @@
                     <div id="author-box">
                         Autores: 
                         <%
-                                while(objArticleBean.getAuthor() != 0){
+                                int cont = 0, tam = objArticleBean.getAutores().size();
+                                while(cont < tam){
                                     %>
-                                    <h6><%= objArticleBean.getAuthor() %></h6><h5>, </h5>
+                                    <h6><%= objArticleBean.getAutores().get(cont).getLastName() %>.
+                                     <%= objArticleBean.getAutores().get(cont).getForeName()%> 
+                                    <%= objArticleBean.getAutores().get(cont).getInitials() %></h6><h5>, </h5>
                                     <%
+                                    cont++;
                                 }
                                 %>
 
                     </div>
                     <div id="abstract-box">
                         <h3 class="label">Resumo:</h3>
-                        <p id="abstract"><%= objArticleBean.getAbstract() %></p>
+                        <p id="abstract"><%= objArticleBean.getResumo() %></p>
                     </div>
                     <div id="mesh-box">
                         <h3 class="label">Termos Mesh: </h3>
                         
                         <%
-                                while(objArticleBean.getMesh() != 0){
+                                cont = 0;
+                                tam = objArticleBean.getMeshHeading().size();
+                                while(cont < tam){
                                     %>
-                                    <h6 class="property-name"><%= objArticleBean.getMesh() %></h6><h5>, </h5>
+                                    <h6 class="property-name"><%= objArticleBean.getMeshHeading().get(cont) %></h6><h5>, </h5>
                                     <%
+                                    cont++;
                                 }
                                 %>
                         
@@ -113,10 +111,13 @@
                     <div id="keyword-box">
                         <h3 class="label">Palavras-chave: </h3>
                         <%
-                                while(objArticleBean.getKeyword() != 0){
+                                cont = 0;
+                                tam = objArticleBean.getKeyWord().size();
+                                while(cont < tam){
                                     %>
-                                    <h6 class="property-name"><%= objArticleBean.getKeyword() %></h6><h5>, </h5>
+                                    <h6 class="property-name"><%= objArticleBean.getKeyWord().get(cont) %></h6><h5>, </h5>
                                     <%
+                                    cont++;
                                 }
                                 %>
                         
@@ -124,10 +125,13 @@
                     <div id="chemical-box">
                         <h3 class="label">Subst‚ncias quÌmicas: </h3>
                         <%
-                                while(objArticleBean.getChemical() != 0){
+                                cont = 0;
+                                tam = objArticleBean.getChemical().size();
+                                while(cont < tam){
                                     %>
-                                    <h6 class="property-name"><%= objArticleBean.getChemical() %></h6><h5>, </h5>
+                                    <h6 class="property-name"><%= objArticleBean.getChemical().get(cont) %></h6><h5>, </h5>
                                     <%
+                                    cont++;
                                 }
                                 %>
                         
@@ -135,10 +139,13 @@
                     <div id="publication-box">
                         <h3 class="label">Tipos de publicaÁ„o: </h3>
                         <%
-                                while(objArticleBean.getPublicationType() != 0){
+                                cont = 0;
+                                tam = objArticleBean.getPublicationType().size();
+                                while(cont < tam){
                                     %>
-                                    <h6 class="property-name"><%= objArticleBean.getPublicationType() %></h6><h5>, </h5>
+                                    <h6 class="property-name"><%= objArticleBean.getPublicationType().get(cont) %></h6><h5>, </h5>
                                     <%
+                                    cont++;
                                 }
                                 %>
                         

@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/busca_form.css">
         <link rel="stylesheet" href="css/menu.css">
+        <link rel="stylesheet" href="css/autocomplete.css">
 
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
@@ -32,12 +33,7 @@
                 <a class="title" href="index.jsp"></a>
                 <nav>
                     <ul>
-                        <li><a class="menu-item" href="index.html">Início</a>
-                            <ul>
-                                <li><a href="#">Cadastrar Journal</a></li>
-                                <li><a href="#">Cadastrar Artigo</a></li>
-                            </ul>
-                        </li>
+                        <li><a class="menu-item" href="index.jsp">Início</a></li>
                         <li><a href="login.html">Login</a></li>
                     </ul>
                 </nav>
@@ -48,12 +44,12 @@
             <div class="main wrapper clearfix">
                 <div class="form-box">
                     <h2 class="busca-lbl">Busque por artigos:</h2>
-                    <form method="GET" action="BuscaInicial" class="form-pesquisa" id="pesquisa-s">
+                    <form method="POST" action="BuscaInicial" class="form-pesquisa" id="pesquisa-s">
                        <p id="radio">
                            <input class="radios" type="radio" name="tipo" value="titulo" checked/>Título
                            <input class="radios" type="radio" name="tipo" value="keyword"/>Palavra-chave
                        </p>
-                       <input type="text" name="search" id="caixa-pesquisa" class="search-edt" placeholder="Digite aqui parte do título de um artigo"/>
+                       <input type="text" data-provide="typeahead" name="search" id="caixa-pesquisa" class="search-edt" autocomplete="off" placeholder="Digite aqui parte do título de um artigo"/>
                        <input type="hidden" name="pagina" value="1"/>
                        <input type="hidden" name="qtdePaginas" value="0"/>
                        <input type="text" class="search-btn" id="btn-pesquisa"/>
@@ -62,9 +58,9 @@
                        <div id="form-pesquisa-avancada">
                             <p class="form-separator">Informações do Journal:</p>
                             <label for="journal-title-edt">Titulo </label>
-                            <input type="text" name="journal-title-edt" class="journal-title-edt noEnterSubmit" placeholder=""/>
+                            <input type="text" autocomplete="off" data-provide="typeahead" name="journal-title-edt" id="journalTitle" class="journal-title-edt noEnterSubmit" placeholder=""/>
                             <label for="journal-issn-edt">ISSN </label>
-                            <input type="text" name="journal-issn-edt" class="journal-issn-edt noEnterSubmit" placeholder="XXXX-XXXX"/>
+                            <input type="text" autocomplete="off" data-provide="typeahead" name="journal-issn-edt" id="issn" class="journal-issn-edt noEnterSubmit" placeholder="XXXX-XXXX"/>
                             <p class="form-separator">Intervalo de Data:</p>
                             <label for="data-inicial-edt">Inicial </label>
                             <input type="date" name="data-inicial-edt" class="data-edt data-inicial-edt noEnterSubmit" />
@@ -93,6 +89,7 @@
         <script charset="utf-8" src="./js/pesquisa-home.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
-        <script src="js/main.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/autocomplete.js"></script>
     </body>
 </html>

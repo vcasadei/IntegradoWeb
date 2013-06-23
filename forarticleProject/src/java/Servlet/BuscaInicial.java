@@ -8,7 +8,6 @@ import Bean.Article;
 import Bean.Usuario;
 import Banco.BuscaArtigosDAO;
 import Banco.PubMedDAOException;
-import Bean.ArticleResult;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -72,33 +71,71 @@ public class BuscaInicial extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-//        try{
-//            //String radio = request.getParameter("opcao");
-//            String parametro = request.getParameter("pesquisar-edt");
-//            Usuario user = new Usuario("labbd05", "bananassaoazuis");
-//            BuscaArtigosDAO inicial = new BuscaArtigosDAO(user);
-//            List<Article> artigos;
-//            
-//            //if(radio.equals("titulo")){
-//                artigos = inicial.buscaArtigoTitulo(parametro);
-//            //}else{
-//            //    artigos = inicial.buscaArtigoKeyWord(parametro);
-//            //}
-//            
-//            request.setAttribute("articleBean", artigos);
-//            
-//            //RequestDispatcher rd;
-//            //rd = request.getRequestDispatcher("/resultados.jsp");
-//            //rd.forward(request, response);
-//            
-//            
-//        } catch (PubMedDAOException ex) {
-//            Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, ex);
-//            throw new ServletException(ex.getMessage());
-//        } catch (SQLException ex) {
-//            Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, ex);
-//            throw new ServletException(ex.getMessage());
-//        }
+        try {
+            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"","");
+            
+            //recebe o valor buscado na operação de busca avançada
+            String titJournal = request.getParameter("journal-title-edt");
+            String issnJournal = request.getParameter("journal-issn-edt");
+            String dataIni = request.getParameter("data-inicial-edt");
+            String dataFim = request.getParameter("data-final-edt");
+            String pagina = request.getParameter("pagina");       
+            String tipo = request.getParameter("tipo");
+            int qtde_paginas = Integer.parseInt(request.getParameter("qtdePaginas"));
+            
+            int n_pagina = Integer.parseInt(pagina);
+            
+            
+            //Lista de artigos encontrados
+            List <Article> artigos;        
+            BuscaArtigosDAO arDAO = new BuscaArtigosDAO(user);
+            
+            artigos = arDAO.buscaAvancadaArtigo(issnJournal, titJournal, dataFim, dataIni, n_pagina);
+            
+            if(qtde_paginas == 0){
+                BuscaArtigosDAO numarDAO = new BuscaArtigosDAO(user);
+                //qtde_paginas = numarDAO.buscaQuantidadeDeArtigos(valorBusca);
+                if (qtde_paginas % 10 == 0){
+                    qtde_paginas = qtde_paginas / 10;
+                } else {
+                    qtde_paginas = (qtde_paginas / 10) + 1;
+                }
+            }
+                
+            //Inicializa a váriavel que conterá a página de retorno
+            PrintWriter retorno = response.getWriter();
+            
+            request.setAttribute("listaArtigos", artigos);
+            request.setAttribute("paginaAtual", n_pagina);
+            //request.setAttribute("search", valorBusca);            
+            request.setAttribute("tipo", tipo);
+            request.setAttribute("qtdePaginas", qtde_paginas);
+
+            RequestDispatcher rd = null;
+            rd = request.getRequestDispatcher("/resultados.jsp");
+            rd.forward(request, response);
+            
+        } catch (PubMedDAOException ex) {
+            Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }
+
+    /**
+     * Handles the HTTP
+     * <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    /*Busca Avancada*/
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
         try {
             Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"","");
             //recebe o valor buscado na operação de busca simples
@@ -111,7 +148,7 @@ public class BuscaInicial extends HttpServlet {
             
             
             //Lista de artigos encontrados
-            List <ArticleResult> artigos;        
+            List <Article> artigos;        
             BuscaArtigosDAO arDAO = new BuscaArtigosDAO(user);
             
             artigos = arDAO.buscaArtigoTitulo(valorBusca, n_pagina);
@@ -143,50 +180,7 @@ public class BuscaInicial extends HttpServlet {
             Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Handles the HTTP
-     * <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    /*Busca Avancada*/
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-       try{
-            String tituloJournal = request.getParameter("journal-title-edt");
-            String issnJournal = request.getParameter("journal-issn-edt");
-            String dataInicial = request.getParameter("data-inicial-edt");
-            String dataFinal = request.getParameter("data-final-edt");
-            
-            Usuario user = new Usuario("labbd05", "bananassaoazuis");
-            BuscaArtigosDAO inicial = new BuscaArtigosDAO(user);
-           
-            List<Article> artigos;
-            artigos = inicial.buscaAvancadaArtigo(tituloJournal, issnJournal, dataInicial, dataFinal);
-           
-            request.setAttribute("articleBean", artigos);
-            
-            //RequestDispatcher rd;
-            //rd = request.getRequestDispatcher("/resultados.jsp");
-            //rd.forward(request, response);
-            
-            
-        }catch(PubMedDAOException e){
-            Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, e);
-            throw new ServletException(e.getMessage());
-        }catch(SQLException e){
-            Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, e);
-            throw new ServletException(e.getMessage());
-        }
-        
+        }        
     }
 
     /**
@@ -198,5 +192,4 @@ public class BuscaInicial extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
 }

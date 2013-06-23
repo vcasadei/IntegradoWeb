@@ -36,20 +36,20 @@ public class BuscaTitJournal extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BuscaTitJournal</title>");            
+            out.println("<title>Servlet BuscaTitJournal</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet BuscaTitJournal at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }
@@ -67,37 +67,6 @@ public class BuscaTitJournal extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        try{
-            List<String> listaTitulos;
-            String titulo;
-            int cont = 0;
-            BuscaPropriedadesDAO busca = new BuscaPropriedadesDAO(new Usuario("labbd05", "bananassaoazuis"), "tituloJournal");
-
-            titulo = request.getParameter("tit");
-            listaTitulos = busca.buscaAtributosAutoComplete(titulo);
-
-            /*Campos HTML*/
-            titulo = "[";
-            for (String tit : listaTitulos){
-                titulo += "\"" + tit + "\"";
-                if (cont != 0)
-                    titulo += ", ";
-                cont++;
-            }
-            titulo += "]";
-
-            PrintWriter write = response.getWriter();
-            write.print(titulo);
-            write.close();
-
-        } catch (PubMedDAOException ex) {
-            Logger.getLogger(BuscaTitJournal.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ServletException(ex.getMessage());
-        } catch (SQLException ex) {
-            Logger.getLogger(BuscaTitJournal.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ServletException(ex.getMessage());
-        }
     }
 
     /**
@@ -112,8 +81,39 @@ public class BuscaTitJournal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
+        try {
+            List<String> listaTitulos;
+            String titulo;
+            int cont = 0;
+            BuscaPropriedadesDAO busca = new BuscaPropriedadesDAO(new Usuario("labbd05", "bananassaoazuis"), "tituloJournal");
+
+            titulo = request.getParameter("tit");
+            listaTitulos = busca.buscaAtributosAutoComplete(titulo);
+
+            /*Transforma a lista de strings retornadas em uma lista em json*/
+            titulo = "[";
+            for (String tit : listaTitulos) {
+                if (cont != 0) {
+                    titulo += ", ";
+                }
+                titulo += "\"" + tit + "\"";
+                cont++;
+            }
+            titulo += "]";
+
+            /*Retorna a lista como um objeto json*/
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(titulo);
+
+        } catch (PubMedDAOException ex) {
+            Logger.getLogger(BuscaTitJournal.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServletException(ex.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscaTitJournal.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServletException(ex.getMessage());
+        }
     }
 
     /**

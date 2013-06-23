@@ -43,13 +43,13 @@ public class BuscaJournalNlmIssn extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet buscarJournal</title>");            
+            out.println("<title>Servlet buscarJournal</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet buscarJournal at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }
@@ -68,24 +68,48 @@ public class BuscaJournalNlmIssn extends HttpServlet {
     /*Busca um journal pelo seu NlmUniqueID*/
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
-            String nlmID = request.getParameter("nlmuniqueid");
-            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05","bananassaoazuis");
+        try {
+            String nlmID = request.getParameter("nlm");
+            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05", "bananassaoazuis");
             Journal journal;
             BuscaDadosJournalDAO cadArtigo = new BuscaDadosJournalDAO(user);
             journal = cadArtigo.buscaJournalNlmID(nlmID);
-              
-            request.setAttribute("journal", journal);
-            
-            //RequestDispatcher rd;
-            //rd = request.getRequestDispatcher("/resultados.jsp");
-            //rd.forward(request, response);
-            
-            
-        }catch(PubMedDAOException e){
+
+
+            String dados = "<div class=\"separator separator1\">Informações sobre a Revista</div>"
+                    + "<p class=\"side-fields\">"
+                    + "<label class=\"label-s\" for=\"nlmuniqueid\">NLM (ID único): </label>"
+                    + "<input class=\"text-inline nlm-edt\" type=\"text\" data-provide=\"typeahead\""
+                    + " name=\"nlmuniqueid\" id=\"nlmuniqueid\" placeholder=\"Busque pelo ID\" value=\""
+                    + journal.getNlmUniqueID() + "\" readonly/>"
+                    + "<label class=\"label-s label-right\" for=\"issn\">ISSN: </label>"
+                    + "<input class=\"text-right issn-edt\" data-provide=\"typeahead\" type=\"text\""
+                    + " name=\"issn\" id=\"issn\" value=\"" + journal.getISSN() + "\" readonly />"
+                    + "</p>"
+                    + "<p class=\"line-field\">"
+                    + "<label class=\"label-s\" for=\"journalTitle\">Título da Revista: </label>"
+                    + "<input class=\"text-s journal\" type=\"text\" data-provide=\"typeahead\""
+                    + " name=\"journalTitle\" id=\"journalTitle\" value=\"" + journal.getTitle() + "\"/>"
+                    + "</p>"
+                    + "<p class=\"side-fields\">"
+                    + "<label class=\"label-s\" for=\"aberviation\">Abreviação: </label>"
+                    + "<input class=\"text-inline abreviation-title-edt\" type=\"text\" name=\"abreviation\""
+                    + " value=\"" + journal.getAbreviation() + "\"/>"
+                    + "</p>"
+                    + "<div class=\"btn-alterar-box\">"
+                    + "<input type=\"submit\" class=\"btn-alterar\" value=\"Alterar\">"
+                    + "</div>";
+
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.print(dados);
+            writer.close();
+
+
+        } catch (PubMedDAOException e) {
             Logger.getLogger(BuscaJournalNlmIssn.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
-        }catch(SQLException e){
+        } catch (SQLException e) {
             Logger.getLogger(BuscaJournalNlmIssn.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }
@@ -104,24 +128,47 @@ public class BuscaJournalNlmIssn extends HttpServlet {
     /*Busca um journal pelo seu issn*/
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
+        try {
             String issn = request.getParameter("issn");
-            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05","bananassaoazuis");
+            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05", "bananassaoazuis");
             Journal journal;
             BuscaDadosJournalDAO cadArtigo = new BuscaDadosJournalDAO(user);
             journal = cadArtigo.buscaJournalIssn(issn);
-              
-            request.setAttribute("journal", journal);
-            
-            //RequestDispatcher rd;
-            //rd = request.getRequestDispatcher("/resultados.jsp");
-            //rd.forward(request, response);
-            
-            
-        }catch(PubMedDAOException e){
+
+            String dados = "<div class=\"separator separator1\">Informações sobre a Revista</div>"
+                    + "<p class=\"side-fields\">"
+                    + "<label class=\"label-s\" for=\"nlmuniqueid\">NLM (ID único): </label>"
+                    + "<input class=\"text-inline nlm-edt\" type=\"text\" data-provide=\"typeahead\""
+                    + " name=\"nlmuniqueid\" id=\"nlmuniqueid\" placeholder=\"Busque pelo ID\" value=\""
+                    + journal.getNlmUniqueID() + "\" readonly/>"
+                    + "<label class=\"label-s label-right\" for=\"issn\">ISSN: </label>"
+                    + "<input class=\"text-right issn-edt\" data-provide=\"typeahead\" type=\"text\""
+                    + " name=\"issn\" id=\"issn\" value=\"" + journal.getISSN() + "\" readonly />"
+                    + "</p>"
+                    + "<p class=\"line-field\">"
+                    + "<label class=\"label-s\" for=\"journalTitle\">Título da Revista: </label>"
+                    + "<input class=\"text-s journal\" type=\"text\" data-provide=\"typeahead\""
+                    + " name=\"journalTitle\" id=\"journalTitle\" value=\"" + journal.getTitle() + "\"/>"
+                    + "</p>"
+                    + "<p class=\"side-fields\">"
+                    + "<label class=\"label-s\" for=\"aberviation\">Abreviação: </label>"
+                    + "<input class=\"text-inline abreviation-title-edt\" type=\"text\" name=\"abreviation\""
+                    + " value=\"" + journal.getAbreviation() + "\"/>"
+                    + "</p>"
+                    + "<div class=\"btn-alterar-box\">"
+                    + "<input type=\"submit\" class=\"btn-alterar\" value=\"Alterar\">"
+                    + "</div>";
+
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.print(dados);
+            writer.close();
+
+
+        } catch (PubMedDAOException e) {
             Logger.getLogger(BuscaJournalNlmIssn.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
-        }catch(SQLException e){
+        } catch (SQLException e) {
             Logger.getLogger(BuscaJournalNlmIssn.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }

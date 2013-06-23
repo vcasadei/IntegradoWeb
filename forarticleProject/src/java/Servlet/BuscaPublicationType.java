@@ -36,7 +36,7 @@ public class BuscaPublicationType extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
@@ -92,7 +92,9 @@ public class BuscaPublicationType extends HttpServlet {
             publicationType = request.getParameter("type");
             listaPubType = busca.buscaAtributosAutoComplete(publicationType);
             
-            /*Campos HTML*/
+            System.out.println("Aqui1\n");
+            
+            /*Transforma a lista de strings retornadas em uma lista em json*/
             publicationType = "[";
             for (String type : listaPubType){
                 if (cont != 0)
@@ -102,9 +104,10 @@ public class BuscaPublicationType extends HttpServlet {
             }
             publicationType += "]";
             
-            PrintWriter write = response.getWriter();
-            write.print(publicationType);
-            write.close();
+            /*Retorna a lista como um objeto json*/
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(publicationType);
             
         } catch (PubMedDAOException ex) {
             Logger.getLogger(BuscaPublicationType.class.getName()).log(Level.SEVERE, null, ex);

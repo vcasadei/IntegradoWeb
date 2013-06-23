@@ -36,7 +36,7 @@ public class BuscaInitialsAutor extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
@@ -92,7 +92,7 @@ public class BuscaInitialsAutor extends HttpServlet {
             initials = request.getParameter("initial");
             listaInitials = busca.buscaAtributosAutoComplete(initials);
             
-            /*Campos HTML*/
+            /*Transforma a lista de strings retornadas em uma lista em json*/
             initials = "[";
             for (String init : listaInitials){
                 if (cont != 0)
@@ -102,9 +102,10 @@ public class BuscaInitialsAutor extends HttpServlet {
             }
             initials += "]";
             
-            PrintWriter write = response.getWriter();
-            write.print(initials);
-            write.close();
+            /*Retorna a lista como um objeto json*/
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(initials);
             
         } catch (PubMedDAOException ex) {
             Logger.getLogger(BuscaInitialsAutor.class.getName()).log(Level.SEVERE, null, ex);

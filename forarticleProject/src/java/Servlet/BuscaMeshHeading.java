@@ -36,7 +36,7 @@ public class BuscaMeshHeading extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
@@ -92,7 +92,7 @@ public class BuscaMeshHeading extends HttpServlet {
             meshHeading = request.getParameter("mesh");
             listaMeshs = busca.buscaAtributosAutoComplete(meshHeading);
             
-            /*Campos HTML*/
+            /*Transforma a lista de strings retornadas em uma lista em json*/
             meshHeading = "[";
             for (String mesh : listaMeshs){
                 if (cont != 0)
@@ -102,9 +102,10 @@ public class BuscaMeshHeading extends HttpServlet {
             }
             meshHeading += "]";
             
-            PrintWriter write = response.getWriter();
-            write.print(meshHeading);
-            write.close();
+            /*Retorna a lista como um objeto json*/
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(meshHeading);
             
         } catch (PubMedDAOException ex) {
             Logger.getLogger(BuscaMeshHeading.class.getName()).log(Level.SEVERE, null, ex);

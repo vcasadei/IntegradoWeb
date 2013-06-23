@@ -5,19 +5,18 @@
 package Servlet;
 
 import Bean.Usuario;
-import Banco.BuscaPropriedadesDAO;
 import Banco.ConnectionPubMed;
 import Banco.PubMedDAOException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -86,10 +85,21 @@ public class FazerLogin extends HttpServlet {
         
         try{         
             Connection conn;
-            conn = ConnectionPubMed.getConnection(request.getParameter("username-edt"), request.getParameter("password-edt"));
+            String login, senha;
+            login = request.getParameter("username-edt");
+            senha = request.getParameter("password-edt");
             
-            /*Presida, você tem que fazer o bang dos cookies aqui, antes de fechar a conexão*/
+            /*Tenta conetar no banco*/
+            Usuario user = new Usuario(login, senha);
+            conn = ConnectionPubMed.getConnection(user);
+            
+            /*Cria a conexão e seta os atributos de login e senha*/
+            HttpSession session = request.getSession();
+            session.setAttribute( "username", login );
+            session.setAttribute( "password", senha );
+            session.setAttribute( "dono", 0);
 
+            /*Fecha a conexão com o banco*/
             ConnectionPubMed.close(conn, null, null);
             
         } catch (PubMedDAOException ex) {

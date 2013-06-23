@@ -61,10 +61,6 @@
         <servlet-class>Servlet.CadastrarArtigo</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CadastrarUsuario</servlet-name>
-        <servlet-class>Servlet.CadastrarUsuario</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ExcluirChemical</servlet-name>
         <servlet-class>Servlet.ExcluirChemical</servlet-class>
     </servlet>
@@ -89,8 +85,20 @@
         <servlet-class>Servlet.FazerLogin</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AlterarJournal</servlet-name>
+        <servlet-name>AlterarJournalArticle</servlet-name>
         <servlet-class>Servlet.AlterarJournalArticle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastrarUsuarioComum</servlet-name>
+        <servlet-class>Servlet.CadastrarUsuarioComum</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastrarUsuario</servlet-name>
+        <servlet-class>Servlet.CadastrarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuscaTitArticle</servlet-name>
+        <servlet-class>Servlet.BuscaTitArticle</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BuscarChemical</servlet-name>
@@ -153,10 +161,6 @@
         <url-pattern>/CadastrarArtigo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CadastrarUsuario</servlet-name>
-        <url-pattern>/CadastrarUsuario</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ExcluirChemical</servlet-name>
         <url-pattern>/ExcluirChemical</url-pattern>
     </servlet-mapping>
@@ -181,8 +185,20 @@
         <url-pattern>/FazerLogin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AlterarJournal</servlet-name>
-        <url-pattern>/AlterarJournal</url-pattern>
+        <servlet-name>AlterarJournalArticle</servlet-name>
+        <url-pattern>/AlterarJournalArticle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastrarUsuarioComum</servlet-name>
+        <url-pattern>/CadastrarUsuarioComum</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastrarUsuario</servlet-name>
+        <url-pattern>/CadastrarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscaTitArticle</servlet-name>
+        <url-pattern>/BuscaTitArticle</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

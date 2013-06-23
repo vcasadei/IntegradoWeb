@@ -12,9 +12,10 @@
 
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-        
+
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/cadastroUsuario.css">
+        <link rel="stylesheet" href="css/main.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -29,43 +30,43 @@
                 <nav>
                     <ul>
                         <li><a href="index.html">Início</a></li>
-                        <li><a href="login.html">Login</a></li>
+                        <li><a href="Login.html">Login</a></li>
                     </ul>
                 </nav>
             </header>
         </div>
-        
+
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div class="cadastro-user-box">
-                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a href="login.html">Login</a> -> <a href="cadastroUsuario.html">Cadastrar Usuário</a></div>
+                    <div class="separator separator3"><a href="index.html">Inicio</a> -> <a href="Login.html">Login</a> -> <a href="CadastroUsuario.html">Cadastrar Usuário</a></div>
                     <h2>Cadastrar Ususário</h2>
-                    <form class="cadastra-usuario-form" action="CadastrarUsuario" method="POST">
+                    <form class="cadastra-usuario-form" action="CadastrarUsuarioComum" method="POST">
                         <div class="separator separator4">Todos os campos são obrigatórios</div>
-                        
+
                         <p class="side-fields">
 
-                        <label for="username-edt">Login:</label>
-                        <input type="text" name="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
-                        <label for="password-edt">Senha:</label>
-                        <input type="password" name="password-edt" class="password-edt noEnterSubmit" placeholder=""/>
-                        
-                        <br>
-                        
+                            <label for="username-edt">Login:</label>
+                            <input type="text" name="username-edt" id="username-edt" class="username-edt noEnterSubmit" placeholder=""/><br><br>
+                            <label for="password-edt">Senha:</label>
+                            <input type="password" name="password-edt" id="password-edt" class="password-edt noEnterSubmit" placeholder=""/>
+
+                            <br>
+
                         </p>
-                         
+                        <div id="msg"></div>
                         <div class="btn-cadastrar-box">
-                            <input type="submit" class="btn-cadastrar" value="Cadastrar">
+                            <input type="text" class="btn-cadastrar" value="Cadastrar">
                         </div>
                     </form>
-                    
+
                 </div>
-                    
+
 
 
             </div> <!-- #main -->
         </div> <!-- #main-container -->
-        
+
 
         <div class="footer-container">
             <footer class="wrapper">
@@ -77,6 +78,9 @@
         <script src="./js/pesquisa-home.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
-        <script src="js/main.js"></script>
+        <script>
+            $(document).ready(function() {
+            });
+        </script>
     </body>
 </html>

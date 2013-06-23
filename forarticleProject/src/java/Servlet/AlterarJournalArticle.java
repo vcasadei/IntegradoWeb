@@ -5,16 +5,12 @@
 package Servlet;
 
 import Banco.AlterarJournalArticleDAO;
-import Banco.CadastrarArtigoDAO;
 import Banco.PubMedDAOException;
-import Bean.Article;
-import Bean.Author;
 import Bean.Journal;
 import Bean.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -95,16 +91,22 @@ public class AlterarJournalArticle extends HttpServlet {
             String titulo, nlm, abreviation;
             
             titulo = request.getParameter("journalTitle");
+            //nlm = request.getParameter("valuenlm");
             nlm = request.getParameter("nlmuniqueid");
             abreviation = request.getParameter("abreviation");
             
             AlterarJournalArticleDAO alterar = new AlterarJournalArticleDAO(new Usuario("labbd05", "bananassaoazuis"));
             alterar.alterarJournal(new Journal("", titulo, abreviation, nlm));
             
+            /*Redireciona pra uma página que mostra o journal alterado com sucesso*/
+            
         }catch(PubMedDAOException e){
             Logger.getLogger(CadastrarArtigo.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }catch(SQLException e){
+            
+            /*Retorna uma mensagem de que não foi possível alterar o journal, pke não tem permissão pra isso*/
+            
             Logger.getLogger(CadastrarArtigo.class.getName()).log(Level.SEVERE, null, e);
             throw new ServletException(e.getMessage());
         }

@@ -23,7 +23,7 @@ public class CadastrarArtigoDAO {
     private Connection conn;
 
     public CadastrarArtigoDAO(Usuario user) throws PubMedDAOException {
-        this.conn = ConnectionPubMed.getConnection(user.getLogin(), user.getSenha());
+        this.conn = ConnectionPubMed.getConnection(user);
     }
 
     public Journal buscaJournalNlmID(String nlmID) throws SQLException, PubMedDAOException {

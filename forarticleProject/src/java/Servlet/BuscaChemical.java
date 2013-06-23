@@ -36,7 +36,7 @@ public class BuscaChemical extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
@@ -91,7 +91,7 @@ public class BuscaChemical extends HttpServlet {
             chemical = request.getParameter("chemical");
             listaChemicals = busca.buscaAtributosAutoComplete(chemical);
             
-            /*Campos HTML*/
+            /*Transforma a lista de strings retornadas em uma lista em json*/
             chemical = "[";
             for (String chemi : listaChemicals){
                 if (cont != 0)
@@ -101,9 +101,10 @@ public class BuscaChemical extends HttpServlet {
             }
             chemical += "]";
             
-            PrintWriter write = response.getWriter();
-            write.print(chemical);
-            write.close();
+            /*Retorna a lista como um objeto json*/
+            response.setContentType("application/json;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(chemical);
             
         } catch (PubMedDAOException ex) {
             Logger.getLogger(BuscaChemical.class.getName()).log(Level.SEVERE, null, ex);

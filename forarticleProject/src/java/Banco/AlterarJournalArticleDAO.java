@@ -22,7 +22,7 @@ public class AlterarJournalArticleDAO {
     private Connection conn;
     
     public AlterarJournalArticleDAO(Usuario user) throws PubMedDAOException{
-        this.conn = ConnectionPubMed.getConnection(user.getLogin(), user.getSenha());
+        this.conn = ConnectionPubMed.getConnection(user);
     }
     
     public void alterarJournal(Journal journal) throws SQLException, PubMedDAOException{
@@ -35,7 +35,7 @@ public class AlterarJournalArticleDAO {
         
         ps = conn.createStatement();
         
-        ps.executeQuery(SQL);
+        ps.execute(SQL);
         
         ConnectionPubMed.close(conn, ps, null);
     }

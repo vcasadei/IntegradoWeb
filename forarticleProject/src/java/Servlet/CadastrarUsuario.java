@@ -4,13 +4,12 @@
  */
 package Servlet;
 
-import Bean.Usuario;
-import Banco.BuscaPropriedadesDAO;
+import Banco.CadastrarUsuarioDAO;
 import Banco.PubMedDAOException;
+import Bean.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -83,10 +82,42 @@ public class CadastrarUsuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-            String login = request.getParameter("username-edt");
-            String senha = request.getParameter("password-edt");
-            String SQL;
+        try {
+            String login = request.getParameter("login");
+            String senha = request.getParameter("senha");
+            String tipo = request.getParameter("tipo");
             
+            CadastrarUsuarioDAO cad = new CadastrarUsuarioDAO();
+            
+            /*Verifica se é pra cadastrar um administrador ou um usuário comum*/
+            if (tipo.equals("administrador")){
+                cad.cadastrarAdim(new Usuario(login, senha));
+            } else {
+                cad.cadastrarComum(new Usuario(login, senha));
+            }
+            
+            /*Manda msg de usuário cadastrado com sucesso*/
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.print("1");
+            writer.close();
+            
+        }catch (PubMedDAOException ex) {
+            Logger.getLogger(CadastrarUsuarioComum.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ServletException(ex.getMessage());
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 50000){
+                /*Manda pra aplicação o resultado de que o login já existe*/
+                response.setContentType("text/html;charset=UTF-8");
+                PrintWriter writer = response.getWriter();
+                writer.close();
+            } else {
+                /*Manda msg de usuário cadastrado com sucesso*/
+                response.setContentType("text/html;charset=UTF-8");
+                PrintWriter writer = response.getWriter();
+                writer.close();
+            }
+        }
     }
 
     /**

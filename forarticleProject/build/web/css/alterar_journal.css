@@ -53,13 +53,6 @@ input {
 	margin-left: 25px;
 }
 
-.date-field{
-}
-
-.text-inline{
-
-}
-
 .side-fields,
 .line-field,
 .resumo-field {
@@ -95,44 +88,18 @@ input {
 	padding: 0px 10px 0px 10px;
 }
 
-.open-help-autor,
-.close-help-autor{
-	font-weight: normal;
-	text-decoration: none;
-	color: #555588;
-	margin-left: 5px;
-}
-
-.close-help-autor{
-	font-weight: bold;
-}
-
-.open-help-autor:hover,
-.close-help-autor:hover{
-	text-decoration: underline;
-	cursor: pointer;
-}
-
-.autores-selecionados,
-.autores-encontrados{
-}
-
 .nlm-edt,
 .issn-edt{
 	height: 25px;
 }
 
 .pesquisar-nlm,
-.pesquisar-issn{
+.pesquisar-issn,
+.pesquisar-title{
 	background-image: url('../img/search-small.png');
 	border: 0px;
 	width: 25px;
 	height: 25px;
-}
-
-.autor-table{
-	margin: 0px auto;
-	text-align: center;
 }
 
 .tr-labels{
@@ -153,79 +120,18 @@ input {
 .new-line-edt{
 	margin-left: 25px;
 }
-
-.adicionar-keyword,
-.adicionar-mesh,
-.adicionar-chemical,
-.adicionar-pubtype,
-.adicionar-autor{
-	background-image: url('../img/add-btn.png');
-	border: 0px;
-	width: 25px;
-	height: 25px;
-}
-
 .pesquisar-nlm:hover,
 .pesquisar-issn:hover,
-.adicionar-keyword:hover,
-.adicionar-mesh:hover,
-.adicionar-chemical:hover,
-.adicionar-pubtype:hover,
-.adicionar-autor:hover {
+.pesquisar-title:hover{
 	cursor: pointer;
 }
 
-.keyword-box,
-.mesh-box,
-.chemical-box,
-.pubtype-box,
-.autor-box{
-	margin-left: 5%;
-}
-
-.keyword-edt,
-.mesh-edt,
-.chemical-edt,
-.pubtype-edt{
-	width: 30%;
-	height: 25px;
-}
-
-.keyword-remover,
-.mesh-remover,
-.chemical-remover,
-.pubtype-remover{
-	margin-left: 10px;
-	text-decoration: none;
-	font-weight: normal;
-	color: #555588;
-}
-
-.keyword-remover:hover,
-.mesh-remover:hover,
-.chemical-remover:hover,
-.pubtype-remover:hover{
-	text-decoration: underline;
-	cursor: pointer;
-}
-
-.keyword-erro,
-.mesh-erro,
-.chemical-erro,
-.pubtype-erro{
-	display: none;
-	margin-left: 15px;
-	text-decoration: none;
-	font-weight: normal;
-	color: #884444;
-}
-
-.btn-cadastrar-box{
+.btn-alterar-box{
 	width: 100%;
 	text-align: center;
 }
 
-.btn-cadastrar {
+.btn-alterar {
 	border-radius: 4px;
 	font-size: 17px;
 	margin-top: 20px;
@@ -236,7 +142,7 @@ input {
 	color: white;
 }
 
-.btn-cadastrar:hover {
+.btn-alterar:hover {
 	background-color: #26426d;
     cursor: pointer;
 }
@@ -256,7 +162,7 @@ input {
 
 .voltar-box:hover {
 	background-color: #1b2f4f;
-    cursor: pointer;
+        cursor: pointer;
 }
 
 .voltar-link {

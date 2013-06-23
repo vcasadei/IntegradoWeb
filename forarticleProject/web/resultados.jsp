@@ -1,5 +1,5 @@
+<%@page import="Bean.Article"%>
 <%@page import="java.util.List"%>
-<%@page import="Bean.ArticleResult"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -31,7 +31,7 @@
         <![endif]-->
 
         <%
-            List<ArticleResult> resultList = (List<ArticleResult>) request.getAttribute("listaArtigos");
+            List<Article> resultList = (List<Article>) request.getAttribute("listaArtigos");
             int num_paginas = (Integer) request.getAttribute("qtdePaginas");
             if (num_paginas > 15) num_paginas = 15;
             int pagina_atual = (Integer) request.getAttribute("paginaAtual");
@@ -44,12 +44,7 @@
                 <a class="title" href="index.jsp"></a>
                 <nav>
                     <ul>
-                        <li><a href="index.html">Início</a>
-                            <ul>
-                                <li><a href="#">Cadastrar Journal</a></li>
-                                <li><a href="#">Cadastrar Artigo</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="index.jsp">Início</a></li>
                         <li><a href="login.html">Login</a></li>
                     </ul>
                 </nav>
@@ -59,17 +54,17 @@
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <div class="form-box">
-                    <form method="GET" action="BuscaInicial" class="form-pesquisa" id="pesquisa-s">
+                    <form method="POST" action="BuscaInicial" class="form-pesquisa" id="pesquisa-s">
                        <p id="radio">
                            <input class="radios" type="radio" name="tipo" value="titulo" <% if(tipo.equals("titulo")) { %> checked <% }%>/>Título
                            <input class="radios" type="radio" name="tipo" value="keyword" <% if(tipo.equals("keyword")) { %> checked <% }%>/>Palavra-chave
                        </p>
-                       <input type="text" name="search" id="caixa-pesquisa" class="search-edt" value="<%= busca%>"/>
+                       <input type="text" name="search" id="caixa-pesquisa" class="search-edt" value="<%= busca%>" autocomplete="off"/>
                        <input id="pag_atual" type="hidden" name="pagina" value="<%= pagina_atual%>"/>
                        <input id="qtde_pag" type="hidden" name="qtdePaginas" value="<%= num_paginas%>"/>
                        <input type="text" class="search-btn" id="btn-pesquisa"/>
                    </form>
-                   <form method="GET" action="BuscaInicial" class="form-pesquisa" id="pesquisa-a">
+                   <form method="POST" action="BuscaInicial" class="form-pesquisa" id="pesquisa-a">
                        <div id="form-pesquisa-avancada">
                             <p class="form-separator">Informações do Journal:</p>
                             <label for="journal-title-edt">Titulo </label>
@@ -119,9 +114,9 @@
                             %> <article class="main-results"> <%
                             for(int i = 0; i < resultList.size(); i++){
                                 %><section class="result" onclick="resultClick(this)">
-                                    <h3> <%= resultList.get(i).getTitulo()%> </h3>
+                                    <h3> <%= resultList.get(i).getTitle()%> </h3>
                                     <p> <%= resultList.get(i).getResumo()%> </p>
-                                    <p class="articleID"> <%= resultList.get(i).getId()%> </p>
+                                    <p class="articleID"> <%= resultList.get(i).getArticleID()%> </p>
                                 </section><%
                             }
                             %></article><%

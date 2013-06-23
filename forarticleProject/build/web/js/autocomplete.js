@@ -1,140 +1,157 @@
 $(document).ready(function() {
-    /*autocomplete do keyword*/
-    $('#keyword').keypress(function() {
-        $.ajax({
-            type: "POST",
-            url: "BuscaKeyword",
-            dataType: "html",
-            data: {key: $('#keyword').val()}
-        }).done(function(data) {
-            $("#keyword").autocomplete({
-                source: data
+    /*Auto complete do keyword*/
+    $('#keyword').typeahead({
+        source: function(query, process) {
+            return $.post('BuscaKeyword', {
+                key: query
+            }, function(data) {
+                if (!data) {
+                    return [];
+                }
+                return process(data);
             });
-        });
+        }
     });
-    /*autocomplete do chemical*/
-    $('#chemical').keypress(function() {
-        $.ajax({
-            type: "POST",
-            url: "BuscaChemical",
-            dataType: "html",
-            data: {chemi: $('#chemical').val()}
-        }).done(function(data) {
-            $("#chemical").autocomplete({
-                source: data
+    
+    /*Autocomplete do chemical*/
+    $('#chemical').typeahead({
+        source: function(query, process) {
+            return $.post('BuscaChemical', {
+                chemical: query
+            }, function(data) {
+                if (!data) {
+                    return [];
+                }
+                return process(data);
             });
-        });
+        }
     });
-
-    /*autocomplete do mesh term*/
-    $('#mesh').keypress(function() {
-        $.ajax({
-            type: "POST",
-            url: "BuscaMeshHeading",
-            dataType: "html",
-            data: {mesh: $('#mesh').val()}
-        }).done(function(data) {
-            $("#mesh").autocomplete({
-                source: data
+    
+    /*Autocomplete do Mesh Term*/
+    $('#mesh').typeahead({
+        source: function(query, process) {
+            return $.post('BuscaMeshHeading', {
+                mesh: query
+            }, function(data) {
+                if (!data) {
+                    return [];
+                }
+                return process(data);
             });
-        });
+        }
     });
-
-    /*autocomplete do publication type*/
-    $('#pubtype').keypress(function() {
-        $.ajax({
-            type: "POST",
-            url: "BuscaPublicationType",
-            dataType: "html",
-            data: {type: $('#pubtype').val()}
-        }).done(function(data) {
-            $("#pubtype").autocomplete({
-                source: data
+    
+    /*Autocomplete do Publication type*/
+    $('#pubtype').typeahead({
+        source: function(query, process) {
+            return $.post('BuscaPublicationType', {
+                type: query
+            }, function(data) {
+                if (!data) {
+                    return [];
+                }
+                return process(data);
             });
-        });
+        }
     });
-
-    /*autocomplete do nome do autor*/
-    $('#forename').keypress(function() {
-        $.ajax({
-            type: "POST",
-            url: "BuscaNomeAutor",
-            dataType: "html",
-            data: {fore: $('#forename').val()}
-        }).done(function(data) {
-            $("#forename").autocomplete({
-                source: data
+    
+    /*Autocomplete do Nome do autor*/
+    $('#forename').typeahead({
+        source: function(query, process) {
+            return $.post('BuscaNomeAutor', {
+                fore: query
+            }, function(data) {
+                if (!data) {
+                    return [];
+                }
+                return process(data);
             });
-        });
+        }
     });
-
-    /*autocomplete do sobrenome do autor*/
-    $('#lastname').keypress(function() {
-        $.ajax({
-            type: "POST",
-            url: "BuscaLastAutor",
-            dataType: "html",
-            data: {last: $('#lastname').val()}
-        }).done(function(data) {
-            $("#lastname").autocomplete({
-                source: data
+    
+    /*Autocomplete do Sobrenome do autor*/
+    $('#lastname').typeahead({
+        source: function(query, process) {
+            return $.post('BuscaLastAutor', {
+                last: query
+            }, function(data) {
+                if (!data) {
+                    return [];
+                }
+                return process(data);
             });
-        });
+        }
     });
-
-    /*autocomplete das iniciais do Autor*/
-    $('#initialsname').keypress(function() {
-        $.ajax({
-            type: "POST",
-            url: "BuscaInitialsAutor",
-            dataType: "html",
-            data: {initial: $('#initialsname').val()}
-        }).done(function(data) {
-            $("#initialsname").autocomplete({
-                source: data
+    
+    /*Autocomplete das iniciais do autor*/
+    $('#initialsname').typeahead({
+        source: function(query, process) {
+            return $.post('BuscaInitialsAutor', {
+                initial: query
+            }, function(data) {
+                if (!data) {
+                    return [];
+                }
+                return process(data);
             });
-        });
+        }
     });
-
-    /*autocomplete do título do Journal*/
-    $('#journalTitle').keypress(function() {
-        $.ajax({
-            type: "POST",
-            url: "BuscaTitJournal",
-            dataType: "html",
-            data: {tit: $('#journalTitle').val()}
-        }).done(function(data) {
-            $("#journalTitle").autocomplete({
-                source: data
+    
+    /*Autocomplete do título do Journal*/
+    $('#journalTitle').typeahead({
+        source: function(query, process) {
+            return $.post('BuscaTitJournal', {
+                tit: query
+            }, function(data) {
+                if (!data) {
+                    return [];
+                }
+                return process(data);
             });
-        });
+        }
     });
-
-    /*autocomplete do issn do Journal*/
-    $('#issn').keypress(function() {
-        $.ajax({
-            type: "POST",
-            url: "BuscaIssnJournal",
-            dataType: "html",
-            data: {issn: $('#issn').val()}
-        }).done(function(data) {
-            $("#issn").autocomplete({
-                source: data
+    
+    /*Autocomplete do issn do Journal*/
+    $('#issn').typeahead({
+        source: function(query, process) {
+            return $.post('BuscaIssnJournal', {
+                issn: query
+            }, function(data) {
+                if (!data) {
+                    return [];
+                }
+                return process(data);
             });
-        });
+        }
     });
-
-    /*autocomplete do NlmUniqueID do Journal*/
-    $('#nlmuniqueid').keypress(function() {
-        $.ajax({
-            type: "POST",
-            url: "BuscaNlmJournal",
-            dataType: "html",
-            data: {nlm: $('#nlmuniqueid').val()}
-        }).done(function(data) {
-            $("#nlmuniqueid").autocomplete({
-                source: data
+    
+    /*Autocomplete do NlmUniqueID do Journal*/
+    $('#nlmuniqueid').typeahead({
+        source: function(query, process) {
+            return $.post('BuscaNlmJournal', {
+                nlm: query
+            }, function(data) {
+                if (!data) {
+                    return [];
+                }
+                return process(data);
             });
-        });
+        }
     });
+    
+    /*Autocomplete da busca principal*/
+    $('.search-edt').typeahead({
+        source: function(query, process) {
+            console.log("funcionadrogra\n");
+            return $.post('BuscaTitArticle', {
+                tit: query
+            }, function(data) {
+                if (!data) {
+                    return [];
+                }
+                return process(data);
+            });
+        }
+    }); 
+    
 });
