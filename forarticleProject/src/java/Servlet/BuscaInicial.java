@@ -8,6 +8,7 @@ import Bean.Article;
 import Bean.Usuario;
 import Banco.BuscaArtigosDAO;
 import Banco.PubMedDAOException;
+import Bean.ArticleResult;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -71,32 +72,77 @@ public class BuscaInicial extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        try{
-            //String radio = request.getParameter("opcao");
-            String parametro = request.getParameter("pesquisar-edt");
-            Usuario user = new Usuario("labbd05", "bananassaoazuis");
-            BuscaArtigosDAO inicial = new BuscaArtigosDAO(user);
-            List<Article> artigos;
+//        try{
+//            //String radio = request.getParameter("opcao");
+//            String parametro = request.getParameter("pesquisar-edt");
+//            Usuario user = new Usuario("labbd05", "bananassaoazuis");
+//            BuscaArtigosDAO inicial = new BuscaArtigosDAO(user);
+//            List<Article> artigos;
+//            
+//            //if(radio.equals("titulo")){
+//                artigos = inicial.buscaArtigoTitulo(parametro);
+//            //}else{
+//            //    artigos = inicial.buscaArtigoKeyWord(parametro);
+//            //}
+//            
+//            request.setAttribute("articleBean", artigos);
+//            
+//            //RequestDispatcher rd;
+//            //rd = request.getRequestDispatcher("/resultados.jsp");
+//            //rd.forward(request, response);
+//            
+//            
+//        } catch (PubMedDAOException ex) {
+//            Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, ex);
+//            throw new ServletException(ex.getMessage());
+//        } catch (SQLException ex) {
+//            Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, ex);
+//            throw new ServletException(ex.getMessage());
+//        }
+        try {
+            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"","");
+            //recebe o valor buscado na operação de busca simples
+            String valorBusca = request.getParameter("search");
+            String pagina = request.getParameter("pagina");            
+            String tipo = request.getParameter("tipo");
+            int qtde_paginas = Integer.parseInt(request.getParameter("qtdePaginas"));
             
-            //if(radio.equals("titulo")){
-                artigos = inicial.buscaArtigoTitulo(parametro);
-            //}else{
-            //    artigos = inicial.buscaArtigoKeyWord(parametro);
-            //}
+            int n_pagina = Integer.parseInt(pagina);
             
-            request.setAttribute("articleBean", artigos);
             
-            //RequestDispatcher rd;
-            //rd = request.getRequestDispatcher("/resultados.jsp");
-            //rd.forward(request, response);
+            //Lista de artigos encontrados
+            List <ArticleResult> artigos;        
+            BuscaArtigosDAO arDAO = new BuscaArtigosDAO(user);
             
+            artigos = arDAO.buscaArtigoTitulo(valorBusca, n_pagina);
+            
+            if(qtde_paginas == 0){
+                BuscaArtigosDAO numarDAO = new BuscaArtigosDAO(user);
+                qtde_paginas = numarDAO.buscaQuantidadeDeArtigos(valorBusca);
+                if (qtde_paginas % 10 == 0){
+                    qtde_paginas = qtde_paginas / 10;
+                } else {
+                    qtde_paginas = (qtde_paginas / 10) + 1;
+                }
+            }
+                
+            //Inicializa a váriavel que conterá a página de retorno
+            PrintWriter retorno = response.getWriter();
+            
+            request.setAttribute("listaArtigos", artigos);
+            request.setAttribute("paginaAtual", n_pagina);
+            request.setAttribute("search", valorBusca);            
+            request.setAttribute("tipo", tipo);
+            request.setAttribute("qtdePaginas", qtde_paginas);
+
+            RequestDispatcher rd = null;
+            rd = request.getRequestDispatcher("/resultados.jsp");
+            rd.forward(request, response);
             
         } catch (PubMedDAOException ex) {
             Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ServletException(ex.getMessage());
         } catch (SQLException ex) {
             Logger.getLogger(BuscaInicial.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ServletException(ex.getMessage());
         }
     }
 
@@ -152,4 +198,5 @@ public class BuscaInicial extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
 }

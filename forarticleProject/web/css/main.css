@@ -204,6 +204,7 @@ nav a:hover {
     text-align: right;
     padding: 0px;
     margin: 0px auto;
+    margin-top: 25px;
     width: 74%;
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
@@ -229,6 +230,10 @@ nav a:hover {
     float: left;
 }
 
+.clear{
+    clear:both;
+}
+
 .pesquisar-btn{
     border: 1px solid #777;
     border-left: 0px;
@@ -241,11 +246,12 @@ nav a:hover {
 }
 
 .pesquisar-btn:hover{ 
-      background-position:  0px -60px;
+    cursor:pointer;
+    background-position:  0px -60px;
 }
 
 .pesquisar-btn:active{
-      background-position:  0px -120px;
+    background-position:  0px -120px;
 }
 
 .pesquisar-edt{
@@ -290,7 +296,6 @@ section {
 }
 
 #results-label {
-    display: none;
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     width: 100%;
@@ -536,6 +541,7 @@ section {
     border-radius: 4px;
     font-size: 17px;
     margin-top: 20px;
+    margin-bottom: 20px;
     width: 30%;
     background-color: #20385e;
     text-align: center;
@@ -860,11 +866,7 @@ section {
     margin-left: 5px;
 }
 
-#radio{
-    font-family: 'Opens sans', sans-serif;
-    font-size: 19px;
-}
 
-#radio input{
-    margin-left: 5px;
+.articleID{
+    display:none;
 }

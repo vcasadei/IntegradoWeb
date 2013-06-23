@@ -18,7 +18,7 @@ public class ConnectionPubMed {
     public static Connection getConnection(String usuario, String senha) throws PubMedDAOException {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-            String conexao = "jdbc:sqlserver://localhost;databaseName=Projeto;integratedSecurity=true;";
+            String conexao = "jdbc:sqlserver://localhost;DatabaseName=LABBD;integratedSecurity=true;";
             Connection conn = DriverManager.getConnection(conexao);
             return conn;
         } catch (Exception e) {

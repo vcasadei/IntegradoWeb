@@ -7,9 +7,12 @@ nav {
 
 nav a{
     color: white;
-
     font-family: 'Open Sans', sans-serif;
     font-size:16px;
+}
+
+nav a:visited, nav a:link, nav a:active{
+    color: white;
 }
 
 nav ul ul {

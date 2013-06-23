@@ -1,0 +1,49 @@
+.main {
+	padding-top: 0px;
+}
+
+.footer-container{
+    position: relative;
+}
+
+.pag_item,
+.pag_atual{
+	text-decoration: none;
+	font-weight: normal;
+	margin-left: 5px;
+	font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.pag_item{
+	color: blue;
+}
+
+.pag_atual{
+	color: black;
+	font-weight: bold;
+}
+
+.pag_item:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.pagination{
+	margin: 0px auto;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.pagination-bottom{
+	margin-bottom: 5px;
+	margin-top: 15px;
+}
+
+.form-box{
+	margin-top: 15px;
+}
+
+.main-results{
+	margin-bottom: 20px;
+}

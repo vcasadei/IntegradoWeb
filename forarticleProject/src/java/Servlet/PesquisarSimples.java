@@ -4,6 +4,10 @@
  */
 package Servlet;
 
+import Banco.BuscaArtigosDAO;
+import Banco.PubMedDAOException;
+import Bean.ArticleResult;
+import Bean.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,8 +19,11 @@ import org.json.*;
 
 //Pacotes das classes e conexão do banco
 import ClassesBanco.*;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -65,7 +72,7 @@ public class PesquisarSimples extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -80,65 +87,31 @@ public class PesquisarSimples extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-        
-        //recebe o valor buscado na operação de busca simples
-        String valorBusca = request.getParameter("search");
-        
-        //Lista de artigos encontrados
-        ArrayList <Article> artigos;        
-        ConexaoBD conexaoBD = new ConexaoBD();
-        artigos = conexaoBD.pesquisarSimples(valorBusca);
-        
-        //Inicializa a váriavel que conterá a página de retorno
-        PrintWriter retorno = response.getWriter();
-        
-        if(artigos.isEmpty()){
-            //monta a págica sem resultados encontrados
-            JSONObject json1 = new JSONObject();
-            JSONObject json2 = new JSONObject();
-            try {
-                json2.put("erro","Nenhum resultado encontrado");
-                json1.put("article",json2);
-                retorno.print(json1);
-            } catch (JSONException ex) {
-                System.err.println(ex);
-            }
-        } else {
-            //monta a página com os resultados encontrados
-            JSONObject json = new JSONObject();
-            JSONArray articleList = new JSONArray();
-            for (int i = 0; i < artigos.size(); i++) {
-                try {
-                    JSONObject article = new JSONObject();
-                    article.put("titulo",artigos.get(i).getTitle());
-                    article.put("resumo",artigos.get(i).getResumo());
-                    article.put("articleID",artigos.get(i).getArticleID());
-                    articleList.put(article);
-                } catch (JSONException e){
-                    System.err.println(e);
-                    retorno.print("erro");
-                }
-//                json += "{ \"titulo\":\""
-//                        +artigos.get(i).getTitle().replace(match1, repla1).replace(match2, repla2)+"\", \"resumo\":\""
-//                        +artigos.get(i).getResumo().replace(match1, repla1).replace(match2, repla2)+"\", \"id\":\"";
-//                        if (i == artigos.size()-1)
-//                            json += artigos.get(i).getArticleID()+ "\"}\n"; //se for o ultimo n adiciona virgula
-//                        else
-//                            json += artigos.get(i).getArticleID()+ "\"},\n";
-            }
-            try {
-                json.put("article", articleList);
-            } catch (JSONException ex) {
-                System.err.println(ex);
-            }
-            
-            retorno.print(json);
-        }
-         
-        //finaliza o retorno
-        retorno.close();
+//        try {
+//            Usuario user = new Usuario(/*request.getParameter("user"), request.getParameter("senha")*/"labbd05","bananassaoazuis");
+//            //recebe o valor buscado na operação de busca simples
+//            String valorBusca = request.getParameter("search");
+//            
+//            //Lista de artigos encontrados
+//            List <ArticleResult> artigos;        
+//            BuscaArtigosDAO arDAO = new BuscaArtigosDAO(user);
+//            artigos = arDAO.buscaArtigoTitulo(valorBusca);
+//            
+//            //Inicializa a váriavel que conterá a página de retorno
+//            PrintWriter retorno = response.getWriter();
+//            
+//            request.setAttribute("listaArtigos", artigos);
+//            RequestDispatcher rd = null;
+//            rd = request.getRequestDispatcher("/resultados.jsp");
+//            rd.forward(request, response);
+//            
+//        } catch (PubMedDAOException ex) {
+//            Logger.getLogger(PesquisarSimples.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(PesquisarSimples.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     

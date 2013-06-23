@@ -5,6 +5,7 @@
 package Banco;
 
 import Bean.Article;
+import Bean.ArticleResult;
 import Bean.Author;
 import Bean.Journal;
 import Bean.Usuario;
@@ -31,19 +32,34 @@ public class BuscaArtigosDAO {
     }
 
     /*Faz a busca simples por título*/
-    public List<Article> buscaArtigoTitulo(String titulo) throws SQLException, PubMedDAOException {
+    public List<ArticleResult> buscaArtigoTitulo(String titulo, int n_pagina) throws SQLException, PubMedDAOException {
 
-        List<Article> listaTitulos = new ArrayList<Article>();
+        List<ArticleResult> listaTitulos = new ArrayList<ArticleResult>();
         PreparedStatement ps;
-
-        String SQL = "SELECT articleID, resumo, title FROM Article WHERE title LIKE '%" + titulo + "%'";
-
+        
+        String SQL = "DECLARE @rowsPerPage INT;\n";
+        SQL += "DECLARE @pageNum INT;\n";
+        SQL += "SET @rowsPerPage = 10;\n";
+        SQL += "SET @pageNum = "+ n_pagina +"; \n";
+        SQL += "WITH SQLPaging\n";
+        SQL += "AS\n";
+        SQL += "(\n";
+        SQL += "SELECT TOP(@rowsPerPage * @pageNum)\n";
+        SQL += "ResultNum = ROW_NUMBER() OVER (ORDER BY title)\n";
+        SQL += ",title, resumo, articleID\n";
+        SQL += "FROM Article WHERE title like '%"+titulo+"%'\n";
+        SQL += ")\n";
+        SQL += "SELECT *\n";
+        SQL += "FROM SQLPaging\n";
+        SQL += "WHERE ResultNum > ((@pageNum - 1) * @rowsPerPage)";
+        
         ps = conn.prepareStatement(SQL);
 
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            Article art = new Article(rs.getString("articleID"), rs.getString("resumo"), rs.getString("title"));
+            ArticleResult art = new ArticleResult(rs.getString("title"), rs.getString("resumo"), 
+                    rs.getString("articleID"));
             listaTitulos.add(art);
         }
 
@@ -51,21 +67,36 @@ public class BuscaArtigosDAO {
         return listaTitulos;
     }
     
+    public int buscaQuantidadeDeArtigos(String titulo) throws SQLException, PubMedDAOException{
+        PreparedStatement ps;
+        
+        String SQL = "SELECT COUNT(articleID) FROM Article WHERE title like '%"+titulo+"%'";
+        ps = conn.prepareStatement(SQL);
+
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        String retorno = rs.getString(1);
+        ConnectionPubMed.close(conn, ps, rs);
+        return Integer.parseInt(retorno);
+    }
+    
     /*Busca os dados do artigo de acordo com uma keyword*/
-    public List<Article> buscaArtigoKeyWord(String keyword) throws SQLException, PubMedDAOException{
+    public List<ArticleResult> buscaArtigoKeyWord(String keyword) throws SQLException, PubMedDAOException{
         
         Statement ps;
-        List<Article> retorno = new ArrayList();
+        List<ArticleResult> retorno = new ArrayList();
        
         String SQL = "SELECT article.articleID, title, resumo FROM article, "
                 + "articleKeywordList as ak WHERE article.articleID = ak.articleID"
                 + "AND ak.keyword LIKE '" + keyword + "';";
+        //MUDAR CONSULTA!!
         
         ps = conn.createStatement();
         ResultSet rs = ps.executeQuery(SQL);
         
         while (rs.next()) {
-            Article artigo = new Article(rs.getString("articleID"), rs.getString("title"), rs.getString("resumo"));
+            ArticleResult artigo = new ArticleResult(rs.getString("title"), rs.getString("resumo"), 
+                    rs.getString("articleID"));
             retorno.add(artigo);
         }
         

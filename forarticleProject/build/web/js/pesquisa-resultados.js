@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
     $('#caixa-pesquisa').focus();   
     $('#avancada').css('display','block');
 
@@ -31,9 +31,26 @@ $(document).ready(function(){
 
     $('#btn-pesquisa').on( 'click', function() {
         $('#caixa-pesquisa').focus();
+        $('#pag_atual').attr('value','1');
+        $('#qtde_pag').attr('value','0');
         $('#pesquisa-s').submit();
 
     });
 
-});
+    $('.pag_goto').on( 'click', function() {
+        $('#pag_atual').attr('value',$(this).text())
+        $('#pesquisa-s').submit();
+    });
 
+    $('.anterior').on( 'click', function() {
+        var a = parseInt($('#pag_atual').attr('value'))-1;
+        $('#pag_atual').attr('value',a);
+        $('#pesquisa-s').submit();
+    });
+
+    $('.proximo').on( 'click', function() {
+        var a = $('#pag_atual').attr('value')
+        $('#pag_atual').attr('value',parseInt(a)+1);
+        $('#pesquisa-s').submit();
+    });
+});
